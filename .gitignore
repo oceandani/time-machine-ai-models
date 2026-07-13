@@ -1,0 +1,16 @@
+# 忽略所有 AI 模型大檔案（防止再次 push 失敗）
+*.safetensors
+*.ckpt
+*.pt
+*.bin
+
+# 忽略 Python 自動產生的暫存快取
+__pycache__/
+*.pyc
+
+# 忽略虛擬環境資料夾（未來開發 backend 會用到）
+venv/
+.env
+
+# 忽略 Mac 系統自動產生的隱藏垃圾檔
+.DS_Store
