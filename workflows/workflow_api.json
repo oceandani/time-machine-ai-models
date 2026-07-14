@@ -1,0 +1,356 @@
+{
+  "2": {
+    "inputs": {
+      "image": "hk_cwb_street_sample.jpg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "4": {
+    "inputs": {
+      "ckpt_name": "DreamShaper_8_pruned.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "5": {
+    "inputs": {
+      "text": "clear blue sky, horizontal roof parapet top line, flat skyline silhouette, consistent perspective, no new building volume\n\n1960s Hong Kong street scene at Causeway Bay/Hennessy Road/Jardine's junction, a long continuous row of dense 5-story Tong Lau buildings lining the entire right side of the street, \n\nfive clearly visible horizontal storeys, consistent floor-to-floor height, strong horizontal floor bands, regular window grid, weathered concrete and aged plaster, authentic film color, realistic street depth perspective, overhead wires, accurate skyline silhouette with a clear rooftop parapet line\n",
+      "clip": [
+        "4",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Positive Prompt"
+    }
+  },
+  "6": {
+    "inputs": {
+      "text": "tall buildings, skyscrapers, signs clogging the sky, overlapping signs, endless high rise, blocked skyline\n\n(high-rise buildings, tall skyscrapers, modern tower blocks, blocked sky:1.4), cartoon, drawing, anime, modern advertising, LED screens, glass facades, incorrect signage, text artifacts, cluttering, blurry, low detailed, messy architecture, missing sky\n\nno missing roofline, no flat cut-off skyline\nno sky area disappearance, keep sky region properly defined\nbroken skyline, missing rooftop parapet line\nincorrect number of storeys, extra random floors\nfloating signage, signage dominating architecture\nincorrect building scale, wrong window band alignment\nvertical skyscraper look\n\nno rooftops expansion, no medieval eaves, no banners, no shop signs, no extra roof structures, no architecture growth",
+      "clip": [
+        "4",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Negative Prompt"
+    }
+  },
+  "7": {
+    "inputs": {
+      "a": 6.283185307179586,
+      "bg_threshold": 0.1,
+      "resolution": 512,
+      "image": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "MiDaS-DepthMapPreprocessor",
+    "_meta": {
+      "title": "MiDaS Depth Map"
+    }
+  },
+  "9": {
+    "inputs": {
+      "control_net_name": "control_v11f1p_sd15_depth.pth"
+    },
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "Load ControlNet Model"
+    }
+  },
+  "10": {
+    "inputs": {
+      "strength": 0.45,
+      "start_percent": 0.184,
+      "end_percent": 1,
+      "positive": [
+        "5",
+        0
+      ],
+      "negative": [
+        "6",
+        0
+      ],
+      "control_net": [
+        "9",
+        0
+      ],
+      "image": [
+        "15",
+        0
+      ],
+      "vae": [
+        "4",
+        2
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "Apply ControlNet"
+    }
+  },
+  "11": {
+    "inputs": {
+      "seed": 575700869892563,
+      "steps": 12,
+      "cfg": 5.5,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 0.6,
+      "model": [
+        "4",
+        0
+      ],
+      "positive": [
+        "10",
+        0
+      ],
+      "negative": [
+        "10",
+        1
+      ],
+      "latent_image": [
+        "34",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "13": {
+    "inputs": {
+      "samples": [
+        "11",
+        0
+      ],
+      "vae": [
+        "4",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "15": {
+    "inputs": {
+      "low_threshold": 0.25,
+      "high_threshold": 0.35,
+      "image": [
+        "7",
+        0
+      ]
+    },
+    "class_type": "Canny",
+    "_meta": {
+      "title": "Detect Edges (Canny)"
+    }
+  },
+  "17": {
+    "inputs": {
+      "weight": 0.55,
+      "weight_type": "style transfer",
+      "combine_embeds": "norm average",
+      "start_at": 0.35,
+      "end_at": 0.6,
+      "embeds_scaling": "V only",
+      "model": [
+        "4",
+        0
+      ],
+      "ipadapter": [
+        "21",
+        0
+      ],
+      "image": [
+        "20",
+        0
+      ],
+      "clip_vision": [
+        "18",
+        0
+      ]
+    },
+    "class_type": "IPAdapterAdvanced",
+    "_meta": {
+      "title": "IPAdapter Advanced"
+    }
+  },
+  "18": {
+    "inputs": {
+      "clip_name": "clip_vision_g.safetensors"
+    },
+    "class_type": "CLIPVisionLoader",
+    "_meta": {
+      "title": "Load CLIP Vision"
+    }
+  },
+  "20": {
+    "inputs": {
+      "image": "482201384_983813913718505_726969517587217545_n.jpg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "History Reference"
+    }
+  },
+  "21": {
+    "inputs": {
+      "ipadapter_file": "ip-adapter-plus_sd15.safetensors"
+    },
+    "class_type": "IPAdapterModelLoader",
+    "_meta": {
+      "title": "IPAdapter Model Loader"
+    }
+  },
+  "23": {
+    "inputs": {
+      "seed": 466067387579848,
+      "steps": 20,
+      "cfg": 8,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 0.8,
+      "model": [
+        "17",
+        0
+      ],
+      "positive": [
+        "32",
+        0
+      ],
+      "negative": [
+        "32",
+        1
+      ],
+      "latent_image": [
+        "31",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler_Inpaint"
+    }
+  },
+  "26": {
+    "inputs": {
+      "text": "(masterpiece, sharp focus, crisp details:1.3), a row of low-rise 5-story traditional Hong Kong Tong Lau buildings strictly at the bottom, short horizontal balconies, retro street level shopfronts, 1960s authentic photography.",
+      "clip": [
+        "4",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "SIGN PROMPT"
+    }
+  },
+  "29": {
+    "inputs": {
+      "samples": [
+        "23",
+        0
+      ],
+      "vae": [
+        "4",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "FINAL VAE Decode"
+    }
+  },
+  "30": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "29",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "FINAL IMAGE"
+    }
+  },
+  "31": {
+    "inputs": {
+      "grow_mask_by": 1,
+      "pixels": [
+        "13",
+        0
+      ],
+      "vae": [
+        "4",
+        2
+      ],
+      "mask": [
+        "2",
+        1
+      ]
+    },
+    "class_type": "VAEEncodeForInpaint",
+    "_meta": {
+      "title": "VAE Encode for Inpainting"
+    }
+  },
+  "32": {
+    "inputs": {
+      "noise_mask": true,
+      "positive": [
+        "26",
+        0
+      ],
+      "negative": [
+        "6",
+        0
+      ],
+      "vae": [
+        "4",
+        2
+      ],
+      "pixels": [
+        "13",
+        0
+      ],
+      "mask": [
+        "2",
+        1
+      ]
+    },
+    "class_type": "InpaintModelConditioning",
+    "_meta": {
+      "title": "InpaintModelConditioning"
+    }
+  },
+  "34": {
+    "inputs": {
+      "pixels": [
+        "2",
+        0
+      ],
+      "vae": [
+        "4",
+        2
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE Encode"
+    }
+  }
+}
