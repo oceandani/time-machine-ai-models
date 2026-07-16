@@ -1,7 +1,7 @@
 {
   "2": {
     "inputs": {
-      "image": "hk_cwb_street_sample.jpg"
+      "image": "temp_input_hk_cwb_street_sample.jpg"
     },
     "class_type": "LoadImage",
     "_meta": {

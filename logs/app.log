@@ -1,0 +1,14 @@
+2026-07-16 16:35:32 [INFO] [TimeMachine] - [0ccd6adb-8886-44ea-892b-93565ff7603c] 1. 正在上傳圖片至 ComfyUI...
+2026-07-16 16:35:32 [INFO] [TimeMachine] - [0ccd6adb-8886-44ea-892b-93565ff7603c] 2. 圖片上傳成功，ComfyUI 檔名: temp_input_f399cb44-faa9-4c87-a895-f0d50443f3d1_hk_cwb_street_sample.jpg
+2026-07-16 16:35:32 [INFO] [TimeMachine] - [0ccd6adb-8886-44ea-892b-93565ff7603c] 3. 任務已提交，開始監控生圖進度...
+2026-07-16 16:35:51 [INFO] [TimeMachine] - [0ccd6adb-8886-44ea-892b-93565ff7603c] ⏳ KSampler 處理中: 1 / 1
+2026-07-16 16:36:59 [INFO] [TimeMachine] - [0ccd6adb-8886-44ea-892b-93565ff7603c] ⏳ KSampler 處理中: 1 / 12
+2026-07-16 16:37:58 [INFO] [TimeMachine] - [0ccd6adb-8886-44ea-892b-93565ff7603c] ⏳ KSampler 處理中: 2 / 12
+2026-07-16 16:38:52 [ERROR] [TimeMachine] - [0ccd6adb-8886-44ea-892b-93565ff7603c] ❌ 生圖超時 (超過 180 秒) 或未能獲取圖片
+2026-07-16 17:23:50 [INFO] [TimeMachine] - [afe48688-39ea-44d5-a2a0-52327d817f56] 1. 正在上傳圖片至 ComfyUI...
+2026-07-16 17:23:50 [INFO] [TimeMachine] - [afe48688-39ea-44d5-a2a0-52327d817f56] 2. 圖片上傳成功，ComfyUI 檔名: temp_input_9c3104df-02fc-4980-8e2c-a7679c21fb9d_hk_cwb_street_sample.jpg
+2026-07-16 17:23:50 [INFO] [TimeMachine] - [afe48688-39ea-44d5-a2a0-52327d817f56] 3. 任務已提交 (ID: 1ee35d0c-a335-4862-a3b6-fcc69ae06586)，開始監控生圖進度...
+2026-07-16 17:24:15 [INFO] [TimeMachine] - [afe48688-39ea-44d5-a2a0-52327d817f56] ⏳ KSampler 處理中: 1 / 1
+2026-07-16 17:25:22 [INFO] [TimeMachine] - [afe48688-39ea-44d5-a2a0-52327d817f56] ⏳ KSampler 處理中: 1 / 12
+2026-07-16 17:26:14 [INFO] [TimeMachine] - [afe48688-39ea-44d5-a2a0-52327d817f56] ⏳ KSampler 處理中: 2 / 12
+2026-07-16 17:26:51 [ERROR] [TimeMachine] - [afe48688-39ea-44d5-a2a0-52327d817f56] ❌ 生圖超時 (超過 180 秒) 或未能獲取圖片
