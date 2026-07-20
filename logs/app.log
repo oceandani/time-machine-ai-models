@@ -12,3 +12,21 @@
 2026-07-16 17:25:22 [INFO] [TimeMachine] - [afe48688-39ea-44d5-a2a0-52327d817f56] ⏳ KSampler 處理中: 1 / 12
 2026-07-16 17:26:14 [INFO] [TimeMachine] - [afe48688-39ea-44d5-a2a0-52327d817f56] ⏳ KSampler 處理中: 2 / 12
 2026-07-16 17:26:51 [ERROR] [TimeMachine] - [afe48688-39ea-44d5-a2a0-52327d817f56] ❌ 生圖超時 (超過 180 秒) 或未能獲取圖片
+2026-07-17 10:25:46 [INFO] [TimeMachine] - [0e80aa74-043b-4c64-8fea-bd8b5e330e78] 收到 API 請求，準備處理 Causeway Bay, Hong Kong 於 1960 嘅圖片...
+2026-07-17 10:25:46 [INFO] [TimeMachine] - [612814c7-f3c9-4b32-9df0-ca6b59ebec9f] 1. 正在上傳圖片至 ComfyUI...
+2026-07-17 10:25:46 [INFO] [TimeMachine] - [612814c7-f3c9-4b32-9df0-ca6b59ebec9f] 2. 圖片上傳成功，ComfyUI 檔名: temp_input_0e80aa74-043b-4c64-8fea-bd8b5e330e78_hk_cwb_street_sample.jpg
+2026-07-17 10:25:46 [INFO] [TimeMachine] - [612814c7-f3c9-4b32-9df0-ca6b59ebec9f] 3. 任務已提交 (ID: cc48c4ae-3156-4424-b333-025d9d50434d)，開始監控生圖進度...
+2026-07-17 10:25:57 [INFO] [TimeMachine] - [612814c7-f3c9-4b32-9df0-ca6b59ebec9f] ⏳ KSampler 處理中: 1 / 1
+2026-07-17 10:26:50 [INFO] [TimeMachine] - [612814c7-f3c9-4b32-9df0-ca6b59ebec9f] ⏳ KSampler 處理中: 1 / 12
+2026-07-17 10:27:42 [INFO] [TimeMachine] - [612814c7-f3c9-4b32-9df0-ca6b59ebec9f] ⏳ KSampler 處理中: 2 / 12
+2026-07-17 10:28:34 [INFO] [TimeMachine] - [612814c7-f3c9-4b32-9df0-ca6b59ebec9f] ⏳ KSampler 處理中: 3 / 12
+2026-07-17 10:28:46 [ERROR] [TimeMachine] - [612814c7-f3c9-4b32-9df0-ca6b59ebec9f] ❌ 生圖超時 (超過 180 秒) 或未能獲取圖片
+2026-07-17 10:28:46 [ERROR] [TimeMachine] - [0e80aa74-043b-4c64-8fea-bd8b5e330e78] ❌ API 發生嚴重錯誤:
+Traceback (most recent call last):
+  File "/Users/danielee/era-project-lkh/api/routes_jobs.py", line 32, in create_generation_job
+    image_bytes = run_comfyui_inference(year=year, location=location, input_image_path=input_image_path)
+  File "/Users/danielee/era-project-lkh/services/inference_service.py", line 111, in run_comfyui_inference
+    raise HTTPException(status_code=500, detail="生圖超時")
+fastapi.exceptions.HTTPException: 500: 生圖超時
+
+2026-07-17 10:28:46 [INFO] [TimeMachine] - [0e80aa74-043b-4c64-8fea-bd8b5e330e78] 暫存檔案 temp_input_0e80aa74-043b-4c64-8fea-bd8b5e330e78_hk_cwb_street_sample.jpg 已清理。
