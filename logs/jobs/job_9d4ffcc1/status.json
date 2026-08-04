@@ -1,0 +1,4 @@
+{
+  "status": "failed",
+  "error": "500: 上傳圖片失敗: [Errno 2] No such file or directory: 'logs/jobs/input_processed.jpg'"
+}

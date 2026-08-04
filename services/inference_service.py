@@ -48,7 +48,8 @@ def run_comfyui_inference(year: str, location: str, input_image_path: str) -> by
 
     # 替換參數
     if "11" in prompt_data: prompt_data["11"]["inputs"]["seed"] = random.randint(1, 1000000000)
-    if "5" in prompt_data: prompt_data["5"]["inputs"]["text"] = f"{year} vintage photography of {location}"
+    # 💡 修正：優化 Prompt，加入 empty street 等關鍵字，強制 AI 減少生成密集人群，避免恐怖感
+    if "5" in prompt_data: prompt_data["5"]["inputs"]["text"] = f"vintage photography of {location} in {year}, highly detailed, empty street, focus on architecture, no crowds, high quality"
     if "2" in prompt_data: prompt_data["2"]["inputs"]["image"] = comfy_image_name
 
     try:
@@ -71,7 +72,10 @@ def run_comfyui_inference(year: str, location: str, input_image_path: str) -> by
     final_image_info = None
     start_time = time.time()
     
-    while time.time() - start_time < 180:
+    # 💡 修改：將超時限制從 180 秒增加到 300 秒 (5分鐘)，照顧較慢的顯示卡
+    TIMEOUT_SECONDS = 300 
+    
+    while time.time() - start_time < TIMEOUT_SECONDS:
         # 防彈機制一：主動查 History (用正確嘅 prompt_id)
         try:
             hist_resp = requests.get(f"{COMFYUI_HTTP_URL}/history/{prompt_id}", timeout=1)
@@ -107,8 +111,8 @@ def run_comfyui_inference(year: str, location: str, input_image_path: str) -> by
     ws.close()
     
     if not final_image_info: 
-        logger.error(f"[{client_id}] ❌ 生圖超時 (超過 180 秒) 或未能獲取圖片")
-        raise HTTPException(status_code=500, detail="生圖超時")
+        logger.error(f"[{client_id}] ❌ 生圖超時 (超過 {TIMEOUT_SECONDS} 秒) 或未能獲取圖片。請檢查 ComfyUI 伺服器 Terminal 是否有報錯！")
+        raise HTTPException(status_code=500, detail=f"生圖超時 (超過 {TIMEOUT_SECONDS} 秒)，請檢查 ComfyUI 是否卡死")
         
     logger.info(f"[{client_id}] 4. 正在下載並回傳最終相片: {final_image_info['filename']}")
     return download_image(final_image_info["filename"], "", "output")

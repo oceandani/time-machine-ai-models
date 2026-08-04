@@ -1,16 +1,24 @@
-# 忽略所有 AI 模型大檔案（防止再次 push 失敗）
-*.safetensors
-*.ckpt
-*.pt
-*.bin
-
-# 忽略 Python 自動產生的暫存快取
-__pycache__/
-*.pyc
-
-# 忽略虛擬環境資料夾（未來開發 backend 會用到）
-venv/
+# 1. 絕密環境變數檔 (包含 GEMINI_API_KEY)
 .env
+.env.local
+*.env
 
-# 忽略 Mac 系統自動產生的隱藏垃圾檔
+# 2. Python 虛擬環境資料夾 (龐大且不可跨平台)
+venv/
+env/
+ENV/
+.venv/
+
+# 3. Python 快取與編譯檔
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# 4. 時光機生圖任務暫存與日誌 (包含測試時產生的圖片與歷史紀錄)
+logs/jobs/*
+!logs/jobs/.gitkeep
+
+# 5. 作業系統雜項檔
 .DS_Store
+Thumbs.db

@@ -12,38 +12,52 @@ class AgentService:
         self.max_retries = 3
 
     async def run_time_machine_pipeline(self, job_id: str, image_bytes: bytes, year: str, location: str) -> bytes:
-        """
-        核心狀態機邏輯：
-        1. 預處理 -> 2. Base 生成 -> 3. VLM 評估 -> 4. 根據結果決定結束或 Inpaint
-        """
         self.job_manager.init_job(job_id)
         
-        # 1. 影像標準化
         processed_bytes, metadata = process_and_standardize_image(image_bytes)
-        self.job_manager.save_image(job_id, 0, "input_processed.jpg", processed_bytes)
+        saved_image_path = self.job_manager.save_image(job_id, 0, "input_processed.jpg", processed_bytes)
         
-        # 2. 初始生成 (Pass 0)
         logger.info(f"[{job_id}] 執行初始 Base 生成...")
-        current_image = run_comfyui_inference(year, location, "logs/jobs/input_processed.jpg") # 需對應 job_manager 路徑
+        current_image = run_comfyui_inference(year, location, saved_image_path) 
         
-        # 3. Agent 迴圈
         for pass_num in range(self.max_retries):
-            # VLM 評估
-            eval_result = evaluate_image(current_image, year, location)
+            eval_result = await evaluate_image(current_image, year, location)
             self.job_manager.save_metadata(job_id, pass_num, "qa_result.json", eval_result)
             
+            # 1. 成功通過 VQA (完美結局)
             if eval_result["pass"]:
-                logger.info(f"[{job_id}] 評估通過，任務完成。")
+                logger.info(f"[{job_id}] ✅ 評估結果 [通過]: {eval_result.get('reason', '無提供原因')}")
                 return crop_to_original(current_image, metadata)
+                
+            # 2. 處理失敗情況
+            error_level = eval_result.get("error_level", "SYSTEM_WARNING_SKIP")
             
-            # 若失敗，進行 Inpaint
-            logger.warning(f"[{job_id}] 檢測到異常，準備執行修正 Pass {pass_num+1}...")
+            if error_level == "SYSTEM_FATAL":
+                # 致命錯誤：直接中斷任務
+                logger.error(f"[{job_id}] 🚨 檢測到致命系統錯誤，強制終止任務: {eval_result['reason']}")
+                raise RuntimeError(f"VLM 系統異常: {eval_result['reason']}")
+                
+            elif error_level == "SYSTEM_WARNING_SKIP":
+                # 優雅降級：記錄警告，略過修正循環，直接給用戶當前最好的結果
+                logger.warning(f"[{job_id}] ⚠️ VLM 暫時不可用 ({eval_result['reason']})，觸發優雅降級，直接回傳相片。")
+                return crop_to_original(current_image, metadata)
+                
+            elif error_level == "CONTENT_REJECT":
+                # 正常業務退回：執行 Inpaint 修正
+                logger.warning(f"[{job_id}] ❌ 內容評估 [失敗]: {eval_result.get('reason', '無提供原因')}")
+                logger.info(f"[{job_id}] 準備執行修正 Pass {pass_num+1}...")
+                
+                # 安全獲取 bbox，避免報錯
+                bbox = eval_result.get("bbox", [0.4, 0.4, 0.6, 0.6])
+                if not bbox or len(bbox) != 4:
+                    bbox = [0.4, 0.4, 0.6, 0.6] # Fallback 中心區域
+                    
+                mask_bytes = create_mask_from_bbox(metadata["target_size"][0], metadata["target_size"][1], bbox)
+                self.job_manager.save_image(job_id, pass_num+1, "error_mask.png", mask_bytes)
+                
+                # 此處呼叫 run_comfyui_inpaint(..., mask_bytes)
+                # current_image = run_comfyui_inpaint(...) 
             
-            # 生成 Mask
-            mask_bytes = create_mask_from_bbox(metadata["target_size"][0], metadata["target_size"][1], eval_result["bbox"])
-            self.job_manager.save_image(job_id, pass_num+1, "error_mask.png", mask_bytes)
-            
-            # 呼叫 ComfyUI Inpaint (此處需 Workflow 配合，此處省略具體 Inference 參數細節)
-            # current_image = run_comfyui_inpaint(...) 
-            
+        # 達到最大重試次數後，回傳最後一張結果
+        logger.info(f"[{job_id}] ⚠️ 達到最大修正次數，強制回傳最終相片。")
         return crop_to_original(current_image, metadata)
