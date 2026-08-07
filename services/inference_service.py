@@ -73,7 +73,7 @@ def run_comfyui_inference(year: str, location: str, input_image_path: str) -> by
     start_time = time.time()
     
     # 💡 修改：將超時限制從 180 秒增加到 300 秒 (5分鐘)，照顧較慢的顯示卡
-    TIMEOUT_SECONDS = 300 
+    TIMEOUT_SECONDS = 600 
     
     while time.time() - start_time < TIMEOUT_SECONDS:
         # 防彈機制一：主動查 History (用正確嘅 prompt_id)

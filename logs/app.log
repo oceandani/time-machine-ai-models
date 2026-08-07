@@ -2379,3 +2379,329 @@ RuntimeError: Missing GEMINI_API_KEY
 2026-07-27 18:16:49 [WARNING] [TimeMachine] - [job_a671f3a8] ⚠️ VLM 暫時不可用 (API 限流或擁堵)，觸發優雅降級，直接回傳相片。
 2026-07-27 18:16:49 [INFO] [TimeMachine] - 成功裁除黑邊並還原圖片尺寸: (1280, 960)
 2026-07-27 18:16:49 [INFO] [TimeMachine] - [job_a671f3a8] 📤 任務完成，回傳最終圖片
+2026-08-06 18:14:49 [INFO] [TimeMachine] - 🚀 時光機 API 伺服器 (Phase 2 Agentic Pipeline) 啟動成功！
+2026-08-06 18:16:06 [INFO] [TimeMachine] - [job_e76aea09] 📥 收到新請求: HK_QWB_Queensway_Bay_biz_hrs.jpg (目標: admiralty, Hong Kong, 1960s)
+2026-08-06 18:16:06 [INFO] [TimeMachine] - [job_e76aea09] 🚀 任務已初始化目錄、Manifest、Status 與 Progress。
+2026-08-06 18:16:06 [INFO] [TimeMachine] - 原始圖片尺寸: 1280x960
+2026-08-06 18:16:06 [INFO] [TimeMachine] - 已縮放至: 1024x768
+2026-08-06 18:16:06 [INFO] [TimeMachine] - [job_e76aea09] 🖼️ 原子儲存圖片: logs/jobs/job_e76aea09/pass0/input_processed.jpg
+2026-08-06 18:16:06 [INFO] [TimeMachine] - [job_e76aea09] 執行初始 Base 生成...
+2026-08-06 18:16:06 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] 1. 正在上傳圖片至 ComfyUI...
+2026-08-06 18:16:06 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] 2. 圖片上傳成功，ComfyUI 檔名: input_processed.jpg
+2026-08-06 18:16:06 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] 3. 任務已提交 (ID: 6a9aa2f7-1395-4503-9346-e7e0f4404bf0)，開始監控生圖進度...
+2026-08-06 18:16:13 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 1 / 1
+2026-08-06 18:16:23 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 1 / 12
+2026-08-06 18:16:31 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 2 / 12
+2026-08-06 18:16:40 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 3 / 12
+2026-08-06 18:16:48 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 4 / 12
+2026-08-06 18:16:57 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 5 / 12
+2026-08-06 18:17:06 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 6 / 12
+2026-08-06 18:17:14 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 7 / 12
+2026-08-06 18:17:23 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 8 / 12
+2026-08-06 18:17:32 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 9 / 12
+2026-08-06 18:17:40 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 10 / 12
+2026-08-06 18:17:49 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 11 / 12
+2026-08-06 18:17:58 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 12 / 12
+2026-08-06 18:18:21 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 1 / 20
+2026-08-06 18:18:28 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 2 / 20
+2026-08-06 18:18:36 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 3 / 20
+2026-08-06 18:18:44 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 4 / 20
+2026-08-06 18:18:52 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 5 / 20
+2026-08-06 18:19:01 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 6 / 20
+2026-08-06 18:19:09 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 7 / 20
+2026-08-06 18:19:18 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 8 / 20
+2026-08-06 18:19:27 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 9 / 20
+2026-08-06 18:19:36 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 10 / 20
+2026-08-06 18:19:45 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 11 / 20
+2026-08-06 18:19:54 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 12 / 20
+2026-08-06 18:20:03 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 13 / 20
+2026-08-06 18:20:13 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 14 / 20
+2026-08-06 18:20:22 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 15 / 20
+2026-08-06 18:20:31 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 16 / 20
+2026-08-06 18:20:40 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 17 / 20
+2026-08-06 18:20:49 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 18 / 20
+2026-08-06 18:20:58 [INFO] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ⏳ KSampler 處理中: 19 / 20
+2026-08-06 18:21:06 [ERROR] [TimeMachine] - [7eeb7438-8626-43b0-9336-a0b3d4ed3aca] ❌ 生圖超時 (超過 300 秒) 或未能獲取圖片。請檢查 ComfyUI 伺服器 Terminal 是否有報錯！
+2026-08-06 18:21:06 [ERROR] [TimeMachine] - [job_e76aea09] ❌ 處理發生嚴重錯誤:
+Traceback (most recent call last):
+  File "/Users/danielee/era-project-lkh/api/routes_jobs.py", line 43, in process_image
+    final_image_bytes = await agent.run_time_machine_pipeline(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "/Users/danielee/era-project-lkh/services/agent_service.py", line 21, in run_time_machine_pipeline
+    current_image = run_comfyui_inference(year, location, saved_image_path)
+  File "/Users/danielee/era-project-lkh/services/inference_service.py", line 115, in run_comfyui_inference
+    raise HTTPException(status_code=500, detail=f"生圖超時 (超過 {TIMEOUT_SECONDS} 秒)，請檢查 ComfyUI 是否卡死")
+fastapi.exceptions.HTTPException: 500: 生圖超時 (超過 300 秒)，請檢查 ComfyUI 是否卡死
+
+2026-08-07 00:02:47 [INFO] [TimeMachine] - 🚀 時光機 API 伺服器 (Phase 2 Agentic Pipeline) 啟動成功！
+2026-08-07 00:03:40 [INFO] [TimeMachine] - [job_eb357407] 📥 收到新請求: HK_QWB_Queensway_Bay_biz_hrs.jpg (目標: admiralty, Hong Kong, 1960s)
+2026-08-07 00:03:40 [INFO] [TimeMachine] - [job_eb357407] 🚀 任務已初始化目錄、Manifest、Status 與 Progress。
+2026-08-07 00:03:40 [INFO] [TimeMachine] - 原始圖片尺寸: 1280x960
+2026-08-07 00:03:40 [INFO] [TimeMachine] - 已縮放至: 1024x768
+2026-08-07 00:03:40 [INFO] [TimeMachine] - [job_eb357407] 🖼️ 原子儲存圖片: logs/jobs/job_eb357407/pass0/input_processed.jpg
+2026-08-07 00:03:40 [INFO] [TimeMachine] - [job_eb357407] 執行初始 Base 生成...
+2026-08-07 00:03:40 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] 1. 正在上傳圖片至 ComfyUI...
+2026-08-07 00:03:40 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] 2. 圖片上傳成功，ComfyUI 檔名: input_processed.jpg
+2026-08-07 00:03:40 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] 3. 任務已提交 (ID: 4b25ac82-1f2b-4576-bb23-58ac626868ea)，開始監控生圖進度...
+2026-08-07 00:03:46 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 1 / 1
+2026-08-07 00:03:55 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 1 / 12
+2026-08-07 00:04:03 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 2 / 12
+2026-08-07 00:04:12 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 3 / 12
+2026-08-07 00:04:20 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 4 / 12
+2026-08-07 00:04:29 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 5 / 12
+2026-08-07 00:04:38 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 6 / 12
+2026-08-07 00:04:46 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 7 / 12
+2026-08-07 00:04:55 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 8 / 12
+2026-08-07 00:05:03 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 9 / 12
+2026-08-07 00:05:12 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 10 / 12
+2026-08-07 00:05:20 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 11 / 12
+2026-08-07 00:05:29 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 12 / 12
+2026-08-07 00:05:51 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 1 / 20
+2026-08-07 00:05:57 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 2 / 20
+2026-08-07 00:06:04 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 3 / 20
+2026-08-07 00:06:10 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 4 / 20
+2026-08-07 00:06:17 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 5 / 20
+2026-08-07 00:06:24 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 6 / 20
+2026-08-07 00:06:31 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 7 / 20
+2026-08-07 00:06:39 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 8 / 20
+2026-08-07 00:06:46 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 9 / 20
+2026-08-07 00:06:54 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 10 / 20
+2026-08-07 00:07:01 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 11 / 20
+2026-08-07 00:07:09 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 12 / 20
+2026-08-07 00:07:17 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 13 / 20
+2026-08-07 00:07:25 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 14 / 20
+2026-08-07 00:07:33 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 15 / 20
+2026-08-07 00:07:42 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 16 / 20
+2026-08-07 00:07:50 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 17 / 20
+2026-08-07 00:07:58 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 18 / 20
+2026-08-07 00:08:07 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 19 / 20
+2026-08-07 00:08:15 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ⏳ KSampler 處理中: 20 / 20
+2026-08-07 00:08:21 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] ✅ WebSocket 報告任務生成完畢！
+2026-08-07 00:08:22 [INFO] [TimeMachine] - [84b5dd93-406a-4c14-9c02-3765ad3536e5] 4. 正在下載並回傳最終相片: ComfyUI_00067_.png
+2026-08-07 00:08:23 [INFO] [TimeMachine] - 🚧 GlobalLimiter 初始化完成，當前最大併發 Slot 數: 1
+2026-08-07 00:08:23 [INFO] [TimeMachine] - 🧠 [Attempt 1/3] 呼叫 VLM (slot_acquired)...
+2026-08-07 00:08:23 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-07 00:08:24 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 404 Not Found"
+2026-08-07 00:08:24 [WARNING] [TimeMachine] - ⚠️ 遇到非重試型 API 錯誤 (Code: 404): 404 not_found. {'error': {'code': 404, 'message': 'this model models/gemini-2.0-flash is no longer available. please update your code to use a newer model for the latest features and improvements. we recommend you to use the interactions api (https://ai.google.dev/gemini-api/docs/migrate-to-interactions).', 'status': 'not_found'}} -> 觸發降級
+2026-08-07 00:08:24 [INFO] [TimeMachine] - [job_eb357407] 📄 原子儲存 Metadata: logs/jobs/job_eb357407/pass0/qa_result.json
+2026-08-07 00:08:24 [WARNING] [TimeMachine] - [job_eb357407] ⚠️ VLM 暫時不可用 (無法處理的 API 錯誤: 404 not_found. {'error': {'code': 404, 'message': 'this model models/gemini-2.0-flash is no longer available. please update your code to use a newer model for the latest features and improvements. we recommend you to use the interactions api (https://ai.google.dev/gemini-api/docs/migrate-to-interactions).', 'status': 'not_found'}})，觸發優雅降級，直接回傳相片。
+2026-08-07 00:08:24 [INFO] [TimeMachine] - 成功裁除黑邊並還原圖片尺寸: (1280, 960)
+2026-08-07 00:08:24 [INFO] [TimeMachine] - [job_eb357407] 📤 任務完成，回傳最終圖片
+2026-08-07 00:52:26 [INFO] [TimeMachine] - 🚀 時光機 API 伺服器 (Phase 2 Agentic Pipeline) 啟動成功！
+2026-08-07 00:52:36 [INFO] [TimeMachine] - 🚀 時光機 API 伺服器 (Phase 2 Agentic Pipeline) 啟動成功！
+2026-08-07 00:53:18 [INFO] [TimeMachine] - [job_3489856a] 📥 收到新請求: HK_QWB_Queensway_Bay_biz_hrs.jpg (目標: admiralty, Hong Kong, 1960s)
+2026-08-07 00:53:18 [INFO] [TimeMachine] - [job_3489856a] 🚀 任務已初始化目錄、Manifest、Status 與 Progress。
+2026-08-07 00:53:18 [INFO] [TimeMachine] - 原始圖片尺寸: 1280x960
+2026-08-07 00:53:18 [INFO] [TimeMachine] - 已縮放至: 1024x768
+2026-08-07 00:53:18 [INFO] [TimeMachine] - [job_3489856a] 🖼️ 原子儲存圖片: logs/jobs/job_3489856a/pass0/input_processed.jpg
+2026-08-07 00:53:18 [INFO] [TimeMachine] - [job_3489856a] 執行初始 Base 生成...
+2026-08-07 00:53:18 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] 1. 正在上傳圖片至 ComfyUI...
+2026-08-07 00:53:18 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] 2. 圖片上傳成功，ComfyUI 檔名: input_processed.jpg
+2026-08-07 00:53:18 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] 3. 任務已提交 (ID: 2cc87606-2a6a-477c-b0e4-ffcdac52f67c)，開始監控生圖進度...
+2026-08-07 00:53:21 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 1 / 1
+2026-08-07 00:53:30 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 1 / 12
+2026-08-07 00:53:38 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 2 / 12
+2026-08-07 00:53:46 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 3 / 12
+2026-08-07 00:53:54 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 4 / 12
+2026-08-07 00:54:02 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 5 / 12
+2026-08-07 00:54:10 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 6 / 12
+2026-08-07 00:54:18 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 7 / 12
+2026-08-07 00:54:26 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 8 / 12
+2026-08-07 00:54:34 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 9 / 12
+2026-08-07 00:54:41 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 10 / 12
+2026-08-07 00:54:49 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 11 / 12
+2026-08-07 00:54:57 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 12 / 12
+2026-08-07 00:55:14 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 1 / 20
+2026-08-07 00:55:20 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 2 / 20
+2026-08-07 00:55:25 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 3 / 20
+2026-08-07 00:55:31 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 4 / 20
+2026-08-07 00:55:37 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 5 / 20
+2026-08-07 00:55:43 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 6 / 20
+2026-08-07 00:55:49 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 7 / 20
+2026-08-07 00:55:55 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 8 / 20
+2026-08-07 00:56:01 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 9 / 20
+2026-08-07 00:56:06 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 10 / 20
+2026-08-07 00:56:12 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 11 / 20
+2026-08-07 00:56:18 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 12 / 20
+2026-08-07 00:56:24 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 13 / 20
+2026-08-07 00:56:30 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 14 / 20
+2026-08-07 00:56:36 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 15 / 20
+2026-08-07 00:56:42 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 16 / 20
+2026-08-07 00:56:48 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 17 / 20
+2026-08-07 00:56:55 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 18 / 20
+2026-08-07 00:57:01 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 19 / 20
+2026-08-07 00:57:07 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ⏳ KSampler 處理中: 20 / 20
+2026-08-07 00:57:11 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] ✅ WebSocket 報告任務生成完畢！
+2026-08-07 00:57:11 [INFO] [TimeMachine] - [e5c2ef0c-c44e-40e2-b20a-8ba8ec59bfdd] 4. 正在下載並回傳最終相片: ComfyUI_00068_.png
+2026-08-07 00:57:11 [INFO] [TimeMachine] - 🚧 GlobalLimiter 初始化完成，當前最大併發 Slot 數: 1
+2026-08-07 00:57:11 [INFO] [TimeMachine] - 🧠 [Attempt 1/3] 呼叫 VLM (slot_acquired) - 嘗試模型: gemini-2.5-flash...
+2026-08-07 00:57:11 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-07 00:57:13 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 404 Not Found"
+2026-08-07 00:57:13 [WARNING] [TimeMachine] - ⚠️ VLM 異常 (Code: 404) 準備切換模型或退避: 404 not_found. {'error': {'code': 404, 'message': 'this model models/gemini-2.5-flash is no longer available to new users. please update your code to use a newer model for the latest features and improvements.', 'status': 'not_found'}}
+2026-08-07 00:57:13 [INFO] [TimeMachine] - ⏳ 準備重試，釋放 Slot 並休眠 1.66 秒...
+2026-08-07 00:57:14 [INFO] [TimeMachine] - 🧠 [Attempt 2/3] 呼叫 VLM (slot_acquired) - 嘗試模型: gemini-2-flash...
+2026-08-07 00:57:14 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-07 00:57:15 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2-flash:generateContent "HTTP/1.1 404 Not Found"
+2026-08-07 00:57:15 [WARNING] [TimeMachine] - ⚠️ VLM 異常 (Code: 404) 準備切換模型或退避: 404 not_found. {'error': {'code': 404, 'message': 'models/gemini-2-flash is not found for api version v1beta, or is not supported for generatecontent. call modelservice.listmodels to see the list of available models and their supported methods.', 'status': 'not_found'}}
+2026-08-07 00:57:15 [INFO] [TimeMachine] - ⏳ 準備重試，釋放 Slot 並休眠 2.04 秒...
+2026-08-07 00:57:17 [INFO] [TimeMachine] - 🧠 [Attempt 3/3] 呼叫 VLM (slot_acquired) - 嘗試模型: gemini-2.5-flash...
+2026-08-07 00:57:17 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-07 00:57:18 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 404 Not Found"
+2026-08-07 00:57:18 [WARNING] [TimeMachine] - ⚠️ VLM 異常 (Code: 404) 準備切換模型或退避: 404 not_found. {'error': {'code': 404, 'message': 'this model models/gemini-2.5-flash is no longer available to new users. please update your code to use a newer model for the latest features and improvements.', 'status': 'not_found'}}
+2026-08-07 00:57:18 [WARNING] [TimeMachine] - 🛑 達到重試上限 (嘗試: 3/3, 耗時: 6.6s/30.0s) -> 觸發最終降級
+2026-08-07 00:57:18 [INFO] [TimeMachine] - [job_3489856a] 📄 原子儲存 Metadata: logs/jobs/job_3489856a/pass0/qa_result.json
+2026-08-07 00:57:18 [WARNING] [TimeMachine] - [job_3489856a] ⚠️ VLM 暫時不可用 (超過最大重試限制)，觸發優雅降級，直接回傳相片。
+2026-08-07 00:57:18 [INFO] [TimeMachine] - 成功裁除黑邊並還原圖片尺寸: (1280, 960)
+2026-08-07 00:57:18 [INFO] [TimeMachine] - [job_3489856a] 📤 任務完成，回傳最終圖片
+2026-08-07 01:25:13 [INFO] [TimeMachine] - 🚀 時光機 API 伺服器 (Phase 2 Agentic Pipeline) 啟動成功！
+2026-08-07 01:25:35 [INFO] [TimeMachine] - 🚀 時光機 API 伺服器 (Phase 2 Agentic Pipeline) 啟動成功！
+2026-08-07 01:26:03 [INFO] [TimeMachine] - [job_0acc5c4d] 📥 收到新請求: hk_cwb_street_sample.jpg (目標: Causeway Bay, Hong Kong, 1960s)
+2026-08-07 01:26:03 [INFO] [TimeMachine] - [job_0acc5c4d] 🚀 任務已初始化目錄、Manifest、Status 與 Progress。
+2026-08-07 01:26:03 [INFO] [TimeMachine] - 原始圖片尺寸: 1920x1080
+2026-08-07 01:26:03 [INFO] [TimeMachine] - 已縮放至: 1024x576
+2026-08-07 01:26:03 [INFO] [TimeMachine] - [job_0acc5c4d] 🖼️ 原子儲存圖片: logs/jobs/job_0acc5c4d/pass0/input_processed.jpg
+2026-08-07 01:26:03 [INFO] [TimeMachine] - [job_0acc5c4d] 執行初始 Base 生成...
+2026-08-07 01:26:03 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] 1. 正在上傳圖片至 ComfyUI...
+2026-08-07 01:26:03 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] 2. 圖片上傳成功，ComfyUI 檔名: input_processed.jpg
+2026-08-07 01:26:03 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] 3. 任務已提交 (ID: d7e44b1f-67f1-4914-945d-1985ccd33947)，開始監控生圖進度...
+2026-08-07 01:26:05 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 1 / 1
+2026-08-07 01:26:11 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 1 / 12
+2026-08-07 01:26:16 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 2 / 12
+2026-08-07 01:26:20 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 3 / 12
+2026-08-07 01:26:25 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 4 / 12
+2026-08-07 01:26:30 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 5 / 12
+2026-08-07 01:26:35 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 6 / 12
+2026-08-07 01:26:40 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 7 / 12
+2026-08-07 01:26:44 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 8 / 12
+2026-08-07 01:26:49 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 9 / 12
+2026-08-07 01:26:54 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 10 / 12
+2026-08-07 01:26:59 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 11 / 12
+2026-08-07 01:27:04 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 12 / 12
+2026-08-07 01:27:14 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 1 / 20
+2026-08-07 01:27:18 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 2 / 20
+2026-08-07 01:27:21 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 3 / 20
+2026-08-07 01:27:25 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 4 / 20
+2026-08-07 01:27:28 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 5 / 20
+2026-08-07 01:27:32 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 6 / 20
+2026-08-07 01:27:36 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 7 / 20
+2026-08-07 01:27:39 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 8 / 20
+2026-08-07 01:27:43 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 9 / 20
+2026-08-07 01:27:47 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 10 / 20
+2026-08-07 01:27:50 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 11 / 20
+2026-08-07 01:27:54 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 12 / 20
+2026-08-07 01:27:57 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 13 / 20
+2026-08-07 01:28:01 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 14 / 20
+2026-08-07 01:28:04 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 15 / 20
+2026-08-07 01:28:08 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 16 / 20
+2026-08-07 01:28:11 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 17 / 20
+2026-08-07 01:28:15 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 18 / 20
+2026-08-07 01:28:19 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 19 / 20
+2026-08-07 01:28:22 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ⏳ KSampler 處理中: 20 / 20
+2026-08-07 01:28:25 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] ✅ WebSocket 報告任務生成完畢！
+2026-08-07 01:28:25 [INFO] [TimeMachine] - [f5dd173e-2b13-4be0-b449-0a1c0f8c28ab] 4. 正在下載並回傳最終相片: ComfyUI_00069_.png
+2026-08-07 01:28:25 [INFO] [TimeMachine] - 🚧 GlobalLimiter 初始化完成，當前最大併發 Slot 數: 1
+2026-08-07 01:28:25 [INFO] [TimeMachine] - 🧠 [Attempt 1/3] 呼叫 VLM (slot_acquired) - 嘗試模型: gemini-3.5-flash...
+2026-08-07 01:28:25 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-07 01:28:40 [WARNING] [TimeMachine] - ⚠️ VLM API 請求超時 (>15.0s)
+2026-08-07 01:28:40 [INFO] [TimeMachine] - ⏳ 準備重試，釋放 Slot 並休眠 1.35 秒...
+2026-08-07 01:28:41 [INFO] [TimeMachine] - 🧠 [Attempt 2/3] 呼叫 VLM (slot_acquired) - 嘗試模型: gemini-2.5-flash...
+2026-08-07 01:28:41 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-07 01:28:42 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 404 Not Found"
+2026-08-07 01:28:42 [WARNING] [TimeMachine] - ⚠️ VLM 異常 (Code: 404) 準備切換模型或退避: 404 not_found. {'error': {'code': 404, 'message': 'this model models/gemini-2.5-flash is no longer available to new users. please update your code to use a newer model for the latest features and improvements.', 'status': 'not_found'}}
+2026-08-07 01:28:42 [INFO] [TimeMachine] - ⏳ 準備重試，釋放 Slot 並休眠 2.02 秒...
+2026-08-07 01:28:44 [INFO] [TimeMachine] - 🧠 [Attempt 3/3] 呼叫 VLM (slot_acquired) - 嘗試模型: gemini-3.5-flash...
+2026-08-07 01:28:44 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-07 01:28:54 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 503 Service Unavailable"
+2026-08-07 01:28:54 [WARNING] [TimeMachine] - ⚠️ VLM 異常 (Code: 503) 準備切換模型或退避: 503 unavailable. {'error': {'code': 503, 'message': 'this model is currently experiencing high demand. spikes in demand are usually temporary. please try again later.', 'status': 'unavailable'}}
+2026-08-07 01:28:54 [WARNING] [TimeMachine] - 🛑 達到重試上限 (嘗試: 3/3, 耗時: 28.7s/30.0s) -> 觸發最終降級
+2026-08-07 01:28:54 [INFO] [TimeMachine] - [job_0acc5c4d] 📄 原子儲存 Metadata: logs/jobs/job_0acc5c4d/pass0/qa_result.json
+2026-08-07 01:28:54 [WARNING] [TimeMachine] - [job_0acc5c4d] ⚠️ VLM 暫時不可用 (超過最大重試限制)，觸發優雅降級，直接回傳相片。
+2026-08-07 01:28:54 [INFO] [TimeMachine] - 成功裁除黑邊並還原圖片尺寸: (1920, 1080)
+2026-08-07 01:28:54 [INFO] [TimeMachine] - [job_0acc5c4d] 📤 任務完成，回傳最終圖片
+2026-08-07 18:02:56 [ERROR] [fastapi] - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-08-07 18:15:45 [INFO] [TimeMachine] - 🚀 時光機 API 伺服器 (Phase 2 Agentic Pipeline) 啟動成功！
+2026-08-07 18:16:36 [INFO] [TimeMachine] - [job_162f79bd] 📥 收到新請求: HK_QWB_Queensway_Bay_biz_hrs.jpg (目標: admiralty, Hong Kong, 1960s)
+2026-08-07 18:16:36 [INFO] [TimeMachine] - [job_162f79bd] 🚀 任務已初始化目錄、Manifest、Status 與 Progress。
+2026-08-07 18:16:37 [INFO] [TimeMachine] - 原始圖片尺寸: 1280x960
+2026-08-07 18:16:37 [INFO] [TimeMachine] - 已縮放至: 1024x768
+2026-08-07 18:16:37 [INFO] [TimeMachine] - [job_162f79bd] 🖼️ 原子儲存圖片: logs/jobs/job_162f79bd/pass0/input_processed.jpg
+2026-08-07 18:16:37 [INFO] [TimeMachine] - [job_162f79bd] 執行初始 Base 生成...
+2026-08-07 18:16:37 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] 1. 正在上傳圖片至 ComfyUI...
+2026-08-07 18:16:37 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] 2. 圖片上傳成功，ComfyUI 檔名: input_processed.jpg
+2026-08-07 18:16:37 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] 3. 任務已提交 (ID: 00e4d7cc-532e-442a-a1b5-e4ca3b0bf9cb)，開始監控生圖進度...
+2026-08-07 18:16:44 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 1 / 1
+2026-08-07 18:16:53 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 1 / 12
+2026-08-07 18:17:01 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 2 / 12
+2026-08-07 18:17:09 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 3 / 12
+2026-08-07 18:17:17 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 4 / 12
+2026-08-07 18:17:25 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 5 / 12
+2026-08-07 18:17:33 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 6 / 12
+2026-08-07 18:17:41 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 7 / 12
+2026-08-07 18:17:49 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 8 / 12
+2026-08-07 18:17:57 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 9 / 12
+2026-08-07 18:18:05 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 10 / 12
+2026-08-07 18:18:13 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 11 / 12
+2026-08-07 18:18:20 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 12 / 12
+2026-08-07 18:18:40 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 1 / 20
+2026-08-07 18:18:46 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 2 / 20
+2026-08-07 18:18:52 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 3 / 20
+2026-08-07 18:18:58 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 4 / 20
+2026-08-07 18:19:04 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 5 / 20
+2026-08-07 18:19:10 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 6 / 20
+2026-08-07 18:19:16 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 7 / 20
+2026-08-07 18:19:23 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 8 / 20
+2026-08-07 18:19:29 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 9 / 20
+2026-08-07 18:19:36 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 10 / 20
+2026-08-07 18:19:43 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 11 / 20
+2026-08-07 18:19:49 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 12 / 20
+2026-08-07 18:19:57 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 13 / 20
+2026-08-07 18:20:04 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 14 / 20
+2026-08-07 18:20:12 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 15 / 20
+2026-08-07 18:20:19 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 16 / 20
+2026-08-07 18:20:26 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 17 / 20
+2026-08-07 18:20:34 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 18 / 20
+2026-08-07 18:20:41 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 19 / 20
+2026-08-07 18:20:49 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ⏳ KSampler 處理中: 20 / 20
+2026-08-07 18:20:54 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] ✅ WebSocket 報告任務生成完畢！
+2026-08-07 18:20:55 [INFO] [TimeMachine] - [e686edfd-c186-4ad3-bb23-1cc33886c1d9] 4. 正在下載並回傳最終相片: ComfyUI_00070_.png
+2026-08-07 18:20:55 [INFO] [TimeMachine] - 🚧 GlobalLimiter 初始化完成，當前最大併發 Slot 數: 1
+2026-08-07 18:20:55 [INFO] [TimeMachine] - 🧠 [Attempt 1/3] 呼叫 VLM (slot_acquired) - 嘗試模型: gemini-3.5-flash...
+2026-08-07 18:20:55 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-07 18:21:07 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-08-07 18:21:07 [INFO] [TimeMachine] - [job_162f79bd] 📄 原子儲存 Metadata: logs/jobs/job_162f79bd/pass0/qa_result.json
+2026-08-07 18:21:07 [WARNING] [TimeMachine] - [job_162f79bd] ❌ 內容評估 [失敗]: 無提供原因
+2026-08-07 18:21:07 [INFO] [TimeMachine] - [job_162f79bd] 準備執行修正 Pass 1...
+2026-08-07 18:21:07 [INFO] [TimeMachine] - [job_162f79bd] 🖼️ 原子儲存圖片: logs/jobs/job_162f79bd/pass1/error_mask.png
+2026-08-07 18:21:07 [INFO] [TimeMachine] - 🧠 [Attempt 1/3] 呼叫 VLM (slot_acquired) - 嘗試模型: gemini-3.5-flash...
+2026-08-07 18:21:07 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-07 18:21:22 [WARNING] [TimeMachine] - ⚠️ VLM API 請求超時 (>15.0s)
+2026-08-07 18:21:22 [INFO] [TimeMachine] - ⏳ 準備重試，釋放 Slot 並休眠 1.79 秒...
+2026-08-07 18:21:24 [INFO] [TimeMachine] - 🧠 [Attempt 2/3] 呼叫 VLM (slot_acquired) - 嘗試模型: gemini-2.5-flash...
+2026-08-07 18:21:24 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-07 18:21:27 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 404 Not Found"
+2026-08-07 18:21:28 [WARNING] [TimeMachine] - ⚠️ VLM 異常 (Code: 404) 準備切換模型或退避: 404 not_found. {'error': {'code': 404, 'message': 'this model models/gemini-2.5-flash is no longer available to new users. please update your code to use a newer model for the latest features and improvements.', 'status': 'not_found'}}
+2026-08-07 18:21:28 [INFO] [TimeMachine] - ⏳ 準備重試，釋放 Slot 並休眠 2.58 秒...
+2026-08-07 18:21:30 [INFO] [TimeMachine] - 🧠 [Attempt 3/3] 呼叫 VLM (slot_acquired) - 嘗試模型: gemini-3.5-flash...
+2026-08-07 18:21:30 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-07 18:21:43 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-08-07 18:21:43 [INFO] [TimeMachine] - [job_162f79bd] 📄 原子儲存 Metadata: logs/jobs/job_162f79bd/pass1/qa_result.json
+2026-08-07 18:21:43 [WARNING] [TimeMachine] - [job_162f79bd] ❌ 內容評估 [失敗]: The image is an AI-generated reconstruction and contains numerous historical inaccuracies and physical anomalies. The vehicles are AI hallucinations: the tram-like vehicle on the left has rubber tires instead of running on tracks, the long vehicle on the right is a hollow tube-like structure, and the double-decker bus has distorted proportions and details. Additionally, the background text on the buildings consists of illegible gibberish characters.
+2026-08-07 18:21:43 [INFO] [TimeMachine] - [job_162f79bd] 準備執行修正 Pass 2...
+2026-08-07 18:21:43 [INFO] [TimeMachine] - [job_162f79bd] 🖼️ 原子儲存圖片: logs/jobs/job_162f79bd/pass2/error_mask.png
+2026-08-07 18:21:43 [INFO] [TimeMachine] - 🧠 [Attempt 1/3] 呼叫 VLM (slot_acquired) - 嘗試模型: gemini-3.5-flash...
+2026-08-07 18:21:43 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-07 18:21:55 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-08-07 18:21:55 [INFO] [TimeMachine] - [job_162f79bd] 📄 原子儲存 Metadata: logs/jobs/job_162f79bd/pass2/qa_result.json
+2026-08-07 18:21:55 [WARNING] [TimeMachine] - [job_162f79bd] ❌ 內容評估 [失敗]: The image is an AI-generated reconstruction containing numerous historical inaccuracies, physically impossible vehicles, and modern/futuristic elements (such as the micro-car and the green pod vehicle) that do not belong in 1960s Admiralty, Hong Kong.
+2026-08-07 18:21:55 [INFO] [TimeMachine] - [job_162f79bd] 準備執行修正 Pass 3...
+2026-08-07 18:21:55 [INFO] [TimeMachine] - [job_162f79bd] 🖼️ 原子儲存圖片: logs/jobs/job_162f79bd/pass3/error_mask.png
+2026-08-07 18:21:55 [INFO] [TimeMachine] - [job_162f79bd] ⚠️ 達到最大修正次數，強制回傳最終相片。
+2026-08-07 18:21:55 [INFO] [TimeMachine] - 成功裁除黑邊並還原圖片尺寸: (1280, 960)
+2026-08-07 18:21:55 [INFO] [TimeMachine] - [job_162f79bd] 📤 任務完成，回傳最終圖片
