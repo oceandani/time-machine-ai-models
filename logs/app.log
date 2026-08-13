@@ -2705,3 +2705,112 @@ pip install python-multipart
 2026-08-07 18:21:55 [INFO] [TimeMachine] - [job_162f79bd] ⚠️ 達到最大修正次數，強制回傳最終相片。
 2026-08-07 18:21:55 [INFO] [TimeMachine] - 成功裁除黑邊並還原圖片尺寸: (1280, 960)
 2026-08-07 18:21:55 [INFO] [TimeMachine] - [job_162f79bd] 📤 任務完成，回傳最終圖片
+2026-08-10 16:31:37 [INFO] [TimeMachine] - 🚀 時光機 API 伺服器 (Phase 2 Agentic Pipeline) 啟動成功！
+2026-08-10 16:32:13 [INFO] [TimeMachine] - 🚀 時光機 API 伺服器 (Phase 2 Agentic Pipeline) 啟動成功！
+2026-08-10 16:33:14 [INFO] [TimeMachine] - [job_e64c5a7b] 📥 收到新請求: hk_cwb_street_sample.jpg (目標: Causeway Bay, Hong Kong, 1960s)
+2026-08-10 16:33:14 [ERROR] [TimeMachine] - [job_e64c5a7b] ❌ 處理發生嚴重錯誤:
+Traceback (most recent call last):
+  File "/Users/danielee/era-project-lkh/api/routes_jobs.py", line 40, in process_image
+    agent = AgentService(job_manager)
+TypeError: AgentService.__init__() takes 1 positional argument but 2 were given
+
+2026-08-10 16:38:13 [INFO] [TimeMachine] - 🚀 時光機 API 伺服器 (Phase 2 Agentic Pipeline) 啟動成功！
+2026-08-10 16:42:22 [INFO] [TimeMachine] - 🚀 時光機 API 伺服器 (Phase 2 Agentic Pipeline) 啟動成功！
+2026-08-10 16:42:51 [INFO] [TimeMachine] - 🚀 時光機 API 伺服器 (Phase 2 Agentic Pipeline) 啟動成功！
+2026-08-10 16:43:47 [INFO] [TimeMachine] - [job_df50aed7] 📥 收到新請求: hk_cwb_street_sample.jpg (目標: Causeway Bay, Hong Kong, 1960s)
+2026-08-10 16:43:47 [ERROR] [TimeMachine] - [job_df50aed7] ❌ 處理發生嚴重錯誤:
+Traceback (most recent call last):
+  File "/Users/danielee/era-project-lkh/api/routes_jobs.py", line 43, in process_image
+    final_image_bytes = await agent.run_time_machine_pipeline(
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        job_id=job_id,
+        ^^^^^^^^^^^^^^
+    ...<2 lines>...
+        location=location
+        ^^^^^^^^^^^^^^^^^
+    )
+    ^
+TypeError: AgentService.run_time_machine_pipeline() got an unexpected keyword argument 'image_bytes'
+
+2026-08-10 17:28:57 [INFO] [TimeMachine] - 🚀 時光機 API 伺服器 (Phase 2 Agentic Pipeline) 啟動成功！
+2026-08-10 17:29:33 [INFO] [TimeMachine] - [job_d69e422d] 📥 收到新請求: hk_cwb_street_sample.jpg (目標: Causeway Bay, Hong Kong, 1960s)
+2026-08-10 17:29:33 [INFO] [TimeMachine] - [job_d69e422d] 🚀 開始執行時光機 Agentic Pipeline...
+2026-08-10 17:29:33 [INFO] [TimeMachine] - 原始圖片尺寸: 1920x1080
+2026-08-10 17:29:33 [INFO] [TimeMachine] - 已縮放至: 1024x576
+2026-08-10 17:29:33 [INFO] [TimeMachine] - [job_d69e422d] 🖼️ 原子儲存圖片: logs/jobs/job_d69e422d/pass0/processed_input.jpg
+2026-08-10 17:29:33 [INFO] [TimeMachine] - [job_d69e422d] 🎨 執行初始生圖 (Pass 0)...
+2026-08-10 17:29:33 [INFO] [TimeMachine] - [b4862abc-f394-4a95-9fd4-908aa5114ddc] 1. 正在上傳圖片至 ComfyUI...
+2026-08-10 17:29:33 [INFO] [TimeMachine] - [b4862abc-f394-4a95-9fd4-908aa5114ddc] 任務已提交 (ID: 120abb67-c645-49bc-a180-233e279ad98a)，開始監控...
+2026-08-10 17:32:18 [INFO] [TimeMachine] - [b4862abc-f394-4a95-9fd4-908aa5114ddc] 成功獲取圖片: ComfyUI_00071_.png
+2026-08-10 17:32:18 [INFO] [TimeMachine] - [job_d69e422d] 🧠 進入 VQA 評估階段 (Pass 0)...
+2026-08-10 17:32:19 [INFO] [httpx] - HTTP Request: GET https://generativelanguage.googleapis.com/v1beta/models "HTTP/1.1 200 OK"
+2026-08-10 17:32:19 [WARNING] [TimeMachine] - ⚠️ 無法動態獲取模型名單: 'Model' object has no attribute 'supported_generation_methods'
+2026-08-10 17:32:19 [INFO] [TimeMachine] - 🚧 GlobalLimiter 初始化完成，當前最大併發 Slot 數: 1
+2026-08-10 17:32:19 [INFO] [TimeMachine] - 🧠 [Attempt 1/3] 呼叫 VLM (slot_acquired) - 嘗試模型: gemini-3.5-flash...
+2026-08-10 17:32:19 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-10 17:32:29 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-08-10 17:32:29 [ERROR] [TimeMachine] - [job_d69e422d] ❌ 處理發生嚴重錯誤:
+Traceback (most recent call last):
+  File "/Users/danielee/era-project-lkh/api/routes_jobs.py", line 43, in process_image
+    final_image_bytes = await agent.run_time_machine_pipeline(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "/Users/danielee/era-project-lkh/services/agent_service.py", line 34, in run_time_machine_pipeline
+    self.job_manager.save_metadata(job_id, pass_num, eval_result)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: JobManager.save_metadata() missing 1 required positional argument: 'data'
+
+2026-08-10 17:57:12 [INFO] [TimeMachine] - 🚀 時光機 API 伺服器 (Phase 2 Agentic Pipeline) 啟動成功！
+2026-08-10 17:57:47 [INFO] [TimeMachine] - [job_c68a83e5] 📥 收到新請求: hk_cwb_street_sample.jpg (目標: Causeway Bay, Hong Kong, 1960s)
+2026-08-10 17:57:47 [INFO] [TimeMachine] - [job_c68a83e5] 🚀 開始執行時光機 Agentic Pipeline...
+2026-08-10 17:57:47 [INFO] [TimeMachine] - 原始圖片尺寸: 1920x1080
+2026-08-10 17:57:47 [INFO] [TimeMachine] - 已縮放至: 1024x576
+2026-08-10 17:57:47 [INFO] [TimeMachine] - [job_c68a83e5] 🖼️ 原子儲存圖片: logs/jobs/job_c68a83e5/pass0/processed_input.jpg
+2026-08-10 17:57:47 [INFO] [TimeMachine] - [job_c68a83e5] 🎨 執行初始生圖 (Pass 0)...
+2026-08-10 17:57:47 [INFO] [TimeMachine] - [668ec2e1-02cf-41e6-a949-9cc6029bc691] 1. 正在上傳圖片至 ComfyUI...
+2026-08-10 17:57:47 [INFO] [TimeMachine] - [668ec2e1-02cf-41e6-a949-9cc6029bc691] 任務已提交 (ID: 56e2abc3-5e33-49ce-8c52-4f0120fbddb9)，開始監控...
+2026-08-10 18:00:29 [INFO] [TimeMachine] - [668ec2e1-02cf-41e6-a949-9cc6029bc691] 成功獲取圖片: ComfyUI_00072_.png
+2026-08-10 18:00:29 [INFO] [TimeMachine] - [job_c68a83e5] 🧠 進入 VQA 評估階段 (Pass 0)...
+2026-08-10 18:00:30 [INFO] [httpx] - HTTP Request: GET https://generativelanguage.googleapis.com/v1beta/models "HTTP/1.1 200 OK"
+2026-08-10 18:00:30 [WARNING] [TimeMachine] - ⚠️ 無法動態獲取模型名單: 'Model' object has no attribute 'supported_generation_methods'
+2026-08-10 18:00:30 [INFO] [TimeMachine] - 🚧 GlobalLimiter 初始化完成，當前最大併發 Slot 數: 1
+2026-08-10 18:00:30 [INFO] [TimeMachine] - 🧠 [Attempt 1/3] 呼叫 VLM (slot_acquired) - 嘗試模型: gemini-3.5-flash...
+2026-08-10 18:00:30 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-10 18:00:40 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-08-10 18:00:40 [INFO] [TimeMachine] - [job_c68a83e5] 📄 原子儲存 Metadata: logs/jobs/job_c68a83e5/pass0/qa_result.json
+2026-08-10 18:00:40 [WARNING] [TimeMachine] - [job_c68a83e5] ❌ 內容評估 [失敗]: The image is AI-generated, containing gibberish text on signs, distorted human figures, and an unrealistic, modern-looking infinite skyscraper canyon in the background that does not match 1960s Causeway Bay.
+2026-08-10 18:00:40 [INFO] [TimeMachine] - [job_c68a83e5] 準備執行修正 Pass 1...
+2026-08-10 18:00:40 [INFO] [TimeMachine] - [job_c68a83e5] 🖼️ 原子儲存圖片: logs/jobs/job_c68a83e5/pass1/error_mask.png
+2026-08-10 18:00:40 [INFO] [TimeMachine] - [job_c68a83e5] 🖼️ 原子儲存圖片: logs/jobs/job_c68a83e5/pass0/temp_base_pass_0.jpg
+2026-08-10 18:00:40 [INFO] [TimeMachine] - [733280ba-7f91-457a-9bd3-cb40afbc6a8b] 🎨 開始執行 Inpaint 修正...
+2026-08-10 18:00:40 [INFO] [TimeMachine] - [733280ba-7f91-457a-9bd3-cb40afbc6a8b] 任務已提交 (ID: 52360159-e447-494f-839b-a2434adf2300)，開始監控...
+2026-08-10 18:02:07 [INFO] [TimeMachine] - [733280ba-7f91-457a-9bd3-cb40afbc6a8b] 成功獲取圖片: ComfyUI_00073_.png
+2026-08-10 18:02:07 [INFO] [TimeMachine] - [job_c68a83e5] 🧠 進入 VQA 評估階段 (Pass 1)...
+2026-08-10 18:02:07 [INFO] [httpx] - HTTP Request: GET https://generativelanguage.googleapis.com/v1beta/models "HTTP/1.1 200 OK"
+2026-08-10 18:02:07 [WARNING] [TimeMachine] - ⚠️ 無法動態獲取模型名單: 'Model' object has no attribute 'supported_generation_methods'
+2026-08-10 18:02:07 [INFO] [TimeMachine] - 🧠 [Attempt 1/3] 呼叫 VLM (slot_acquired) - 嘗試模型: gemini-3.5-flash...
+2026-08-10 18:02:07 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-10 18:02:16 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-08-10 18:02:16 [INFO] [TimeMachine] - [job_c68a83e5] 📄 原子儲存 Metadata: logs/jobs/job_c68a83e5/pass1/qa_result.json
+2026-08-10 18:02:16 [WARNING] [TimeMachine] - [job_c68a83e5] ❌ 內容評估 [失敗]: The image is an AI-generated reconstruction containing modern high-rise skyscrapers in the background that did not exist in 1960s Causeway Bay, as well as gibberish text on signs and modern clothing styles.
+2026-08-10 18:02:16 [INFO] [TimeMachine] - [job_c68a83e5] 準備執行修正 Pass 2...
+2026-08-10 18:02:16 [INFO] [TimeMachine] - [job_c68a83e5] 🖼️ 原子儲存圖片: logs/jobs/job_c68a83e5/pass2/error_mask.png
+2026-08-10 18:02:16 [INFO] [TimeMachine] - [job_c68a83e5] 🖼️ 原子儲存圖片: logs/jobs/job_c68a83e5/pass1/temp_base_pass_1.jpg
+2026-08-10 18:02:16 [INFO] [TimeMachine] - [22599282-146b-4641-a34c-5e0cb927524f] 🎨 開始執行 Inpaint 修正...
+2026-08-10 18:02:16 [INFO] [TimeMachine] - [22599282-146b-4641-a34c-5e0cb927524f] 任務已提交 (ID: f6028583-1f9c-4711-b48e-80a0bc7a1bee)，開始監控...
+2026-08-10 18:03:48 [INFO] [TimeMachine] - [22599282-146b-4641-a34c-5e0cb927524f] 成功獲取圖片: ComfyUI_00074_.png
+2026-08-10 18:03:48 [INFO] [TimeMachine] - [job_c68a83e5] 🧠 進入 VQA 評估階段 (Pass 2)...
+2026-08-10 18:03:48 [INFO] [httpx] - HTTP Request: GET https://generativelanguage.googleapis.com/v1beta/models "HTTP/1.1 200 OK"
+2026-08-10 18:03:48 [WARNING] [TimeMachine] - ⚠️ 無法動態獲取模型名單: 'Model' object has no attribute 'supported_generation_methods'
+2026-08-10 18:03:48 [INFO] [TimeMachine] - 🧠 [Attempt 1/3] 呼叫 VLM (slot_acquired) - 嘗試模型: gemini-3.5-flash...
+2026-08-10 18:03:48 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-10 18:03:59 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-08-10 18:03:59 [INFO] [TimeMachine] - [job_c68a83e5] 📄 原子儲存 Metadata: logs/jobs/job_c68a83e5/pass2/qa_result.json
+2026-08-10 18:03:59 [WARNING] [TimeMachine] - [job_c68a83e5] ❌ 內容評估 [失敗]: The image is an AI-generated depiction rather than an authentic 1960s photograph. It contains significant AI artifacts, including gibberish/illegible Chinese characters on the signs and highly distorted, melted human figures in the foreground.
+2026-08-10 18:03:59 [INFO] [TimeMachine] - [job_c68a83e5] ⚠️ 達到最大修正次數，強制回傳最終相片。
+2026-08-10 18:03:59 [INFO] [TimeMachine] - [job_c68a83e5] 成功裁除黑邊並還原圖片尺寸: (1920, 1080)
+2026-08-10 18:03:59 [INFO] [TimeMachine] - 成功裁除黑邊並還原圖片尺寸: (1920, 1080)
+2026-08-10 18:03:59 [INFO] [TimeMachine] - [job_c68a83e5] 📤 任務完成，回傳最終圖片
+2026-08-10 18:03:59 [INFO] [TimeMachine] - [job_c68a83e5] 📤 任務完成，回傳最終圖片

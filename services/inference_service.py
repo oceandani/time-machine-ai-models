@@ -7,7 +7,7 @@ import os
 from fastapi import HTTPException
 from websocket import create_connection
 
-# 引入我哋啱啱建立嘅企業級日誌系統
+# 引入企業級日誌系統
 from core.logging import logger
 
 COMFYUI_HTTP_URL = "http://127.0.0.1:8188"
@@ -34,49 +34,68 @@ def download_image(filename: str, subfolder: str, image_type: str) -> bytes:
 
 def run_comfyui_inference(year: str, location: str, input_image_path: str) -> bytes:
     client_id = str(uuid.uuid4())
-    
     logger.info(f"[{client_id}] 1. 正在上傳圖片至 ComfyUI...")
     comfy_image_name = upload_image_to_comfyui(input_image_path)
-    logger.info(f"[{client_id}] 2. 圖片上傳成功，ComfyUI 檔名: {comfy_image_name}")
 
     try:
         with open("workflows/workflow_api.json", "r", encoding="utf-8") as f:
             prompt_data = json.load(f)
     except FileNotFoundError:
-        logger.error("找不到 workflows/workflow_api.json 檔案")
         raise HTTPException(status_code=500, detail="系統缺少工作流檔案")
 
-    # 替換參數
     if "11" in prompt_data: prompt_data["11"]["inputs"]["seed"] = random.randint(1, 1000000000)
-    # 💡 修正：優化 Prompt，加入 empty street 等關鍵字，強制 AI 減少生成密集人群，避免恐怖感
     if "5" in prompt_data: prompt_data["5"]["inputs"]["text"] = f"vintage photography of {location} in {year}, highly detailed, empty street, focus on architecture, no crowds, high quality"
     if "2" in prompt_data: prompt_data["2"]["inputs"]["image"] = comfy_image_name
 
+    return _execute_comfyui_workflow(client_id, prompt_data)
+
+def run_comfyui_inpaint(year: str, location: str, base_image_path: str, mask_image_path: str) -> bytes:
+    """
+    執行 ComfyUI 局部重繪 (Inpaint) 任務。
+    讀取 inpaint_workflow_api.json，並將 Node 2 設為底圖，Node 999 設為 Mask。
+    """
+    client_id = str(uuid.uuid4())
+    logger.info(f"[{client_id}] 🎨 開始執行 Inpaint 修正...")
+    
+    # 1. 必須將兩張圖片 (底圖 + 遮罩) 都上傳到 ComfyUI 伺服器
+    base_img_name = upload_image_to_comfyui(base_image_path)
+    mask_img_name = upload_image_to_comfyui(mask_image_path)
+
+    try:
+        with open("configs/inpaint_workflow_api.json", "r", encoding="utf-8") as f:
+            prompt_data = json.load(f)
+    except FileNotFoundError:
+        raise HTTPException(status_code=500, detail="缺少 inpaint_workflow_api.json")
+
+    # 2. 動態替換 Inpaint 專用的節點參數
+    if "2" in prompt_data: prompt_data["2"]["inputs"]["image"] = base_img_name
+    if "999" in prompt_data: prompt_data["999"]["inputs"]["image"] = mask_img_name
+    if "23" in prompt_data: prompt_data["23"]["inputs"]["seed"] = random.randint(1, 1000000000)
+    if "5" in prompt_data: prompt_data["5"]["inputs"]["text"] = f"vintage photography of {location} in {year}, highly detailed, focus on architecture"
+
+    return _execute_comfyui_workflow(client_id, prompt_data)
+
+def _execute_comfyui_workflow(client_id: str, prompt_data: dict) -> bytes:
+    """共用的 ComfyUI 執行與監聽邏輯"""
     try:
         ws = create_connection(f"{COMFYUI_WS_URL}?clientId={client_id}")
-        # 關鍵：設定 WebSocket 1 秒超時，防止死等
         ws.settimeout(1.0)
     except Exception as e:
-        logger.error(f"無法連接 ComfyUI WebSocket: {e}")
+        logger.error(f"無法連接 WebSocket: {e}")
         raise HTTPException(status_code=500, detail=f"無法連接 WebSocket: {e}")
 
     payload = {"prompt": prompt_data, "client_id": client_id}
-    # 💡 修復：正確獲取 prompt_id (任務 ID)
     response = requests.post(f"{COMFYUI_HTTP_URL}/prompt", json=payload)
     response.raise_for_status()
     prompt_id = response.json().get("prompt_id")
     
-    logger.info(f"[{client_id}] 3. 任務已提交 (ID: {prompt_id})，開始監控生圖進度...")
+    logger.info(f"[{client_id}] 任務已提交 (ID: {prompt_id})，開始監控...")
 
-    # 監控邏輯
     final_image_info = None
     start_time = time.time()
-    
-    # 💡 修改：將超時限制從 180 秒增加到 300 秒 (5分鐘)，照顧較慢的顯示卡
     TIMEOUT_SECONDS = 600 
     
     while time.time() - start_time < TIMEOUT_SECONDS:
-        # 防彈機制一：主動查 History (用正確嘅 prompt_id)
         try:
             hist_resp = requests.get(f"{COMFYUI_HTTP_URL}/history/{prompt_id}", timeout=1)
             if hist_resp.status_code == 200:
@@ -85,34 +104,26 @@ def run_comfyui_inference(year: str, location: str, input_image_path: str) -> by
                     outputs = hist[prompt_id].get("outputs", {})
                     for node_id, node_output in outputs.items():
                         if "images" in node_output:
-                            logger.info(f"[{client_id}] ✅ 從歷史紀錄中確認任務生成完畢！")
                             final_image_info = node_output["images"][0]
                             break
-                    if final_image_info:
-                        break # 搵到圖片即刻中斷死等
+                    if final_image_info: break
         except Exception:
-            pass # 查唔到就繼續
+            pass 
             
-        # 防彈機制二：聽 WebSocket
         try:
             out = ws.recv()
             if isinstance(out, str):
                 msg = json.loads(out)
-                if msg.get("type") == "progress":
-                    logger.info(f"[{client_id}] ⏳ KSampler 處理中: {msg['data']['value']} / {msg['data']['max']}")
-                elif msg.get("type") == "executed":
-                    logger.info(f"[{client_id}] ✅ WebSocket 報告任務生成完畢！")
+                if msg.get("type") == "executed":
                     final_image_info = msg["data"]["output"]["images"][0]
                     break
         except Exception:
-            # 1 秒 timeout 觸發，安全略過，進入下一次迴圈
             pass
     
     ws.close()
     
     if not final_image_info: 
-        logger.error(f"[{client_id}] ❌ 生圖超時 (超過 {TIMEOUT_SECONDS} 秒) 或未能獲取圖片。請檢查 ComfyUI 伺服器 Terminal 是否有報錯！")
-        raise HTTPException(status_code=500, detail=f"生圖超時 (超過 {TIMEOUT_SECONDS} 秒)，請檢查 ComfyUI 是否卡死")
+        raise HTTPException(status_code=500, detail="生圖超時或失敗")
         
-    logger.info(f"[{client_id}] 4. 正在下載並回傳最終相片: {final_image_info['filename']}")
+    logger.info(f"[{client_id}] 成功獲取圖片: {final_image_info['filename']}")
     return download_image(final_image_info["filename"], "", "output")
