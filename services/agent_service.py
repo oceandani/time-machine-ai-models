@@ -1,7 +1,7 @@
 import os
 from fastapi import HTTPException
 from core.logging import logger
-from core.image_processor import process_and_standardize_image, create_mask_from_bbox, crop_to_original
+from core.image_processor import process_and_standardize_image, create_mask_from_bboxes, crop_to_original
 from core.job_manager import JobManager
 
 from services.inference_service import run_comfyui_inference, run_comfyui_inpaint
@@ -55,12 +55,20 @@ class AgentService:
                     
                 logger.info(f"[{job_id}] 準備執行修正 Pass {pass_num+1}...")
                 
-                # 安全獲取 bbox
-                bbox = eval_result.get("bbox")
-                if not bbox or len(bbox) != 4:
-                    bbox = [0.4, 0.4, 0.6, 0.6]
+                # 💡 智能提取：優先獲取多區塊 bboxes 陣列
+                bboxes = eval_result.get("bboxes", [])
+                
+                if not bboxes:
+                    # 舊版向下兼容與 Fallback
+                    single_bbox = eval_result.get("bbox")
+                    if single_bbox and len(single_bbox) == 4:
+                        bboxes = [single_bbox]
+                    else:
+                        logger.warning(f"[{job_id}] ⚠️ 找不到有效的 bbox，啟用 Fallback 預設置中區塊")
+                        bboxes = [[0.4, 0.4, 0.6, 0.6]]
                     
-                mask_bytes = create_mask_from_bbox(metadata["target_size"][0], metadata["target_size"][1], bbox)
+                # 呼叫新的多區塊羽化引擎
+                mask_bytes = create_mask_from_bboxes(metadata["target_size"][0], metadata["target_size"][1], bboxes)
                 
                 # 儲存 Mask 與當前 Base 圖片
                 mask_path = self.job_manager.save_image(job_id, pass_num+1, "error_mask.png", mask_bytes)

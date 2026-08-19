@@ -1,7 +1,7 @@
 import io
 import math
 from typing import Tuple, Dict, TypedDict
-from PIL import Image, ImageOps
+from PIL import Image, ImageDraw, ImageFilter, ImageOps
 import numpy as np
 from core.logging import logger
 
@@ -99,31 +99,55 @@ def process_and_standardize_image(image_bytes: bytes, max_size: int = 1024) -> T
         logger.error(f"圖片預處理失敗: {str(e)}")
         raise RuntimeError(f"圖片預處理失敗: {str(e)}")
 
-def create_mask_from_bbox(width: int, height: int, bbox: list) -> bytes:
+def create_mask_from_bboxes(width: int, height: int, bboxes: list) -> bytes:
     """
-    根據 VLM 辨識出的 Bounding Box 建立 Inpaint Mask
-    注意：傳入的 width 與 height 必須是 metadata["target_size"] (即 64 的倍數)
-    bbox 格式預期為 [x_min, y_min, x_max, y_max] (比例 0.0 ~ 1.0)
+    根據 VLM 辨識出的多個 Bounding Box 建立 Union Inpaint Mask
+    包含防禦性坐標轉換、邊界鎖定 (Clamping) 與動態羽化 (Dynamic Feathering)。
     """
     try:
-        # 建立全黑背景的 Numpy 陣列 (0)
-        mask_array = np.zeros((height, width), dtype=np.uint8)
+        # 1. 建立純黑底圖 (L 模式方便畫灰階，最後轉 RGB)
+        mask_image = Image.new('L', (width, height), color=0)
+        draw = ImageDraw.Draw(mask_image)
         
-        x_min = max(0, int(bbox[0] * width))
-        y_min = max(0, int(bbox[1] * height))
-        x_max = min(width, int(bbox[2] * width))
-        y_max = min(height, int(bbox[3] * height))
+        for bbox in bboxes:
+            if not bbox or len(bbox) != 4:
+                continue
+                
+            y_min_val, x_min_val, y_max_val, x_max_val = bbox
+            
+            # 💡 防禦機制：自動判斷是 0-1000 還是 0.0-1.0 的比例
+            if max(bbox) > 1.0:
+                y_min_val /= 1000.0
+                x_min_val /= 1000.0
+                y_max_val /= 1000.0
+                x_max_val /= 1000.0
+                
+            # 💡 邊界鎖定 (Clamping)：強制將座標限制在 0 到 width/height 之間
+            x_min = max(0, min(width, int(x_min_val * width)))
+            y_min = max(0, min(height, int(y_min_val * height)))
+            x_max = max(0, min(width, int(x_max_val * width)))
+            y_max = max(0, min(height, int(y_max_val * height)))
+            
+            # 確保正序，防止 min > max 導致畫圖報錯
+            if x_min >= x_max or y_min >= y_max:
+                continue
+                
+            # 將錯誤區域塗白 (255)
+            draw.rectangle([x_min, y_min, x_max, y_max], fill=255)
+            
+        # 💡 動態羽化 (Dynamic Feathering)：半徑設為最短邊的 5%
+        feather_radius = min(width, height) * 0.05
+        mask_image = mask_image.filter(ImageFilter.GaussianBlur(feather_radius))
         
-        # 將錯誤區域塗白 (255)
-        mask_array[y_min:y_max, x_min:x_max] = 255
+        # 💡 強制轉為標準 RGB (防禦 ComfyUI 通道讀取異常)
+        rgb_mask = mask_image.convert("RGB")
         
-        mask_image = Image.fromarray(mask_array, mode='L')
         output = io.BytesIO()
-        mask_image.save(output, format="PNG")
+        rgb_mask.save(output, format="PNG")
         return output.getvalue()
     except Exception as e:
-        logger.error(f"建立 Mask 失敗: {str(e)}")
-        raise RuntimeError(f"建立 Mask 失敗: {str(e)}")
+        logger.error(f"建立 Union Mask 失敗: {str(e)}")
+        raise RuntimeError(f"建立 Union Mask 失敗: {str(e)}")
 
 def crop_to_original(image_bytes: bytes, metadata: Dict) -> bytes:
     """
