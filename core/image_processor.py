@@ -101,11 +101,10 @@ def process_and_standardize_image(image_bytes: bytes, max_size: int = 1024) -> T
 
 def create_mask_from_bboxes(width: int, height: int, bboxes: list) -> bytes:
     """
-    根據 VLM 辨識出的多個 Bounding Box 建立 Union Inpaint Mask
-    包含防禦性坐標轉換、邊界鎖定 (Clamping) 與動態羽化 (Dynamic Feathering)。
+    根據 VLM 辨識出的多個 Bounding Box 建立 Union Inpaint Mask。
+    包含防禦性坐標轉換、智能外擴 (Intelligent Box Expansion)、邊界鎖定與動態羽化。
     """
     try:
-        # 1. 建立純黑底圖 (L 模式方便畫灰階，最後轉 RGB)
         mask_image = Image.new('L', (width, height), color=0)
         draw = ImageDraw.Draw(mask_image)
         
@@ -115,31 +114,44 @@ def create_mask_from_bboxes(width: int, height: int, bboxes: list) -> bytes:
                 
             y_min_val, x_min_val, y_max_val, x_max_val = bbox
             
-            # 💡 防禦機制：自動判斷是 0-1000 還是 0.0-1.0 的比例
+            # 1. 比例正規化 (處理 0-1000 或 0.0-1.0)
             if max(bbox) > 1.0:
                 y_min_val /= 1000.0
                 x_min_val /= 1000.0
                 y_max_val /= 1000.0
                 x_max_val /= 1000.0
                 
-            # 💡 邊界鎖定 (Clamping)：強制將座標限制在 0 到 width/height 之間
-            x_min = max(0, min(width, int(x_min_val * width)))
-            y_min = max(0, min(height, int(y_min_val * height)))
-            x_max = max(0, min(width, int(x_max_val * width)))
-            y_max = max(0, min(height, int(y_max_val * height)))
+            # 2. 轉換為絕對像素
+            orig_x_min = x_min_val * width
+            orig_y_min = y_min_val * height
+            orig_x_max = x_max_val * width
+            orig_y_max = y_max_val * height
             
-            # 確保正序，防止 min > max 導致畫圖報錯
+            bbox_w = orig_x_max - orig_x_min
+            bbox_h = orig_y_max - orig_y_min
+            
+            # 3. 💡 智能外擴 (Intelligent Box Expansion)
+            # 向上擴張 20% (抓取天空)，向左右各擴張 10%，向下擴張 5% (銜接街道)
+            exp_x_min = orig_x_min - (bbox_w * 0.10)
+            exp_x_max = orig_x_max + (bbox_w * 0.10)
+            exp_y_min = orig_y_min - (bbox_h * 0.20)
+            exp_y_max = orig_y_max + (bbox_h * 0.05)
+            
+            # 4. 邊界鎖定 (Clamping)：強制將座標限制在圖片範圍內
+            x_min = max(0, min(width, int(exp_x_min)))
+            y_min = max(0, min(height, int(exp_y_min)))
+            x_max = max(0, min(width, int(exp_x_max)))
+            y_max = max(0, min(height, int(exp_y_max)))
+            
             if x_min >= x_max or y_min >= y_max:
                 continue
                 
-            # 將錯誤區域塗白 (255)
             draw.rectangle([x_min, y_min, x_max, y_max], fill=255)
             
-        # 💡 動態羽化 (Dynamic Feathering)：半徑設為最短邊的 5%
+        # 5. 動態羽化 (Dynamic Feathering)
         feather_radius = min(width, height) * 0.05
         mask_image = mask_image.filter(ImageFilter.GaussianBlur(feather_radius))
         
-        # 💡 強制轉為標準 RGB (防禦 ComfyUI 通道讀取異常)
         rgb_mask = mask_image.convert("RGB")
         
         output = io.BytesIO()

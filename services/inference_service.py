@@ -1,17 +1,20 @@
 import json
-import uuid
+import os
 import random
 import time
+import uuid
+
 import requests
-import os
 from fastapi import HTTPException
 from websocket import create_connection
 
-# 引入企業級日誌系統
 from core.logging import logger
 
 COMFYUI_HTTP_URL = "http://127.0.0.1:8188"
 COMFYUI_WS_URL = "ws://127.0.0.1:8188/ws"
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CONFIG_DIR = os.path.join(BASE_DIR, "configs")
 
 def upload_image_to_comfyui(image_path: str) -> str:
     upload_url = f"{COMFYUI_HTTP_URL}/upload/image"
@@ -32,51 +35,133 @@ def download_image(filename: str, subfolder: str, image_type: str) -> bytes:
     img_response.raise_for_status()
     return img_response.content
 
+def inject_prompts(prompt_data: dict, year: str, location: str):
+    for node_id, node_info in prompt_data.items():
+        if node_info.get("class_type") == "CLIPTextEncode":
+            original_text = node_info["inputs"].get("text", "")
+            if "[YEAR]" in original_text or "[LOCATION]" in original_text:
+                new_text = original_text.replace("[YEAR]", year).replace("[LOCATION]", location)
+                node_info["inputs"]["text"] = new_text
+                logger.info(f"📝 成功將 Node {node_id} 的 Prompt 佔位符替換為: {year}, {location}")
+
+def get_save_image_node_id(prompt_data: dict) -> str:
+    for node_id, node_info in prompt_data.items():
+        if node_info.get("class_type") == "SaveImage":
+            return node_id
+    raise ValueError("❌ 找不到 SaveImage 節點，請檢查 JSON 檔案！")
+
 def run_comfyui_inference(year: str, location: str, input_image_path: str) -> bytes:
     client_id = str(uuid.uuid4())
     logger.info(f"[{client_id}] 1. 正在上傳圖片至 ComfyUI...")
     comfy_image_name = upload_image_to_comfyui(input_image_path)
 
+    json_path = os.path.join(CONFIG_DIR, "pass0_workflow_api.json")
+    
     try:
-        with open("workflows/workflow_api.json", "r", encoding="utf-8") as f:
+        with open(json_path, "r", encoding="utf-8") as f:
             prompt_data = json.load(f)
     except FileNotFoundError:
-        raise HTTPException(status_code=500, detail="系統缺少工作流檔案")
+        logger.error(f"❌ 找不到工作流檔案: {json_path}")
+        raise HTTPException(status_code=500, detail="系統缺少 pass0_workflow_api.json")
 
-    if "11" in prompt_data: prompt_data["11"]["inputs"]["seed"] = random.randint(1, 1000000000)
-    if "5" in prompt_data: prompt_data["5"]["inputs"]["text"] = f"vintage photography of {location} in {year}, highly detailed, empty street, focus on architecture, no crowds, high quality"
-    if "2" in prompt_data: prompt_data["2"]["inputs"]["image"] = comfy_image_name
+    target_node_id = get_save_image_node_id(prompt_data)
+    inject_prompts(prompt_data, year, location)
 
-    return _execute_comfyui_workflow(client_id, prompt_data)
+    image_injected = False
+    for node_id, node_info in prompt_data.items():
+        if node_info.get("class_type") == "LoadImage":
+            node_info["inputs"]["image"] = comfy_image_name
+            image_injected = True
+        elif node_info.get("class_type") == "KSampler":
+            node_info["inputs"]["seed"] = random.randint(1, 1000000000)
+            
+    if not image_injected:
+         logger.warning("⚠️ 找不到 LoadImage 節點，無法注入原圖！")
 
-def run_comfyui_inpaint(year: str, location: str, base_image_path: str, mask_image_path: str) -> bytes:
-    """
-    執行 ComfyUI 局部重繪 (Inpaint) 任務。
-    讀取 inpaint_workflow_api.json，並將 Node 2 設為底圖，Node 999 設為 Mask。
-    """
+    return _execute_comfyui_workflow(client_id, prompt_data, target_node_id=target_node_id)
+
+def run_comfyui_inpaint(year: str, location: str, base_image_path: str, mask_image_path: str, denoise: float = 0.6) -> bytes:
     client_id = str(uuid.uuid4())
-    logger.info(f"[{client_id}] 🎨 開始執行 Inpaint 修正...")
+    logger.info(f"[{client_id}] 🎨 開始執行 Tier 1 局部 Inpaint 修正...")
     
-    # 1. 必須將兩張圖片 (底圖 + 遮罩) 都上傳到 ComfyUI 伺服器
     base_img_name = upload_image_to_comfyui(base_image_path)
     mask_img_name = upload_image_to_comfyui(mask_image_path)
-
+    json_path = os.path.join(CONFIG_DIR, "inpaint_workflow_api.json")
+    
     try:
-        with open("configs/inpaint_workflow_api.json", "r", encoding="utf-8") as f:
+        with open(json_path, "r", encoding="utf-8") as f:
             prompt_data = json.load(f)
     except FileNotFoundError:
-        raise HTTPException(status_code=500, detail="缺少 inpaint_workflow_api.json")
+        logger.error(f"❌ 找不到工作流檔案: {json_path}")
+        raise HTTPException(status_code=500, detail="系統缺少 inpaint_workflow_api.json")
 
-    # 2. 動態替換 Inpaint 專用的節點參數
-    if "2" in prompt_data: prompt_data["2"]["inputs"]["image"] = base_img_name
-    if "999" in prompt_data: prompt_data["999"]["inputs"]["image"] = mask_img_name
-    if "23" in prompt_data: prompt_data["23"]["inputs"]["seed"] = random.randint(1, 1000000000)
-    if "5" in prompt_data: prompt_data["5"]["inputs"]["text"] = f"vintage photography of {location} in {year}, highly detailed, focus on architecture"
+    target_node_id = get_save_image_node_id(prompt_data)
+    inject_prompts(prompt_data, year, location)
 
-    return _execute_comfyui_workflow(client_id, prompt_data)
+    base_injected = False
+    mask_injected = False
+    
+    for node_id, node_info in prompt_data.items():
+        if node_info.get("class_type") == "LoadImage":
+            title = node_info.get("_meta", {}).get("title", "")
+            if title == "Base Image":
+                node_info["inputs"]["image"] = base_img_name
+                base_injected = True
+                logger.info(f"🔗 成功將底圖注入 Node {node_id}")
+            elif title == "Mask Image":
+                node_info["inputs"]["image"] = mask_img_name
+                mask_injected = True
+                logger.info(f"🔗 成功將遮罩注入 Node {node_id}")
+        elif node_info.get("class_type") == "KSampler":
+            node_info["inputs"]["seed"] = random.randint(1, 1000000000)
+            node_info["inputs"]["denoise"] = denoise
+            logger.info(f"⚙️ 成功將 Denoise ({denoise:.2f}) 注入 KSampler (Node {node_id})")
 
-def _execute_comfyui_workflow(client_id: str, prompt_data: dict) -> bytes:
-    """共用的 ComfyUI 執行與監聽邏輯"""
+    if not base_injected or not mask_injected:
+        logger.error("🚨 致命錯誤：無法在 JSON 中找到標題為 'Base Image' 或 'Mask Image' 的節點！")
+        raise RuntimeError("JSON 缺少正確標題的底圖或遮罩節點")
+
+    return _execute_comfyui_workflow(client_id, prompt_data, target_node_id=target_node_id)
+
+
+def run_comfyui_global_rebuild(year: str, location: str, base_image_path: str, denoise: float = 0.85) -> bytes:
+    client_id = str(uuid.uuid4())
+    logger.info(f"[{client_id}] 🌍 開始執行 Tier 2 全域地貌重構 (Global Rebuild)...")
+    
+    base_img_name = upload_image_to_comfyui(base_image_path)
+    json_path = os.path.join(CONFIG_DIR, "global_rebuild_workflow_api.json")
+    
+    try:
+        with open(json_path, "r", encoding="utf-8") as f:
+            prompt_data = json.load(f)
+    except FileNotFoundError:
+        logger.error(f"❌ 找不到工作流檔案: {json_path}")
+        raise HTTPException(status_code=500, detail="系統缺少 global_rebuild_workflow_api.json")
+
+    target_node_id = get_save_image_node_id(prompt_data)
+    inject_prompts(prompt_data, year, location)
+
+    base_injected = False
+    
+    for node_id, node_info in prompt_data.items():
+        if node_info.get("class_type") == "LoadImage":
+            node_info["inputs"]["image"] = base_img_name
+            base_injected = True
+            logger.info(f"🔗 成功將地形底圖注入 Node {node_id}")
+            
+        elif node_info.get("class_type") == "KSampler":
+            node_info["inputs"]["seed"] = random.randint(1, 1000000000)
+            node_info["inputs"]["denoise"] = denoise
+            logger.info(f"⚙️ 成功將高強度 Denoise ({denoise:.2f}) 注入 KSampler (Node {node_id})")
+
+    if not base_injected:
+        logger.error("🚨 致命錯誤：無法在 global_rebuild JSON 中找到 LoadImage 節點！")
+        raise RuntimeError("JSON 缺少底圖載入節點")
+
+    return _execute_comfyui_workflow(client_id, prompt_data, target_node_id=target_node_id)
+
+
+def _execute_comfyui_workflow(client_id: str, prompt_data: dict, target_node_id: str = None) -> bytes:
     try:
         ws = create_connection(f"{COMFYUI_WS_URL}?clientId={client_id}")
         ws.settimeout(1.0)
@@ -102,10 +187,15 @@ def _execute_comfyui_workflow(client_id: str, prompt_data: dict) -> bytes:
                 hist = hist_resp.json()
                 if prompt_id in hist:
                     outputs = hist[prompt_id].get("outputs", {})
-                    for node_id, node_output in outputs.items():
-                        if "images" in node_output:
-                            final_image_info = node_output["images"][0]
+                    if target_node_id and target_node_id in outputs:
+                        if "images" in outputs[target_node_id]:
+                            final_image_info = outputs[target_node_id]["images"][0]
                             break
+                    elif not target_node_id:
+                        for node_id, node_output in outputs.items():
+                            if "images" in node_output:
+                                final_image_info = node_output["images"][0]
+                                break
                     if final_image_info: break
         except Exception:
             pass 
@@ -115,8 +205,13 @@ def _execute_comfyui_workflow(client_id: str, prompt_data: dict) -> bytes:
             if isinstance(out, str):
                 msg = json.loads(out)
                 if msg.get("type") == "executed":
-                    final_image_info = msg["data"]["output"]["images"][0]
-                    break
+                    data = msg.get("data", {})
+                    if data.get("prompt_id") == prompt_id:
+                        if target_node_id and data.get("node") != target_node_id:
+                            continue
+                        if "images" in data.get("output", {}):
+                            final_image_info = data["output"]["images"][0]
+                            break
         except Exception:
             pass
     

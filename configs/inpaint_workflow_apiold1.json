@@ -1,0 +1,135 @@
+{
+  "1": {
+    "inputs": {
+      "image": "4605675647_483b52446f_o.jpg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Base Image"
+    }
+  },
+  "2": {
+    "inputs": {
+      "image": "4605675647_483b52446f_o.jpg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Mask Image"
+    }
+  },
+  "3": {
+    "inputs": {
+      "ckpt_name": "DreamShaper_8_pruned.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "4": {
+    "inputs": {
+      "text": "clear blue sky, horizontal roof parapet top line, flat skyline silhouette, consistent perspective, no new building volume\n\n[YEAR] Hong Kong street scene at [LOCATION], a long continuous row of dense 5-story Tong Lau buildings lining the entire right side of the street, \n\nfive clearly visible horizontal storeys, consistent floor-to-floor height, strong horizontal floor bands, regular window grid, weathered concrete and aged plaster, authentic film color, realistic street depth perspective, overhead wires, accurate skyline silhouette with a clear rooftop parapet line\n",
+      "clip": [
+        "3",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Positive Prompt"
+    }
+  },
+  "7": {
+    "inputs": {
+      "text": "tall buildings, skyscrapers, signs clogging the sky, overlapping signs, endless high rise, blocked skyline\n\n(high-rise buildings, tall skyscrapers, modern tower blocks, blocked sky:1.4), cartoon, drawing, anime, modern advertising, LED screens, glass facades, incorrect signage, text artifacts, cluttering, blurry, low detailed, messy architecture, missing sky\n\nno missing roofline, no flat cut-off skyline\nno sky area disappearance, keep sky region properly defined\nbroken skyline, missing rooftop parapet line\nincorrect number of storeys, extra random floors\nfloating signage, signage dominating architecture\nincorrect building scale, wrong window band alignment\nvertical skyscraper look\n\nno rooftops expansion, no medieval eaves, no banners, no shop signs, no extra roof structures, no architecture growth",
+      "clip": [
+        "3",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Negative Prompt"
+    }
+  },
+  "8": {
+    "inputs": {
+      "grow_mask_by": 6,
+      "pixels": [
+        "1",
+        0
+      ],
+      "vae": [
+        "3",
+        2
+      ],
+      "mask": [
+        "2",
+        1
+      ]
+    },
+    "class_type": "VAEEncodeForInpaint",
+    "_meta": {
+      "title": "VAE Encode (for Inpainting)"
+    }
+  },
+  "10": {
+    "inputs": {
+      "seed": 0,
+      "steps": 20,
+      "cfg": 8,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 0.6,
+      "model": [
+        "3",
+        0
+      ],
+      "positive": [
+        "4",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "latent_image": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "11": {
+    "inputs": {
+      "samples": [
+        "10",
+        0
+      ],
+      "vae": [
+        "3",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "12": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  }
+}

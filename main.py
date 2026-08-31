@@ -38,14 +38,17 @@ async def lifespan(app: FastAPI):
             logger.info(f"🔍 正在測試模型全能力 (Image+Schema): {test_model}...")
             
             try:
-                # 完全模擬 evaluate_image 的呼叫方式
+                # 💡 升級：使用全新的 VLMResponse Pydantic 模型進行自檢
                 response = await client.aio.models.generate_content(
                     model=test_model,
-                    contents=["ping test", types.Part.from_bytes(data=test_image_bytes, mime_type="image/png")],
+                    contents=[
+                        "Generate a valid dummy edit plan with action 'preserve' to pass the schema test.", 
+                        types.Part.from_bytes(data=test_image_bytes, mime_type="image/png")
+                    ],
                     config=types.GenerateContentConfig(
                         response_mime_type="application/json",
-                        response_schema=vlm_service.VLM_RESPONSE_SCHEMA,
-                        temperature=0.2
+                        response_schema=vlm_service.VLMResponse,  # 🚀 正確引用新的 Pydantic 類別
+                        temperature=0.0
                     )
                 )
                 logger.info(f"✅ VLM 自檢通過！鎖定安全模型: {test_model}")
