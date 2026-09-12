@@ -3719,3 +3719,596 @@ TypeError: create_mask_from_bboxes() missing 1 required positional argument: 'bb
 2026-08-30 13:21:42 [INFO] [TimeMachine] - [job_d1dd8e0d] 📤 任務完成，回傳最終圖片
 2026-08-30 13:21:42 [INFO] [TimeMachine] - [job_d1dd8e0d] 📤 任務完成，回傳最終圖片
 2026-08-30 13:23:35 [INFO] [TimeMachine] - 🛑 系統正在關閉...
+2026-08-31 12:33:54 [INFO] [TimeMachine] - 🚀 系統啟動中... 執行 VLM 全能力深度自檢...
+2026-08-31 12:33:54 [INFO] [httpx] - HTTP Request: GET https://generativelanguage.googleapis.com/v1beta/models "HTTP/1.1 200 OK"
+2026-08-31 12:33:54 [INFO] [httpx] - HTTP Request: GET https://generativelanguage.googleapis.com/v1beta/models?pageToken=CjRtb2RlbHMvZ2VtaW5pLTIuNS1mbGFzaC1uYXRpdmUtYXVkaW8tcHJldmlldy0xMi0yMDI1 "HTTP/1.1 200 OK"
+2026-08-31 12:33:54 [INFO] [TimeMachine] - 📋 準備測試候選模型佇列: ['gemini-omni-flash-preview', 'gemini-omni-1.1-flash', 'gemini-flash-lite-latest', 'gemini-flash-latest', 'gemini-3.7-flash', 'gemini-3.6-flash', 'gemini-3.5-flash-lite', 'gemini-3.5-flash', 'gemini-3.1-flash-live-preview', 'gemini-3.1-flash-lite-preview', 'gemini-3.1-flash-lite', 'gemini-3-flash-preview', 'gemini-2.5-flash-native-audio-preview-12-2025', 'gemini-2.5-flash-native-audio-preview-09-2025', 'gemini-2.5-flash-native-audio-latest', 'gemini-2.5-flash-lite', 'gemini-2.5-flash', 'gemini-flash']
+2026-08-31 12:33:54 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-omni-flash-preview...
+2026-08-31 12:33:54 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 12:33:55 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-omni-flash-preview:generateContent "HTTP/1.1 400 Bad Request"
+2026-08-31 12:33:55 [WARNING] [TimeMachine] - ❌ 模型 gemini-omni-flash-preview 測試失敗或不支援該功能: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'This model only supports Interactions API.', 'status': 'INVALID_ARGUMENT'}}
+2026-08-31 12:33:55 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-omni-1.1-flash...
+2026-08-31 12:33:55 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 12:33:55 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-omni-1.1-flash:generateContent "HTTP/1.1 400 Bad Request"
+2026-08-31 12:33:55 [WARNING] [TimeMachine] - ❌ 模型 gemini-omni-1.1-flash 測試失敗或不支援該功能: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'This model only supports Interactions API.', 'status': 'INVALID_ARGUMENT'}}
+2026-08-31 12:33:55 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-flash-lite-latest...
+2026-08-31 12:33:55 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 12:33:58 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-08-31 12:33:58 [INFO] [TimeMachine] - ✅ VLM 自檢通過！鎖定安全模型: gemini-flash-lite-latest
+2026-08-31 12:34:42 [INFO] [TimeMachine] - [job_ef31bbbd] 📥 收到新請求: 香港銅鑼灣2.jpg (目標: Causeway Bay, Hong Kong, 1960s)
+2026-08-31 12:34:42 [INFO] [TimeMachine] - [job_ef31bbbd] 🚀 開始執行時光機 Agentic Pipeline...
+2026-08-31 12:34:42 [INFO] [TimeMachine] - 原始圖片尺寸: 1440x1440
+2026-08-31 12:34:42 [INFO] [TimeMachine] - 已縮放至: 1024x1024
+2026-08-31 12:34:42 [INFO] [TimeMachine] - [job_ef31bbbd] 🖼️ 原子儲存圖片: logs/jobs/job_ef31bbbd/pass0/processed_input.jpg
+2026-08-31 12:34:42 [INFO] [TimeMachine] - [job_ef31bbbd] 🎨 執行初始生圖 (Pass 0)...
+2026-08-31 12:34:42 [INFO] [TimeMachine] - [742aac3a-a580-4d09-8ab1-4d360e9d77f2] 1. 正在上傳圖片至 ComfyUI...
+2026-08-31 12:34:42 [INFO] [TimeMachine] - 📝 成功將 Node 5 的 Prompt 佔位符替換為: 1960s, Causeway Bay, Hong Kong
+2026-08-31 12:34:42 [INFO] [TimeMachine] - [742aac3a-a580-4d09-8ab1-4d360e9d77f2] 任務已提交 (ID: 45230ee9-5e4f-4b6b-88dd-905515388fd6)，開始監控...
+2026-08-31 12:37:36 [INFO] [TimeMachine] - [742aac3a-a580-4d09-8ab1-4d360e9d77f2] 成功獲取圖片: ComfyUI_00104_.png
+2026-08-31 12:37:36 [INFO] [TimeMachine] - [job_ef31bbbd] 🧠 進入 VQA 評估階段 (Pass 0)...
+2026-08-31 12:37:36 [INFO] [TimeMachine] - 🧠 [Net:0|Logic:0] 呼叫 VLM (gemini-flash-lite-latest)...
+2026-08-31 12:37:36 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 12:37:46 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-08-31 12:37:46 [INFO] [TimeMachine] - 📝 [VLM Plan PLAN-CWB-1960s-001] Summary: Reconstruct storefronts, signage typography, vehicle fleet, and building facades to strictly align with 1960s Causeway Bay urban architecture.
+2026-08-31 12:37:46 [INFO] [TimeMachine] - [job_ef31bbbd] 📄 原子儲存 Metadata: logs/jobs/job_ef31bbbd/pass0/qa_result.json
+2026-08-31 12:37:46 [WARNING] [TimeMachine] - [job_ef31bbbd] ❌ 內容評估 [失敗]: Reconstruct storefronts, signage typography, vehicle fleet, and building facades to strictly align with 1960s Causeway Bay urban architecture.
+2026-08-31 12:37:46 [INFO] [TimeMachine] - [job_ef31bbbd] 準備執行修正 Pass 1...
+2026-08-31 12:37:46 [INFO] [TimeMachine] - 🧭 [Router] 啟動語義路由分析...
+2026-08-31 12:37:46 [INFO] [TimeMachine] - [job_ef31bbbd] 🖼️ 原子儲存圖片: logs/jobs/job_ef31bbbd/pass1/temp_base_pass_0.jpg
+2026-08-31 12:37:46 [INFO] [TimeMachine] - [job_ef31bbbd] 🖼️ 原子儲存圖片: logs/jobs/job_ef31bbbd/pass1/error_mask.png
+2026-08-31 12:37:46 [INFO] [TimeMachine] - [job_ef31bbbd] 🖌️ [Tier 1] 啟動局部修補 | Denoise: 0.75
+2026-08-31 12:37:46 [INFO] [TimeMachine] - [488d1643-c949-4340-b76a-4440dead5a38] 🎨 開始執行 Tier 1 局部 Inpaint 修正...
+2026-08-31 12:37:46 [INFO] [TimeMachine] - 📝 成功將 Node 4 的 Prompt 佔位符替換為: 1960s, Causeway Bay, Hong Kong
+2026-08-31 12:37:46 [INFO] [TimeMachine] - 🔗 成功將底圖注入 Node 1
+2026-08-31 12:37:46 [INFO] [TimeMachine] - 🔗 成功將遮罩注入 Node 2
+2026-08-31 12:37:46 [INFO] [TimeMachine] - ⚙️ 成功將 Denoise (0.75) 注入 KSampler (Node 10)
+2026-08-31 12:37:46 [INFO] [TimeMachine] - [488d1643-c949-4340-b76a-4440dead5a38] 任務已提交 (ID: 2878c6d8-4ac8-4b71-9d90-0a90cc5d90b7)，開始監控...
+2026-08-31 12:41:14 [INFO] [TimeMachine] - [488d1643-c949-4340-b76a-4440dead5a38] 成功獲取圖片: ComfyUI_00105_.png
+2026-08-31 12:41:14 [INFO] [TimeMachine] - [job_ef31bbbd] 🧠 進入 VQA 評估階段 (Pass 1)...
+2026-08-31 12:41:15 [INFO] [TimeMachine] - 🧠 [Net:0|Logic:0] 呼叫 VLM (gemini-flash-lite-latest)...
+2026-08-31 12:41:15 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 12:41:23 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-08-31 12:41:23 [INFO] [TimeMachine] - 📝 [VLM Plan PLAN-CWB-1960S-01] Summary: Reconstruct building facades to fit 1960s architectural styles and remove anachronistic modern elements while preserving the vintage tram and street layout.
+2026-08-31 12:41:23 [INFO] [TimeMachine] - [job_ef31bbbd] 📄 原子儲存 Metadata: logs/jobs/job_ef31bbbd/pass1/qa_result.json
+2026-08-31 12:41:23 [WARNING] [TimeMachine] - [job_ef31bbbd] ❌ 內容評估 [失敗]: Reconstruct building facades to fit 1960s architectural styles and remove anachronistic modern elements while preserving the vintage tram and street layout.
+2026-08-31 12:41:23 [INFO] [TimeMachine] - [job_ef31bbbd] 準備執行修正 Pass 2...
+2026-08-31 12:41:23 [INFO] [TimeMachine] - 🧭 [Router] 啟動語義路由分析...
+2026-08-31 12:41:23 [INFO] [TimeMachine] - 📐 [Router] 偵測到高危動作 'remove_building_or_mass' | 信心: 0.85 | 面積佔比: 1.9%
+2026-08-31 12:41:23 [INFO] [TimeMachine] - 🛡️ [Router] 門檻不足 (降級防禦生效)。降級為 Level 1 局部處理。
+2026-08-31 12:41:23 [INFO] [TimeMachine] - [job_ef31bbbd] 🖼️ 原子儲存圖片: logs/jobs/job_ef31bbbd/pass2/temp_base_pass_1.jpg
+2026-08-31 12:41:23 [INFO] [TimeMachine] - [job_ef31bbbd] 🖼️ 原子儲存圖片: logs/jobs/job_ef31bbbd/pass2/error_mask.png
+2026-08-31 12:41:23 [INFO] [TimeMachine] - [job_ef31bbbd] 🖌️ [Tier 1] 啟動局部修補 | Denoise: 0.80
+2026-08-31 12:41:23 [INFO] [TimeMachine] - [12072823-e32c-4cdd-b687-2f2926cdf6a7] 🎨 開始執行 Tier 1 局部 Inpaint 修正...
+2026-08-31 12:41:23 [INFO] [TimeMachine] - 📝 成功將 Node 4 的 Prompt 佔位符替換為: 1960s, Causeway Bay, Hong Kong
+2026-08-31 12:41:23 [INFO] [TimeMachine] - 🔗 成功將底圖注入 Node 1
+2026-08-31 12:41:23 [INFO] [TimeMachine] - 🔗 成功將遮罩注入 Node 2
+2026-08-31 12:41:23 [INFO] [TimeMachine] - ⚙️ 成功將 Denoise (0.80) 注入 KSampler (Node 10)
+2026-08-31 12:41:23 [INFO] [TimeMachine] - [12072823-e32c-4cdd-b687-2f2926cdf6a7] 任務已提交 (ID: 5d06865b-5f11-4520-ab50-bfdbe7b8e797)，開始監控...
+2026-08-31 12:45:03 [INFO] [TimeMachine] - [12072823-e32c-4cdd-b687-2f2926cdf6a7] 成功獲取圖片: ComfyUI_00106_.png
+2026-08-31 12:45:03 [INFO] [TimeMachine] - [job_ef31bbbd] 🧠 進入 VQA 評估階段 (Pass 2)...
+2026-08-31 12:45:03 [INFO] [TimeMachine] - 🧠 [Net:0|Logic:0] 呼叫 VLM (gemini-flash-lite-latest)...
+2026-08-31 12:45:03 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 12:45:11 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-08-31 12:45:11 [INFO] [TimeMachine] - 📝 [VLM Plan PLAN-1960CWB-01] Summary: Reconstruct building heights and street scale to accurately match 1960s Causeway Bay urban density while preserving historical tramway elements.
+2026-08-31 12:45:11 [INFO] [TimeMachine] - [job_ef31bbbd] 📄 原子儲存 Metadata: logs/jobs/job_ef31bbbd/pass2/qa_result.json
+2026-08-31 12:45:11 [WARNING] [TimeMachine] - [job_ef31bbbd] ❌ 內容評估 [失敗]: Reconstruct building heights and street scale to accurately match 1960s Causeway Bay urban density while preserving historical tramway elements.
+2026-08-31 12:45:11 [INFO] [TimeMachine] - [job_ef31bbbd] ⚠️ 達到最大修正次數，強制回傳最終相片。
+2026-08-31 12:45:11 [INFO] [TimeMachine] - [job_ef31bbbd] 成功裁除黑邊並還原圖片尺寸: (1440, 1440)
+2026-08-31 12:45:11 [INFO] [TimeMachine] - 成功裁除黑邊並還原圖片尺寸: (1440, 1440)
+2026-08-31 12:45:11 [INFO] [TimeMachine] - [job_ef31bbbd] 📤 任務完成，回傳最終圖片
+2026-08-31 12:45:11 [INFO] [TimeMachine] - [job_ef31bbbd] 📤 任務完成，回傳最終圖片
+2026-08-31 13:08:26 [INFO] [TimeMachine] - 🛑 系統正在關閉...
+2026-08-31 13:08:27 [INFO] [TimeMachine] - 🚀 系統啟動中... 執行 VLM 全能力深度自檢...
+2026-08-31 13:08:27 [INFO] [httpx] - HTTP Request: GET https://generativelanguage.googleapis.com/v1beta/models "HTTP/1.1 200 OK"
+2026-08-31 13:08:27 [INFO] [httpx] - HTTP Request: GET https://generativelanguage.googleapis.com/v1beta/models?pageToken=CjRtb2RlbHMvZ2VtaW5pLTIuNS1mbGFzaC1uYXRpdmUtYXVkaW8tcHJldmlldy0xMi0yMDI1 "HTTP/1.1 200 OK"
+2026-08-31 13:08:27 [INFO] [TimeMachine] - 📋 準備測試候選模型佇列: ['gemini-omni-flash-preview', 'gemini-omni-1.1-flash', 'gemini-flash-lite-latest', 'gemini-flash-latest', 'gemini-3.7-flash', 'gemini-3.6-flash', 'gemini-3.5-flash-lite', 'gemini-3.5-flash', 'gemini-3.1-flash-live-preview', 'gemini-3.1-flash-lite-preview', 'gemini-3.1-flash-lite', 'gemini-3-flash-preview', 'gemini-2.5-flash-native-audio-preview-12-2025', 'gemini-2.5-flash-native-audio-preview-09-2025', 'gemini-2.5-flash-native-audio-latest', 'gemini-2.5-flash-lite', 'gemini-2.5-flash', 'gemini-flash']
+2026-08-31 13:08:27 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-omni-flash-preview...
+2026-08-31 13:08:27 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 13:08:28 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-omni-flash-preview:generateContent "HTTP/1.1 400 Bad Request"
+2026-08-31 13:08:28 [WARNING] [TimeMachine] - ❌ 模型 gemini-omni-flash-preview 測試失敗或不支援該功能: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'This model only supports Interactions API.', 'status': 'INVALID_ARGUMENT'}}
+2026-08-31 13:08:28 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-omni-1.1-flash...
+2026-08-31 13:08:28 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 13:08:28 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-omni-1.1-flash:generateContent "HTTP/1.1 400 Bad Request"
+2026-08-31 13:08:28 [WARNING] [TimeMachine] - ❌ 模型 gemini-omni-1.1-flash 測試失敗或不支援該功能: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'This model only supports Interactions API.', 'status': 'INVALID_ARGUMENT'}}
+2026-08-31 13:08:28 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-flash-lite-latest...
+2026-08-31 13:08:28 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 13:08:30 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-08-31 13:08:30 [INFO] [TimeMachine] - ✅ VLM 自檢通過！鎖定安全模型: gemini-flash-lite-latest
+2026-08-31 13:09:02 [INFO] [TimeMachine] - 🛑 系統正在關閉...
+2026-08-31 13:09:02 [INFO] [TimeMachine] - 🚀 系統啟動中... 執行 VLM 全能力深度自檢...
+2026-08-31 13:09:03 [INFO] [httpx] - HTTP Request: GET https://generativelanguage.googleapis.com/v1beta/models "HTTP/1.1 200 OK"
+2026-08-31 13:09:03 [INFO] [httpx] - HTTP Request: GET https://generativelanguage.googleapis.com/v1beta/models?pageToken=CjRtb2RlbHMvZ2VtaW5pLTIuNS1mbGFzaC1uYXRpdmUtYXVkaW8tcHJldmlldy0xMi0yMDI1 "HTTP/1.1 200 OK"
+2026-08-31 13:09:03 [INFO] [TimeMachine] - 📋 準備測試候選模型佇列: ['gemini-omni-flash-preview', 'gemini-omni-1.1-flash', 'gemini-flash-lite-latest', 'gemini-flash-latest', 'gemini-3.7-flash', 'gemini-3.6-flash', 'gemini-3.5-flash-lite', 'gemini-3.5-flash', 'gemini-3.1-flash-live-preview', 'gemini-3.1-flash-lite-preview', 'gemini-3.1-flash-lite', 'gemini-3-flash-preview', 'gemini-2.5-flash-native-audio-preview-12-2025', 'gemini-2.5-flash-native-audio-preview-09-2025', 'gemini-2.5-flash-native-audio-latest', 'gemini-2.5-flash-lite', 'gemini-2.5-flash', 'gemini-flash']
+2026-08-31 13:09:03 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-omni-flash-preview...
+2026-08-31 13:09:03 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 13:09:04 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-omni-flash-preview:generateContent "HTTP/1.1 400 Bad Request"
+2026-08-31 13:09:04 [WARNING] [TimeMachine] - ❌ 模型 gemini-omni-flash-preview 測試失敗或不支援該功能: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'This model only supports Interactions API.', 'status': 'INVALID_ARGUMENT'}}
+2026-08-31 13:09:04 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-omni-1.1-flash...
+2026-08-31 13:09:04 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 13:09:04 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-omni-1.1-flash:generateContent "HTTP/1.1 400 Bad Request"
+2026-08-31 13:09:04 [WARNING] [TimeMachine] - ❌ 模型 gemini-omni-1.1-flash 測試失敗或不支援該功能: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'This model only supports Interactions API.', 'status': 'INVALID_ARGUMENT'}}
+2026-08-31 13:09:04 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-flash-lite-latest...
+2026-08-31 13:09:04 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 13:09:05 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-08-31 13:09:05 [INFO] [TimeMachine] - ✅ VLM 自檢通過！鎖定安全模型: gemini-flash-lite-latest
+2026-08-31 13:09:28 [INFO] [TimeMachine] - 🛑 系統正在關閉...
+2026-08-31 13:09:36 [INFO] [TimeMachine] - 🚀 系統啟動中... 執行 VLM 全能力深度自檢...
+2026-08-31 13:09:36 [INFO] [httpx] - HTTP Request: GET https://generativelanguage.googleapis.com/v1beta/models "HTTP/1.1 200 OK"
+2026-08-31 13:09:37 [INFO] [httpx] - HTTP Request: GET https://generativelanguage.googleapis.com/v1beta/models?pageToken=CjRtb2RlbHMvZ2VtaW5pLTIuNS1mbGFzaC1uYXRpdmUtYXVkaW8tcHJldmlldy0xMi0yMDI1 "HTTP/1.1 200 OK"
+2026-08-31 13:09:37 [INFO] [TimeMachine] - 📋 準備測試候選模型佇列: ['gemini-omni-flash-preview', 'gemini-omni-1.1-flash', 'gemini-flash-lite-latest', 'gemini-flash-latest', 'gemini-3.7-flash', 'gemini-3.6-flash', 'gemini-3.5-flash-lite', 'gemini-3.5-flash', 'gemini-3.1-flash-live-preview', 'gemini-3.1-flash-lite-preview', 'gemini-3.1-flash-lite', 'gemini-3-flash-preview', 'gemini-2.5-flash-native-audio-preview-12-2025', 'gemini-2.5-flash-native-audio-preview-09-2025', 'gemini-2.5-flash-native-audio-latest', 'gemini-2.5-flash-lite', 'gemini-2.5-flash', 'gemini-flash']
+2026-08-31 13:09:37 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-omni-flash-preview...
+2026-08-31 13:09:37 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 13:09:37 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-omni-flash-preview:generateContent "HTTP/1.1 400 Bad Request"
+2026-08-31 13:09:37 [WARNING] [TimeMachine] - ❌ 模型 gemini-omni-flash-preview 測試失敗或不支援該功能: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'This model only supports Interactions API.', 'status': 'INVALID_ARGUMENT'}}
+2026-08-31 13:09:37 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-omni-1.1-flash...
+2026-08-31 13:09:37 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 13:09:38 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-omni-1.1-flash:generateContent "HTTP/1.1 400 Bad Request"
+2026-08-31 13:09:38 [WARNING] [TimeMachine] - ❌ 模型 gemini-omni-1.1-flash 測試失敗或不支援該功能: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'This model only supports Interactions API.', 'status': 'INVALID_ARGUMENT'}}
+2026-08-31 13:09:38 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-flash-lite-latest...
+2026-08-31 13:09:38 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 13:09:40 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-08-31 13:09:40 [INFO] [TimeMachine] - ✅ VLM 自檢通過！鎖定安全模型: gemini-flash-lite-latest
+2026-08-31 13:09:45 [INFO] [TimeMachine] - 🛑 系統正在關閉...
+2026-08-31 13:09:46 [INFO] [TimeMachine] - 🚀 系統啟動中... 執行 VLM 全能力深度自檢...
+2026-08-31 13:09:46 [INFO] [httpx] - HTTP Request: GET https://generativelanguage.googleapis.com/v1beta/models "HTTP/1.1 200 OK"
+2026-08-31 13:09:46 [INFO] [httpx] - HTTP Request: GET https://generativelanguage.googleapis.com/v1beta/models?pageToken=CjRtb2RlbHMvZ2VtaW5pLTIuNS1mbGFzaC1uYXRpdmUtYXVkaW8tcHJldmlldy0xMi0yMDI1 "HTTP/1.1 200 OK"
+2026-08-31 13:09:46 [INFO] [TimeMachine] - 📋 準備測試候選模型佇列: ['gemini-omni-flash-preview', 'gemini-omni-1.1-flash', 'gemini-flash-lite-latest', 'gemini-flash-latest', 'gemini-3.7-flash', 'gemini-3.6-flash', 'gemini-3.5-flash-lite', 'gemini-3.5-flash', 'gemini-3.1-flash-live-preview', 'gemini-3.1-flash-lite-preview', 'gemini-3.1-flash-lite', 'gemini-3-flash-preview', 'gemini-2.5-flash-native-audio-preview-12-2025', 'gemini-2.5-flash-native-audio-preview-09-2025', 'gemini-2.5-flash-native-audio-latest', 'gemini-2.5-flash-lite', 'gemini-2.5-flash', 'gemini-flash']
+2026-08-31 13:09:46 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-omni-flash-preview...
+2026-08-31 13:09:46 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 13:09:47 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-omni-flash-preview:generateContent "HTTP/1.1 400 Bad Request"
+2026-08-31 13:09:47 [WARNING] [TimeMachine] - ❌ 模型 gemini-omni-flash-preview 測試失敗或不支援該功能: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'This model only supports Interactions API.', 'status': 'INVALID_ARGUMENT'}}
+2026-08-31 13:09:47 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-omni-1.1-flash...
+2026-08-31 13:09:47 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 13:09:47 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-omni-1.1-flash:generateContent "HTTP/1.1 400 Bad Request"
+2026-08-31 13:09:47 [WARNING] [TimeMachine] - ❌ 模型 gemini-omni-1.1-flash 測試失敗或不支援該功能: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'This model only supports Interactions API.', 'status': 'INVALID_ARGUMENT'}}
+2026-08-31 13:09:47 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-flash-lite-latest...
+2026-08-31 13:09:47 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 13:09:49 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-08-31 13:09:49 [INFO] [TimeMachine] - ✅ VLM 自檢通過！鎖定安全模型: gemini-flash-lite-latest
+2026-08-31 13:10:12 [INFO] [TimeMachine] - [job_7e700d20] 📥 收到新請求: 香港銅鑼灣2.jpg (目標: Causeway Bay, Hong Kong, 1960s)
+2026-08-31 13:10:12 [INFO] [TimeMachine] - [job_7e700d20] 🚀 開始執行時光機 Agentic Pipeline...
+2026-08-31 13:10:12 [INFO] [TimeMachine] - 原始圖片尺寸: 1440x1440
+2026-08-31 13:10:12 [INFO] [TimeMachine] - 已縮放至: 1024x1024
+2026-08-31 13:10:12 [INFO] [TimeMachine] - [job_7e700d20] 🖼️ 原子儲存圖片: logs/jobs/job_7e700d20/pass0/processed_input.jpg
+2026-08-31 13:10:12 [INFO] [TimeMachine] - [job_7e700d20] 🎨 執行初始生圖 (Pass 0)...
+2026-08-31 13:10:12 [INFO] [TimeMachine] - [37f7fcc4-4d13-43de-a65f-484f862c0bfc] 1. 正在上傳圖片至 ComfyUI...
+2026-08-31 13:10:12 [INFO] [TimeMachine] - 📝 成功將 Node 5 的 Prompt 佔位符替換為: 1960s, Causeway Bay, Hong Kong
+2026-08-31 13:10:12 [INFO] [TimeMachine] - [37f7fcc4-4d13-43de-a65f-484f862c0bfc] 任務已提交 (ID: 2d769c50-f5c3-4c2f-b336-cc4be83e965a)，開始監控...
+2026-08-31 13:13:06 [INFO] [TimeMachine] - [37f7fcc4-4d13-43de-a65f-484f862c0bfc] 成功獲取圖片: ComfyUI_00107_.png
+2026-08-31 13:13:06 [INFO] [TimeMachine] - [job_7e700d20] 🧠 進入 VQA 評估階段 (Pass 0)...
+2026-08-31 13:13:06 [INFO] [TimeMachine] - 🧠 [Net:0|Logic:0] 呼叫 VLM (gemini-flash-lite-latest)...
+2026-08-31 13:13:06 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 13:13:11 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-08-31 13:13:11 [INFO] [TimeMachine] - 📝 [VLM Plan PLAN-CWB-1960S-01] Summary: Reconstruct storefronts, signage typography, and window air-conditioning units to authentically match 1960s Causeway Bay vernacular architecture.
+2026-08-31 13:13:11 [INFO] [TimeMachine] - [job_7e700d20] 📄 原子儲存 Metadata: logs/jobs/job_7e700d20/pass0/qa_result.json
+2026-08-31 13:13:11 [WARNING] [TimeMachine] - [job_7e700d20] ❌ 內容評估 [失敗]: Reconstruct storefronts, signage typography, and window air-conditioning units to authentically match 1960s Causeway Bay vernacular architecture.
+2026-08-31 13:13:11 [INFO] [TimeMachine] - [job_7e700d20] 準備執行修正 Pass 1...
+2026-08-31 13:13:11 [INFO] [TimeMachine] - 🧭 [Router] 啟動語義路由分析...
+2026-08-31 13:13:11 [INFO] [TimeMachine] - [job_7e700d20] 🖼️ 原子儲存圖片: logs/jobs/job_7e700d20/pass1/temp_base_pass_0.jpg
+2026-08-31 13:13:11 [INFO] [TimeMachine] - [job_7e700d20] 🖼️ 原子儲存圖片: logs/jobs/job_7e700d20/pass1/error_mask.png
+2026-08-31 13:13:11 [INFO] [TimeMachine] - [job_7e700d20] 🖌️ [Tier 1] 啟動局部修補 | Denoise: 0.75
+2026-08-31 13:13:11 [INFO] [TimeMachine] - [9573084a-bd36-47f1-8c98-044b39b05ac6] 🎨 開始執行 Tier 1 局部 Inpaint 修正...
+2026-08-31 13:13:11 [INFO] [TimeMachine] - 📝 成功將 Node 4 的 Prompt 佔位符替換為: 1960s, Causeway Bay, Hong Kong
+2026-08-31 13:13:11 [INFO] [TimeMachine] - 🔗 成功將底圖注入 Node 1
+2026-08-31 13:13:11 [INFO] [TimeMachine] - 🔗 成功將遮罩注入 Node 2
+2026-08-31 13:13:11 [INFO] [TimeMachine] - ⚙️ 成功將 Denoise (0.75) 注入 KSampler (Node 10)
+2026-08-31 13:13:11 [INFO] [TimeMachine] - [9573084a-bd36-47f1-8c98-044b39b05ac6] 任務已提交 (ID: 7b35e6ea-f31a-453a-ae29-9b4cfc5a3d0f)，開始監控...
+2026-08-31 13:16:50 [INFO] [TimeMachine] - [9573084a-bd36-47f1-8c98-044b39b05ac6] 成功獲取圖片: ComfyUI_00108_.png
+2026-08-31 13:16:51 [INFO] [TimeMachine] - [job_7e700d20] 🧠 進入 VQA 評估階段 (Pass 1)...
+2026-08-31 13:16:51 [INFO] [TimeMachine] - 🧠 [Net:0|Logic:0] 呼叫 VLM (gemini-flash-lite-latest)...
+2026-08-31 13:16:51 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 13:16:58 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-08-31 13:16:58 [INFO] [TimeMachine] - 📝 [VLM Plan PLAN-1960-CWB-001] Summary: Reconstruct Causeway Bay streetscape for the 1960s by adjusting building scale, adding vintage signage, and replacing modern urban elements.
+2026-08-31 13:16:58 [INFO] [TimeMachine] - [job_7e700d20] 📄 原子儲存 Metadata: logs/jobs/job_7e700d20/pass1/qa_result.json
+2026-08-31 13:16:58 [WARNING] [TimeMachine] - [job_7e700d20] ❌ 內容評估 [失敗]: Reconstruct Causeway Bay streetscape for the 1960s by adjusting building scale, adding vintage signage, and replacing modern urban elements.
+2026-08-31 13:16:58 [INFO] [TimeMachine] - [job_7e700d20] 準備執行修正 Pass 2...
+2026-08-31 13:16:58 [INFO] [TimeMachine] - 🧭 [Router] 啟動語義路由分析...
+2026-08-31 13:16:58 [INFO] [TimeMachine] - 📐 [Router] 偵測到高危動作 'remove_building_or_mass' | 信心: 0.85 | 面積佔比: 17.7%
+2026-08-31 13:16:58 [WARNING] [TimeMachine] - ⚠️ [Router] 突破雙重門檻！鎖定為 Level 2 全域重構。
+2026-08-31 13:16:58 [INFO] [TimeMachine] - 📐 [Router] 偵測到高危動作 'replace_building_lowrise' | 信心: 0.88 | 面積佔比: 7.6%
+2026-08-31 13:16:58 [WARNING] [TimeMachine] - ⚠️ [Router] 突破雙重門檻！鎖定為 Level 2 全域重構。
+2026-08-31 13:16:58 [INFO] [TimeMachine] - [job_7e700d20] 🖼️ 原子儲存圖片: logs/jobs/job_7e700d20/pass2/temp_base_pass_1.jpg
+2026-08-31 13:16:58 [INFO] [TimeMachine] - [job_7e700d20] 🌍 [Tier 2] 啟動全域重構 | Denoise: 0.90
+2026-08-31 13:16:58 [INFO] [TimeMachine] - [d2d28ec7-2868-4e58-967b-4c7ab1c10a9d] 🌍 開始執行 Tier 2 全域地貌重構 (Global Rebuild)...
+2026-08-31 13:16:58 [ERROR] [TimeMachine] - ❌ 找不到工作流檔案: /Users/danielee/era-project-lkh/configs/global_rebuild_workflow_api.json
+2026-08-31 13:16:58 [ERROR] [TimeMachine] - [job_7e700d20] ❌ 處理發生嚴重錯誤:
+Traceback (most recent call last):
+  File "/Users/danielee/era-project-lkh/services/inference_service.py", line 135, in run_comfyui_global_rebuild
+    with open(json_path, "r", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/danielee/era-project-lkh/configs/global_rebuild_workflow_api.json'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/danielee/era-project-lkh/api/routes_jobs.py", line 43, in process_image
+    final_image_bytes = await agent.run_time_machine_pipeline(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "/Users/danielee/era-project-lkh/services/agent_service.py", line 130, in run_time_machine_pipeline
+    current_image_bytes = run_comfyui_global_rebuild(year, location, temp_base_path, current_denoise)
+  File "/Users/danielee/era-project-lkh/services/inference_service.py", line 139, in run_comfyui_global_rebuild
+    raise HTTPException(status_code=500, detail="系統缺少 global_rebuild_workflow_api.json")
+fastapi.exceptions.HTTPException: 500: 系統缺少 global_rebuild_workflow_api.json
+
+2026-08-31 13:29:45 [INFO] [TimeMachine] - 🛑 系統正在關閉...
+2026-08-31 17:26:23 [INFO] [TimeMachine] - 🚀 系統啟動中... 執行 VLM 全能力深度自檢...
+2026-08-31 17:26:24 [INFO] [httpx] - HTTP Request: GET https://generativelanguage.googleapis.com/v1beta/models "HTTP/1.1 200 OK"
+2026-08-31 17:26:24 [INFO] [httpx] - HTTP Request: GET https://generativelanguage.googleapis.com/v1beta/models?pageToken=CjRtb2RlbHMvZ2VtaW5pLTIuNS1mbGFzaC1uYXRpdmUtYXVkaW8tcHJldmlldy0xMi0yMDI1 "HTTP/1.1 200 OK"
+2026-08-31 17:26:24 [INFO] [TimeMachine] - 📋 準備測試候選模型佇列: ['gemini-omni-flash-preview', 'gemini-omni-1.1-flash', 'gemini-flash-lite-latest', 'gemini-flash-latest', 'gemini-3.7-flash', 'gemini-3.6-flash', 'gemini-3.5-flash-lite', 'gemini-3.5-flash', 'gemini-3.1-flash-live-preview', 'gemini-3.1-flash-lite-preview', 'gemini-3.1-flash-lite', 'gemini-3-flash-preview', 'gemini-2.5-flash-native-audio-preview-12-2025', 'gemini-2.5-flash-native-audio-preview-09-2025', 'gemini-2.5-flash-native-audio-latest', 'gemini-2.5-flash-lite', 'gemini-2.5-flash', 'gemini-flash']
+2026-08-31 17:26:24 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-omni-flash-preview...
+2026-08-31 17:26:24 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 17:26:25 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-omni-flash-preview:generateContent "HTTP/1.1 400 Bad Request"
+2026-08-31 17:26:25 [WARNING] [TimeMachine] - ❌ 模型 gemini-omni-flash-preview 測試失敗或不支援該功能: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'This model only supports Interactions API.', 'status': 'INVALID_ARGUMENT'}}
+2026-08-31 17:26:25 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-omni-1.1-flash...
+2026-08-31 17:26:25 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 17:26:25 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-omni-1.1-flash:generateContent "HTTP/1.1 400 Bad Request"
+2026-08-31 17:26:26 [WARNING] [TimeMachine] - ❌ 模型 gemini-omni-1.1-flash 測試失敗或不支援該功能: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'This model only supports Interactions API.', 'status': 'INVALID_ARGUMENT'}}
+2026-08-31 17:26:26 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-flash-lite-latest...
+2026-08-31 17:26:26 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 17:26:27 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-08-31 17:26:27 [INFO] [TimeMachine] - ✅ VLM 自檢通過！鎖定安全模型: gemini-flash-lite-latest
+2026-08-31 17:26:54 [INFO] [TimeMachine] - [job_50d2f11e] 📥 收到新請求: 香港銅鑼灣2.jpg (目標: Causeway Bay, Hong Kong, 1960s)
+2026-08-31 17:26:54 [INFO] [TimeMachine] - [job_50d2f11e] 🚀 開始執行時光機 Agentic Pipeline...
+2026-08-31 17:26:54 [INFO] [TimeMachine] - 原始圖片尺寸: 1440x1440
+2026-08-31 17:26:54 [INFO] [TimeMachine] - 已縮放至: 1024x1024
+2026-08-31 17:26:54 [INFO] [TimeMachine] - [job_50d2f11e] 🖼️ 原子儲存圖片: logs/jobs/job_50d2f11e/pass0/processed_input.jpg
+2026-08-31 17:26:54 [INFO] [TimeMachine] - [job_50d2f11e] 🎨 執行初始生圖 (Pass 0)...
+2026-08-31 17:26:54 [INFO] [TimeMachine] - [3255cdd3-0b00-4331-a9d6-f0703d17cf0b] 1. 正在上傳圖片至 ComfyUI...
+2026-08-31 17:26:54 [INFO] [TimeMachine] - 📝 成功將 Node 5 的 Prompt 佔位符替換為: 1960s, Causeway Bay, Hong Kong
+2026-08-31 17:26:54 [INFO] [TimeMachine] - [3255cdd3-0b00-4331-a9d6-f0703d17cf0b] 任務已提交 (ID: 55a5b34a-142d-4be6-9b92-26ad8605dce5)，開始監控...
+2026-08-31 17:29:48 [INFO] [TimeMachine] - [3255cdd3-0b00-4331-a9d6-f0703d17cf0b] 成功獲取圖片: ComfyUI_00109_.png
+2026-08-31 17:29:49 [INFO] [TimeMachine] - [job_50d2f11e] 🧠 進入 VQA 評估階段 (Pass 0)...
+2026-08-31 17:29:49 [INFO] [TimeMachine] - 🧠 [Net:0|Logic:0] 呼叫 VLM (gemini-flash-lite-latest)...
+2026-08-31 17:29:49 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 17:29:57 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-08-31 17:29:57 [INFO] [TimeMachine] - 📝 [VLM Plan PLAN-CWB-1960S-01] Summary: Reconstruct storefront signage, apply 1960s architectural weathering, adapt transport vehicles, and adjust background height profile to accurately match 1960s Causeway Bay urban density.
+2026-08-31 17:29:57 [INFO] [TimeMachine] - [job_50d2f11e] 📄 原子儲存 Metadata: logs/jobs/job_50d2f11e/pass0/qa_result.json
+2026-08-31 17:29:57 [WARNING] [TimeMachine] - [job_50d2f11e] ❌ 內容評估 [失敗]: Reconstruct storefront signage, apply 1960s architectural weathering, adapt transport vehicles, and adjust background height profile to accurately match 1960s Causeway Bay urban density.
+2026-08-31 17:29:57 [INFO] [TimeMachine] - [job_50d2f11e] 準備執行修正 Pass 1...
+2026-08-31 17:29:57 [INFO] [TimeMachine] - 🧭 [Router] 啟動語義路由分析...
+2026-08-31 17:29:57 [INFO] [TimeMachine] - 📐 [Router] 偵測到高危動作 'replace_building_lowrise' | 信心: 0.82 | 面積佔比: 1.1%
+2026-08-31 17:29:57 [INFO] [TimeMachine] - 🛡️ [Router] 門檻不足 (降級防禦生效)。降級為 Level 1 局部處理。
+2026-08-31 17:29:57 [INFO] [TimeMachine] - [job_50d2f11e] 🖼️ 原子儲存圖片: logs/jobs/job_50d2f11e/pass1/temp_base_pass_0.jpg
+2026-08-31 17:29:57 [INFO] [TimeMachine] - [job_50d2f11e] 🖼️ 原子儲存圖片: logs/jobs/job_50d2f11e/pass1/error_mask.png
+2026-08-31 17:29:57 [INFO] [TimeMachine] - [job_50d2f11e] 🖌️ [Tier 1] 啟動局部修補 | Denoise: 0.75
+2026-08-31 17:29:57 [INFO] [TimeMachine] - [a2f6bdcd-ecb9-4323-988d-5c8df3d381bb] 🎨 開始執行 Tier 1 局部 Inpaint 修正...
+2026-08-31 17:29:57 [INFO] [TimeMachine] - 📝 成功將 Node 4 的 Prompt 佔位符替換為: 1960s, Causeway Bay, Hong Kong
+2026-08-31 17:29:57 [INFO] [TimeMachine] - 🔗 成功將底圖注入 Node 1
+2026-08-31 17:29:57 [INFO] [TimeMachine] - 🔗 成功將遮罩注入 Node 2
+2026-08-31 17:29:57 [INFO] [TimeMachine] - ⚙️ 成功將 Denoise (0.75) 注入 KSampler (Node 10)
+2026-08-31 17:29:57 [INFO] [TimeMachine] - [a2f6bdcd-ecb9-4323-988d-5c8df3d381bb] 任務已提交 (ID: 579d501a-69a2-4ec4-a2d5-ee8c7284b7eb)，開始監控...
+2026-08-31 17:33:37 [INFO] [TimeMachine] - [a2f6bdcd-ecb9-4323-988d-5c8df3d381bb] 成功獲取圖片: ComfyUI_00110_.png
+2026-08-31 17:33:37 [INFO] [TimeMachine] - [job_50d2f11e] 🧠 進入 VQA 評估階段 (Pass 1)...
+2026-08-31 17:33:37 [INFO] [TimeMachine] - 🧠 [Net:0|Logic:0] 呼叫 VLM (gemini-flash-lite-latest)...
+2026-08-31 17:33:37 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 17:34:07 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-08-31 17:34:07 [INFO] [TimeMachine] - 📝 [VLM Plan PLAN-HK1960] Summary: Reconstruct streetscape to accurately match 1960s Causeway Bay urban density, adding period-appropriate signage, trams, and architectural scale.
+2026-08-31 17:34:07 [INFO] [TimeMachine] - [job_50d2f11e] 📄 原子儲存 Metadata: logs/jobs/job_50d2f11e/pass1/qa_result.json
+2026-08-31 17:34:07 [WARNING] [TimeMachine] - [job_50d2f11e] ❌ 內容評估 [失敗]: Reconstruct streetscape to accurately match 1960s Causeway Bay urban density, adding period-appropriate signage, trams, and architectural scale.
+2026-08-31 17:34:07 [INFO] [TimeMachine] - [job_50d2f11e] 準備執行修正 Pass 2...
+2026-08-31 17:34:07 [INFO] [TimeMachine] - 🧭 [Router] 啟動語義路由分析...
+2026-08-31 17:34:07 [INFO] [TimeMachine] - 📐 [Router] 偵測到高危動作 'replace_building_lowrise' | 信心: 0.75 | 面積佔比: 20.1%
+2026-08-31 17:34:07 [INFO] [TimeMachine] - 🛡️ [Router] 門檻不足 (降級防禦生效)。降級為 Level 1 局部處理。
+2026-08-31 17:34:07 [INFO] [TimeMachine] - [job_50d2f11e] 🖼️ 原子儲存圖片: logs/jobs/job_50d2f11e/pass2/temp_base_pass_1.jpg
+2026-08-31 17:34:07 [INFO] [TimeMachine] - [job_50d2f11e] 🖼️ 原子儲存圖片: logs/jobs/job_50d2f11e/pass2/error_mask.png
+2026-08-31 17:34:07 [INFO] [TimeMachine] - [job_50d2f11e] 🖌️ [Tier 1] 啟動局部修補 | Denoise: 0.80
+2026-08-31 17:34:07 [INFO] [TimeMachine] - [19d223f0-8493-41ca-9cba-ef1991bd6598] 🎨 開始執行 Tier 1 局部 Inpaint 修正...
+2026-08-31 17:34:07 [INFO] [TimeMachine] - 📝 成功將 Node 4 的 Prompt 佔位符替換為: 1960s, Causeway Bay, Hong Kong
+2026-08-31 17:34:07 [INFO] [TimeMachine] - 🔗 成功將底圖注入 Node 1
+2026-08-31 17:34:07 [INFO] [TimeMachine] - 🔗 成功將遮罩注入 Node 2
+2026-08-31 17:34:07 [INFO] [TimeMachine] - ⚙️ 成功將 Denoise (0.80) 注入 KSampler (Node 10)
+2026-08-31 17:34:07 [INFO] [TimeMachine] - [19d223f0-8493-41ca-9cba-ef1991bd6598] 任務已提交 (ID: e662bc68-ff0d-4d52-9c86-6a0ca4e23ff4)，開始監控...
+2026-08-31 17:37:59 [INFO] [TimeMachine] - [19d223f0-8493-41ca-9cba-ef1991bd6598] 成功獲取圖片: ComfyUI_00111_.png
+2026-08-31 17:37:59 [INFO] [TimeMachine] - [job_50d2f11e] 🧠 進入 VQA 評估階段 (Pass 2)...
+2026-08-31 17:37:59 [INFO] [TimeMachine] - 🧠 [Net:0|Logic:0] 呼叫 VLM (gemini-flash-lite-latest)...
+2026-08-31 17:37:59 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 17:38:06 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-08-31 17:38:06 [INFO] [TimeMachine] - 📝 [VLM Plan PLAN-1960-CB-001] Summary: Reconstruct the streetscape to authentically match 1960s Causeway Bay, ensuring appropriate building scales, historical signage, and era-appropriate vehicles such as early generation buses and bicycles.
+2026-08-31 17:38:06 [INFO] [TimeMachine] - [job_50d2f11e] 📄 原子儲存 Metadata: logs/jobs/job_50d2f11e/pass2/qa_result.json
+2026-08-31 17:38:06 [WARNING] [TimeMachine] - [job_50d2f11e] ❌ 內容評估 [失敗]: Reconstruct the streetscape to authentically match 1960s Causeway Bay, ensuring appropriate building scales, historical signage, and era-appropriate vehicles such as early generation buses and bicycles.
+2026-08-31 17:38:06 [INFO] [TimeMachine] - [job_50d2f11e] ⚠️ 達到最大修正次數，強制回傳最終相片。
+2026-08-31 17:38:06 [INFO] [TimeMachine] - [job_50d2f11e] 成功裁除黑邊並還原圖片尺寸: (1440, 1440)
+2026-08-31 17:38:06 [INFO] [TimeMachine] - 成功裁除黑邊並還原圖片尺寸: (1440, 1440)
+2026-08-31 17:38:06 [INFO] [TimeMachine] - [job_50d2f11e] 📤 任務完成，回傳最終圖片
+2026-08-31 17:38:06 [INFO] [TimeMachine] - [job_50d2f11e] 📤 任務完成，回傳最終圖片
+2026-08-31 17:40:18 [INFO] [TimeMachine] - 🛑 系統正在關閉...
+2026-08-31 18:22:41 [INFO] [TimeMachine] - 🚀 系統啟動中... 執行 VLM 全能力深度自檢...
+2026-08-31 18:22:42 [INFO] [httpx] - HTTP Request: GET https://generativelanguage.googleapis.com/v1beta/models "HTTP/1.1 200 OK"
+2026-08-31 18:22:42 [INFO] [httpx] - HTTP Request: GET https://generativelanguage.googleapis.com/v1beta/models?pageToken=CjRtb2RlbHMvZ2VtaW5pLTIuNS1mbGFzaC1uYXRpdmUtYXVkaW8tcHJldmlldy0xMi0yMDI1 "HTTP/1.1 200 OK"
+2026-08-31 18:22:42 [INFO] [TimeMachine] - 📋 準備測試候選模型佇列: ['gemini-omni-flash-preview', 'gemini-omni-1.1-flash', 'gemini-flash-lite-latest', 'gemini-flash-latest', 'gemini-3.7-flash', 'gemini-3.6-flash', 'gemini-3.5-flash-lite', 'gemini-3.5-flash', 'gemini-3.1-flash-live-preview', 'gemini-3.1-flash-lite-preview', 'gemini-3.1-flash-lite', 'gemini-3-flash-preview', 'gemini-2.5-flash-native-audio-preview-12-2025', 'gemini-2.5-flash-native-audio-preview-09-2025', 'gemini-2.5-flash-native-audio-latest', 'gemini-2.5-flash-lite', 'gemini-2.5-flash', 'gemini-flash']
+2026-08-31 18:22:43 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-omni-flash-preview...
+2026-08-31 18:22:43 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 18:22:44 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-omni-flash-preview:generateContent "HTTP/1.1 400 Bad Request"
+2026-08-31 18:22:44 [WARNING] [TimeMachine] - ❌ 模型 gemini-omni-flash-preview 測試失敗或不支援該功能: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'This model only supports Interactions API.', 'status': 'INVALID_ARGUMENT'}}
+2026-08-31 18:22:44 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-omni-1.1-flash...
+2026-08-31 18:22:44 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 18:22:44 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-omni-1.1-flash:generateContent "HTTP/1.1 400 Bad Request"
+2026-08-31 18:22:44 [WARNING] [TimeMachine] - ❌ 模型 gemini-omni-1.1-flash 測試失敗或不支援該功能: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'This model only supports Interactions API.', 'status': 'INVALID_ARGUMENT'}}
+2026-08-31 18:22:44 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-flash-lite-latest...
+2026-08-31 18:22:44 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 18:22:46 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-08-31 18:22:46 [INFO] [TimeMachine] - ✅ VLM 自檢通過！鎖定安全模型: gemini-flash-lite-latest
+2026-08-31 18:24:09 [INFO] [TimeMachine] - [job_605739e5] 📥 收到新請求: 香港銅鑼灣2.jpg (目標: Causeway Bay, Hong Kong, 1960s)
+2026-08-31 18:24:09 [INFO] [TimeMachine] - [job_605739e5] 🚀 開始執行時光機 Agentic Pipeline...
+2026-08-31 18:24:09 [INFO] [TimeMachine] - 原始圖片尺寸: 1440x1440
+2026-08-31 18:24:09 [INFO] [TimeMachine] - 已縮放至: 1024x1024
+2026-08-31 18:24:09 [INFO] [TimeMachine] - [job_605739e5] 🖼️ 原子儲存圖片: logs/jobs/job_605739e5/pass0/processed_input.jpg
+2026-08-31 18:24:09 [INFO] [TimeMachine] - [job_605739e5] 🎨 執行初始生圖 (Pass 0)...
+2026-08-31 18:24:09 [INFO] [TimeMachine] - [5cb38492-e01f-402e-940e-ed6cec44dc5e] 1. 正在上傳圖片至 ComfyUI...
+2026-08-31 18:24:09 [INFO] [TimeMachine] - 📝 成功將 Node 5 的 Prompt 佔位符替換為: 1960s, Causeway Bay, Hong Kong
+2026-08-31 18:24:09 [INFO] [TimeMachine] - [5cb38492-e01f-402e-940e-ed6cec44dc5e] 任務已提交 (ID: 32ccb234-1d3b-4d85-a97d-723b36542be5)，開始監控...
+2026-08-31 18:27:04 [INFO] [TimeMachine] - [5cb38492-e01f-402e-940e-ed6cec44dc5e] 成功獲取圖片: ComfyUI_00112_.png
+2026-08-31 18:27:04 [INFO] [TimeMachine] - [job_605739e5] 🧠 進入 VQA 評估階段 (Pass 0)...
+2026-08-31 18:27:04 [INFO] [TimeMachine] - 🧠 [Net:0|Logic:0] 呼叫 VLM (gemini-flash-lite-latest)...
+2026-08-31 18:27:04 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 18:27:12 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-08-31 18:27:12 [INFO] [TimeMachine] - 📝 [VLM Plan PLAN-CWB1960-01] Summary: Reconstruct building facades, signage and vehicles to authentically reflect 1960s Causeway Bay streetscape, maintaining historical architectural scale and removing anachronisms.
+2026-08-31 18:27:12 [INFO] [TimeMachine] - [job_605739e5] 📄 原子儲存 Metadata: logs/jobs/job_605739e5/pass0/qa_result.json
+2026-08-31 18:27:12 [WARNING] [TimeMachine] - [job_605739e5] ❌ 內容評估 [失敗]: Reconstruct building facades, signage and vehicles to authentically reflect 1960s Causeway Bay streetscape, maintaining historical architectural scale and removing anachronisms.
+2026-08-31 18:27:12 [INFO] [TimeMachine] - [job_605739e5] 準備執行修正 Pass 1...
+2026-08-31 18:27:12 [INFO] [TimeMachine] - 🧭 [Router] 啟動語義路由分析...
+2026-08-31 18:27:12 [INFO] [TimeMachine] - 📐 [Router] 偵測到高危動作 'replace_building_lowrise' | 信心: 0.9 | 面積佔比: 7.7%
+2026-08-31 18:27:12 [WARNING] [TimeMachine] - ⚠️ [Router] 突破雙重門檻！鎖定為 Level 2 全域重構。
+2026-08-31 18:27:12 [INFO] [TimeMachine] - 📐 [Router] 偵測到高危動作 'remove_building_or_mass' | 信心: 0.92 | 面積佔比: 2.6%
+2026-08-31 18:27:12 [INFO] [TimeMachine] - 🛡️ [Router] 門檻不足 (降級防禦生效)。降級為 Level 1 局部處理。
+2026-08-31 18:27:12 [INFO] [TimeMachine] - [job_605739e5] 🖼️ 原子儲存圖片: logs/jobs/job_605739e5/pass1/temp_base_pass_0.jpg
+2026-08-31 18:27:12 [INFO] [TimeMachine] - [job_605739e5] 🌍 [Tier 2] 啟動全域重構 | Denoise: 0.85
+2026-08-31 18:27:12 [INFO] [TimeMachine] - [a701f2ba-7adb-44a6-a25b-499937c798af] 🌍 開始執行 Tier 2 全域地貌重構 (Global Rebuild)...
+2026-08-31 18:27:12 [INFO] [TimeMachine] - 📝 成功將 Node 2 的 Prompt 佔位符替換為: 1960s, Causeway Bay, Hong Kong
+2026-08-31 18:27:12 [INFO] [TimeMachine] - 🔗 成功將地形底圖注入 Node 4
+2026-08-31 18:27:12 [INFO] [TimeMachine] - ⚙️ 成功將高強度 Denoise (0.85) 注入 KSampler (Node 9)
+2026-08-31 18:27:12 [INFO] [TimeMachine] - [a701f2ba-7adb-44a6-a25b-499937c798af] 任務已提交 (ID: cc914651-2880-40ff-9159-b2eb30fd8b28)，開始監控...
+2026-08-31 18:32:08 [INFO] [TimeMachine] - [a701f2ba-7adb-44a6-a25b-499937c798af] 成功獲取圖片: ComfyUI_00113_.png
+2026-08-31 18:32:08 [INFO] [TimeMachine] - [job_605739e5] 🧠 進入 VQA 評估階段 (Pass 1)...
+2026-08-31 18:32:08 [INFO] [TimeMachine] - 🧠 [Net:0|Logic:0] 呼叫 VLM (gemini-flash-lite-latest)...
+2026-08-31 18:32:08 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 18:32:15 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-08-31 18:32:15 [INFO] [TimeMachine] - 📝 [VLM Plan PLAN-1960CWB-01] Summary: Reconstruct background modern megastructures into 1960s low-rise and mid-rise tenement buildings (Tong Lau) appropriate for Causeway Bay.
+2026-08-31 18:32:15 [INFO] [TimeMachine] - [job_605739e5] 📄 原子儲存 Metadata: logs/jobs/job_605739e5/pass1/qa_result.json
+2026-08-31 18:32:15 [WARNING] [TimeMachine] - [job_605739e5] ❌ 內容評估 [失敗]: Reconstruct background modern megastructures into 1960s low-rise and mid-rise tenement buildings (Tong Lau) appropriate for Causeway Bay.
+2026-08-31 18:32:15 [INFO] [TimeMachine] - [job_605739e5] 準備執行修正 Pass 2...
+2026-08-31 18:32:15 [INFO] [TimeMachine] - 🧭 [Router] 啟動語義路由分析...
+2026-08-31 18:32:15 [INFO] [TimeMachine] - 📐 [Router] 偵測到高危動作 'remove_building_or_mass' | 信心: 0.98 | 面積佔比: 9.4%
+2026-08-31 18:32:15 [WARNING] [TimeMachine] - ⚠️ [Router] 突破雙重門檻！鎖定為 Level 2 全域重構。
+2026-08-31 18:32:15 [INFO] [TimeMachine] - [job_605739e5] 🖼️ 原子儲存圖片: logs/jobs/job_605739e5/pass2/temp_base_pass_1.jpg
+2026-08-31 18:32:15 [INFO] [TimeMachine] - [job_605739e5] 🌍 [Tier 2] 啟動全域重構 | Denoise: 0.90
+2026-08-31 18:32:15 [INFO] [TimeMachine] - [354440b9-7ddc-4378-bf42-2a82ab4c6ce0] 🌍 開始執行 Tier 2 全域地貌重構 (Global Rebuild)...
+2026-08-31 18:32:15 [INFO] [TimeMachine] - 📝 成功將 Node 2 的 Prompt 佔位符替換為: 1960s, Causeway Bay, Hong Kong
+2026-08-31 18:32:15 [INFO] [TimeMachine] - 🔗 成功將地形底圖注入 Node 4
+2026-08-31 18:32:15 [INFO] [TimeMachine] - ⚙️ 成功將高強度 Denoise (0.90) 注入 KSampler (Node 9)
+2026-08-31 18:32:15 [INFO] [TimeMachine] - [354440b9-7ddc-4378-bf42-2a82ab4c6ce0] 任務已提交 (ID: 4aafc702-044d-49a8-a30a-4b9b988d77f1)，開始監控...
+2026-08-31 18:37:47 [INFO] [TimeMachine] - [354440b9-7ddc-4378-bf42-2a82ab4c6ce0] 成功獲取圖片: ComfyUI_00114_.png
+2026-08-31 18:37:47 [INFO] [TimeMachine] - [job_605739e5] 🧠 進入 VQA 評估階段 (Pass 2)...
+2026-08-31 18:37:47 [INFO] [TimeMachine] - 🧠 [Net:0|Logic:0] 呼叫 VLM (gemini-flash-lite-latest)...
+2026-08-31 18:37:47 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 18:37:53 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-08-31 18:37:53 [INFO] [TimeMachine] - 📝 [VLM Plan PLAN-CWB-1960S-001] Summary: Reconstruct background towering high-rise mass into period-appropriate 1960s medium-density tenement blocks and ensure traditional Chinese signage styling along street level.
+2026-08-31 18:37:53 [INFO] [TimeMachine] - [job_605739e5] 📄 原子儲存 Metadata: logs/jobs/job_605739e5/pass2/qa_result.json
+2026-08-31 18:37:53 [WARNING] [TimeMachine] - [job_605739e5] ❌ 內容評估 [失敗]: Reconstruct background towering high-rise mass into period-appropriate 1960s medium-density tenement blocks and ensure traditional Chinese signage styling along street level.
+2026-08-31 18:37:53 [INFO] [TimeMachine] - [job_605739e5] 準備執行修正 Pass 3...
+2026-08-31 18:37:53 [INFO] [TimeMachine] - 🧭 [Router] 啟動語義路由分析...
+2026-08-31 18:37:53 [INFO] [TimeMachine] - 📐 [Router] 偵測到高危動作 'remove_building_or_mass' | 信心: 0.95 | 面積佔比: 26.4%
+2026-08-31 18:37:53 [WARNING] [TimeMachine] - ⚠️ [Router] 突破雙重門檻！鎖定為 Level 2 全域重構。
+2026-08-31 18:37:53 [INFO] [TimeMachine] - [job_605739e5] 🖼️ 原子儲存圖片: logs/jobs/job_605739e5/pass3/temp_base_pass_2.jpg
+2026-08-31 18:37:53 [INFO] [TimeMachine] - [job_605739e5] 🌍 [Tier 2] 啟動全域重構 | Denoise: 0.95
+2026-08-31 18:37:53 [INFO] [TimeMachine] - [1c98e2cc-47c5-4d47-bed4-7dc4ebbd293f] 🌍 開始執行 Tier 2 全域地貌重構 (Global Rebuild)...
+2026-08-31 18:37:53 [INFO] [TimeMachine] - 📝 成功將 Node 2 的 Prompt 佔位符替換為: 1960s, Causeway Bay, Hong Kong
+2026-08-31 18:37:53 [INFO] [TimeMachine] - 🔗 成功將地形底圖注入 Node 4
+2026-08-31 18:37:53 [INFO] [TimeMachine] - ⚙️ 成功將高強度 Denoise (0.95) 注入 KSampler (Node 9)
+2026-08-31 18:37:53 [INFO] [TimeMachine] - [1c98e2cc-47c5-4d47-bed4-7dc4ebbd293f] 任務已提交 (ID: 32e68cad-6fe8-40b2-a4da-f63b2fc9c066)，開始監控...
+2026-08-31 18:43:42 [INFO] [TimeMachine] - [1c98e2cc-47c5-4d47-bed4-7dc4ebbd293f] 成功獲取圖片: ComfyUI_00115_.png
+2026-08-31 18:43:42 [INFO] [TimeMachine] - [job_605739e5] 🧠 進入 VQA 評估階段 (Pass 3)...
+2026-08-31 18:43:42 [INFO] [TimeMachine] - 🧠 [Net:0|Logic:0] 呼叫 VLM (gemini-flash-lite-latest)...
+2026-08-31 18:43:42 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-08-31 18:43:48 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-08-31 18:43:48 [INFO] [TimeMachine] - 📝 [VLM Plan PLAN-CWB-1960S-01] Summary: Reconstruct the modern hyper-dense background tower into period-appropriate mid-rise tenement buildings typical of 1960s Causeway Bay.
+2026-08-31 18:43:48 [INFO] [TimeMachine] - [job_605739e5] 📄 原子儲存 Metadata: logs/jobs/job_605739e5/pass3/qa_result.json
+2026-08-31 18:43:48 [WARNING] [TimeMachine] - [job_605739e5] ❌ 內容評估 [失敗]: Reconstruct the modern hyper-dense background tower into period-appropriate mid-rise tenement buildings typical of 1960s Causeway Bay.
+2026-08-31 18:43:48 [INFO] [TimeMachine] - [job_605739e5] ⚠️ 達到最大修正次數，強制回傳最終相片。
+2026-08-31 18:43:48 [INFO] [TimeMachine] - [job_605739e5] 成功裁除黑邊並還原圖片尺寸: (1440, 1440)
+2026-08-31 18:43:48 [INFO] [TimeMachine] - 成功裁除黑邊並還原圖片尺寸: (1440, 1440)
+2026-08-31 18:43:48 [INFO] [TimeMachine] - [job_605739e5] 📤 任務完成，回傳最終圖片
+2026-08-31 18:43:48 [INFO] [TimeMachine] - [job_605739e5] 📤 任務完成，回傳最終圖片
+2026-08-31 18:45:38 [INFO] [TimeMachine] - 🛑 系統正在關閉...
+2026-09-06 18:44:25 [INFO] [TimeMachine] - 🚀 系統啟動中... 執行 VLM 全能力深度自檢...
+2026-09-06 18:44:26 [INFO] [httpx] - HTTP Request: GET https://generativelanguage.googleapis.com/v1beta/models "HTTP/1.1 200 OK"
+2026-09-06 18:44:27 [INFO] [httpx] - HTTP Request: GET https://generativelanguage.googleapis.com/v1beta/models?pageToken=CjRtb2RlbHMvZ2VtaW5pLTIuNS1mbGFzaC1uYXRpdmUtYXVkaW8tcHJldmlldy0wOS0yMDI1 "HTTP/1.1 200 OK"
+2026-09-06 18:44:27 [INFO] [TimeMachine] - 📋 準備測試候選模型佇列: ['gemini-omni-flash-preview', 'gemini-omni-1.1-flash', 'gemini-flash-lite-latest', 'gemini-flash-latest', 'gemini-3.8-flash', 'gemini-3.7-flash', 'gemini-3.6-flash', 'gemini-3.5-flash-lite', 'gemini-3.5-flash', 'gemini-3.1-flash-live-preview', 'gemini-3.1-flash-lite-preview', 'gemini-3.1-flash-lite', 'gemini-3-flash-preview', 'gemini-2.5-flash-native-audio-preview-12-2025', 'gemini-2.5-flash-native-audio-preview-09-2025', 'gemini-2.5-flash-native-audio-latest', 'gemini-2.5-flash-lite', 'gemini-2.5-flash', 'gemini-flash']
+2026-09-06 18:44:27 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-omni-flash-preview...
+2026-09-06 18:44:27 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-09-06 18:44:28 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-omni-flash-preview:generateContent "HTTP/1.1 400 Bad Request"
+2026-09-06 18:44:29 [WARNING] [TimeMachine] - ❌ 模型 gemini-omni-flash-preview 測試失敗或不支援該功能: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'This model only supports Interactions API.', 'status': 'INVALID_ARGUMENT'}}
+2026-09-06 18:44:29 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-omni-1.1-flash...
+2026-09-06 18:44:29 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-09-06 18:44:29 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-omni-1.1-flash:generateContent "HTTP/1.1 400 Bad Request"
+2026-09-06 18:44:29 [WARNING] [TimeMachine] - ❌ 模型 gemini-omni-1.1-flash 測試失敗或不支援該功能: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'This model only supports Interactions API.', 'status': 'INVALID_ARGUMENT'}}
+2026-09-06 18:44:29 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-flash-lite-latest...
+2026-09-06 18:44:29 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-09-06 18:44:31 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-09-06 18:44:31 [INFO] [TimeMachine] - ✅ VLM 自檢通過！鎖定安全模型: gemini-flash-lite-latest
+2026-09-06 18:45:18 [INFO] [TimeMachine] - [job_40b0c150] 📥 收到新請求: 香港銅鑼灣2.jpg (目標: Causeway Bay, Hong Kong, 1960s)
+2026-09-06 18:45:18 [INFO] [TimeMachine] - [job_40b0c150] 🚀 開始執行時光機 Agentic Pipeline...
+2026-09-06 18:45:19 [INFO] [TimeMachine] - 原始圖片尺寸: 1440x1440
+2026-09-06 18:45:19 [INFO] [TimeMachine] - 已縮放至: 1024x1024
+2026-09-06 18:45:19 [INFO] [TimeMachine] - [job_40b0c150] 🖼️ 原子儲存圖片: logs/jobs/job_40b0c150/pass0/processed_input.jpg
+2026-09-06 18:45:19 [INFO] [TimeMachine] - [job_40b0c150] 🎨 執行初始生圖 (Pass 0)...
+2026-09-06 18:45:19 [INFO] [TimeMachine] - [1c9d50dd-fe84-4547-885c-89dc12b1b4c0] 1. 正在上傳圖片至 ComfyUI...
+2026-09-06 18:45:19 [INFO] [TimeMachine] - 📝 成功將 Node 5 的 Prompt 佔位符替換為: 1960s, Causeway Bay, Hong Kong
+2026-09-06 18:45:19 [INFO] [TimeMachine] - [1c9d50dd-fe84-4547-885c-89dc12b1b4c0] 任務已提交 (ID: 71c834df-5eaf-45a6-bfdd-9aa226b8bb19)，開始監控...
+2026-09-06 18:48:18 [INFO] [TimeMachine] - [1c9d50dd-fe84-4547-885c-89dc12b1b4c0] 成功獲取圖片: ComfyUI_00116_.png
+2026-09-06 18:48:18 [INFO] [TimeMachine] - [job_40b0c150] 🧠 進入 VQA 評估階段 (Pass 0)...
+2026-09-06 18:48:18 [INFO] [TimeMachine] - 🧠 [Net:0|Logic:0] 呼叫 VLM (gemini-flash-lite-latest)...
+2026-09-06 18:48:18 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-09-06 18:48:34 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-09-06 18:48:34 [INFO] [TimeMachine] - 📝 [VLM Plan PLAN-60S-CWB-01] Schema: v4 | Protected Zones: 1 | Summary: Reconstruct streetscape for 1960s Causeway Bay, preserving historical mid-rise architecture and clean sky background while targeting any anachronistic anomalies.
+2026-09-06 18:48:34 [INFO] [TimeMachine] - [job_40b0c150] 📄 原子儲存 Metadata: logs/jobs/job_40b0c150/pass0/qa_result.json
+2026-09-06 18:48:34 [INFO] [TimeMachine] - [job_40b0c150] ✅ 內容評估 [通過]: 圖片符合歷史事實！
+2026-09-06 18:48:34 [INFO] [TimeMachine] - [job_40b0c150] 📤 任務完成，回傳最終圖片
+2026-09-06 18:50:45 [INFO] [TimeMachine] - 🛑 系統正在關閉...
+2026-09-09 13:47:20 [INFO] [TimeMachine] - 🚀 系統啟動中... 執行 VLM 全能力深度自檢...
+2026-09-09 13:47:21 [INFO] [httpx] - HTTP Request: GET https://generativelanguage.googleapis.com/v1beta/models "HTTP/1.1 200 OK"
+2026-09-09 13:47:22 [INFO] [httpx] - HTTP Request: GET https://generativelanguage.googleapis.com/v1beta/models?pageToken=CjRtb2RlbHMvZ2VtaW5pLTIuNS1mbGFzaC1uYXRpdmUtYXVkaW8tcHJldmlldy0wOS0yMDI1 "HTTP/1.1 200 OK"
+2026-09-09 13:47:22 [INFO] [TimeMachine] - 📋 準備測試候選模型佇列: ['gemini-omni-flash-preview', 'gemini-omni-1.1-flash', 'gemini-flash-lite-latest', 'gemini-flash-latest', 'gemini-3.8-flash', 'gemini-3.7-flash', 'gemini-3.6-flash', 'gemini-3.5-flash-lite', 'gemini-3.5-flash', 'gemini-3.1-flash-live-preview', 'gemini-3.1-flash-lite-preview', 'gemini-3.1-flash-lite', 'gemini-3-flash-preview', 'gemini-2.5-flash-native-audio-preview-12-2025', 'gemini-2.5-flash-native-audio-preview-09-2025', 'gemini-2.5-flash-native-audio-latest', 'gemini-2.5-flash-lite', 'gemini-2.5-flash', 'gemini-flash']
+2026-09-09 13:47:22 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-omni-flash-preview...
+2026-09-09 13:47:22 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-09-09 13:47:25 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-omni-flash-preview:generateContent "HTTP/1.1 400 Bad Request"
+2026-09-09 13:47:25 [WARNING] [TimeMachine] - ❌ 模型 gemini-omni-flash-preview 測試失敗或不支援該功能: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'This model only supports Interactions API.', 'status': 'INVALID_ARGUMENT'}}
+2026-09-09 13:47:25 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-omni-1.1-flash...
+2026-09-09 13:47:25 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-09-09 13:47:26 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-omni-1.1-flash:generateContent "HTTP/1.1 400 Bad Request"
+2026-09-09 13:47:26 [WARNING] [TimeMachine] - ❌ 模型 gemini-omni-1.1-flash 測試失敗或不支援該功能: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'This model only supports Interactions API.', 'status': 'INVALID_ARGUMENT'}}
+2026-09-09 13:47:26 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-flash-lite-latest...
+2026-09-09 13:47:26 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-09-09 13:47:28 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-09-09 13:47:28 [INFO] [TimeMachine] - ✅ VLM 自檢通過！鎖定安全模型: gemini-flash-lite-latest
+2026-09-09 13:48:44 [INFO] [TimeMachine] - [job_fab32c6f] 📥 收到新請求: 香港銅鑼灣2.jpg (目標: Causeway Bay, Hong Kong, 1960s)
+2026-09-09 13:48:44 [INFO] [TimeMachine] - [job_fab32c6f] 🚀 開始執行時光機 Agentic Pipeline...
+2026-09-09 13:48:44 [INFO] [TimeMachine] - 原始圖片尺寸: 1440x1440
+2026-09-09 13:48:44 [INFO] [TimeMachine] - 已縮放至: 1024x1024
+2026-09-09 13:48:44 [INFO] [TimeMachine] - [job_fab32c6f] 🖼️ 原子儲存圖片: logs/jobs/job_fab32c6f/pass0/processed_input.jpg
+2026-09-09 13:48:44 [INFO] [TimeMachine] - [job_fab32c6f] 🎨 執行初始生圖 (Pass 0)...
+2026-09-09 13:48:44 [INFO] [TimeMachine] - [76012e43-554b-4eea-9925-390f478b4a9d] 1. 正在上傳圖片至 ComfyUI...
+2026-09-09 13:48:44 [INFO] [TimeMachine] - 📝 成功將 Node 5 的 Prompt 佔位符替換為: 1960s, Causeway Bay, Hong Kong
+2026-09-09 13:48:44 [INFO] [TimeMachine] - [76012e43-554b-4eea-9925-390f478b4a9d] 任務已提交 (ID: 3d564996-1e40-4625-9d5a-97532ed0283b)，開始監控...
+2026-09-09 13:51:45 [INFO] [TimeMachine] - [76012e43-554b-4eea-9925-390f478b4a9d] 成功獲取圖片: ComfyUI_00117_.png
+2026-09-09 13:51:45 [INFO] [TimeMachine] - [job_fab32c6f] 🧠 進入 VQA 評估階段 (Pass 0)...
+2026-09-09 13:51:46 [INFO] [TimeMachine] - 🧠 [Net:0|Logic:0] 呼叫 VLM (gemini-flash-lite-latest)...
+2026-09-09 13:51:46 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-09-09 13:51:53 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-09-09 13:51:53 [INFO] [TimeMachine] - 📝 [VLM Plan PLAN-HK-1960S-001] Schema: v4 | Protected Zones: 1 | Summary: Reconstructed the streetscape to align with 1960s Causeway Bay urban density, replacing anachronistic tall towers in the deep background and preserving the clean atmospheric sky zone.
+2026-09-09 13:51:53 [INFO] [TimeMachine] - [job_fab32c6f] 📄 原子儲存 Metadata: logs/jobs/job_fab32c6f/pass0/qa_result.json
+2026-09-09 13:51:53 [WARNING] [TimeMachine] - ⚠️ [Router] 偵測到舊版 Schema快取 (v4)。強制安全降級為 Tier 1。
+2026-09-09 13:51:53 [INFO] [TimeMachine] - [job_fab32c6f] 🖼️ 原子儲存圖片: logs/jobs/job_fab32c6f/pass1/temp_base_pass_0.jpg
+2026-09-09 13:51:53 [INFO] [TimeMachine] - [job_fab32c6f] 🖼️ 原子儲存圖片: logs/jobs/job_fab32c6f/pass1/error_mask.png
+2026-09-09 13:51:53 [INFO] [TimeMachine] - [job_fab32c6f] 🖌️ [Tier 1] 局部修補防禦 | Denoise: 0.75
+2026-09-09 13:51:53 [INFO] [TimeMachine] - [9855c1f3-3bc1-4e06-95b1-fb90a82485ed] 🎨 開始執行 Tier 1 局部 Inpaint 修正...
+2026-09-09 13:51:53 [INFO] [TimeMachine] - 📝 [Node 4] 注入動態正向 Prompt
+2026-09-09 13:51:53 [INFO] [TimeMachine] - 📝 [Node 7] 注入動態負向 Prompt
+2026-09-09 13:51:53 [INFO] [TimeMachine] - 🔗 成功將底圖注入 Node 1
+2026-09-09 13:51:53 [INFO] [TimeMachine] - 🔗 成功將遮罩注入 Node 2
+2026-09-09 13:51:53 [INFO] [TimeMachine] - ⚙️ 成功將 Denoise (0.75) 注入 KSampler (Node 10)
+2026-09-09 13:51:53 [INFO] [TimeMachine] - [9855c1f3-3bc1-4e06-95b1-fb90a82485ed] 任務已提交 (ID: c13064fe-e719-45e8-89db-9f894892847a)，開始監控...
+2026-09-09 13:55:27 [INFO] [TimeMachine] - [9855c1f3-3bc1-4e06-95b1-fb90a82485ed] 成功獲取圖片: ComfyUI_00118_.png
+2026-09-09 13:55:27 [INFO] [TimeMachine] - [job_fab32c6f] 🧠 進入 VQA 評估階段 (Pass 1)...
+2026-09-09 13:55:27 [INFO] [TimeMachine] - 🧠 [Net:0|Logic:0] 呼叫 VLM (gemini-flash-lite-latest)...
+2026-09-09 13:55:27 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-09-09 13:55:37 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-09-09 13:55:37 [INFO] [TimeMachine] - 📝 [VLM Plan PLAN-HK-CB1960S-01] Schema: v4 | Protected Zones: 1 | Summary: Reconstruct building masses to match 1960s Causeway Bay urban scale, removing overly tall high-rises while preserving valid background sky.
+2026-09-09 13:55:37 [INFO] [TimeMachine] - [job_fab32c6f] 📄 原子儲存 Metadata: logs/jobs/job_fab32c6f/pass1/qa_result.json
+2026-09-09 13:55:37 [WARNING] [TimeMachine] - ⚠️ [Router] 偵測到舊版 Schema快取 (v4)。強制安全降級為 Tier 1。
+2026-09-09 13:55:37 [INFO] [TimeMachine] - [job_fab32c6f] 🖼️ 原子儲存圖片: logs/jobs/job_fab32c6f/pass2/temp_base_pass_1.jpg
+2026-09-09 13:55:37 [INFO] [TimeMachine] - [job_fab32c6f] 🖼️ 原子儲存圖片: logs/jobs/job_fab32c6f/pass2/error_mask.png
+2026-09-09 13:55:37 [INFO] [TimeMachine] - [job_fab32c6f] 🖌️ [Tier 1] 局部修補防禦 | Denoise: 0.80
+2026-09-09 13:55:37 [INFO] [TimeMachine] - [f2f50b13-958a-4a7d-8ff0-98bdd0b2996a] 🎨 開始執行 Tier 1 局部 Inpaint 修正...
+2026-09-09 13:55:37 [INFO] [TimeMachine] - 📝 [Node 4] 注入動態正向 Prompt
+2026-09-09 13:55:37 [INFO] [TimeMachine] - 📝 [Node 7] 注入動態負向 Prompt
+2026-09-09 13:55:37 [INFO] [TimeMachine] - 🔗 成功將底圖注入 Node 1
+2026-09-09 13:55:37 [INFO] [TimeMachine] - 🔗 成功將遮罩注入 Node 2
+2026-09-09 13:55:37 [INFO] [TimeMachine] - ⚙️ 成功將 Denoise (0.80) 注入 KSampler (Node 10)
+2026-09-09 13:55:37 [INFO] [TimeMachine] - [f2f50b13-958a-4a7d-8ff0-98bdd0b2996a] 任務已提交 (ID: bae6cc32-30eb-41b6-8a86-d459bc654666)，開始監控...
+2026-09-09 13:59:28 [INFO] [TimeMachine] - [f2f50b13-958a-4a7d-8ff0-98bdd0b2996a] 成功獲取圖片: ComfyUI_00119_.png
+2026-09-09 13:59:28 [INFO] [TimeMachine] - [job_fab32c6f] 🧠 進入 VQA 評估階段 (Pass 2)...
+2026-09-09 13:59:28 [INFO] [TimeMachine] - 🧠 [Net:0|Logic:0] 呼叫 VLM (gemini-flash-lite-latest)...
+2026-09-09 13:59:28 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-09-09 13:59:41 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-09-09 13:59:41 [INFO] [TimeMachine] - 📝 [VLM Plan PLAN-HK1960-CWB] Schema: v4 | Protected Zones: 1 | Summary: Reconstruct building massing and street view to match 1960s Causeway Bay urban scale, ensuring appropriate architectural heights and removing anachronisms.
+2026-09-09 13:59:41 [INFO] [TimeMachine] - [job_fab32c6f] 📄 原子儲存 Metadata: logs/jobs/job_fab32c6f/pass2/qa_result.json
+2026-09-09 13:59:41 [WARNING] [TimeMachine] - ⚠️ [Router] 偵測到舊版 Schema快取 (v4)。強制安全降級為 Tier 1。
+2026-09-09 13:59:41 [INFO] [TimeMachine] - [job_fab32c6f] 🖼️ 原子儲存圖片: logs/jobs/job_fab32c6f/pass3/temp_base_pass_2.jpg
+2026-09-09 13:59:41 [INFO] [TimeMachine] - [job_fab32c6f] 🖼️ 原子儲存圖片: logs/jobs/job_fab32c6f/pass3/error_mask.png
+2026-09-09 13:59:41 [INFO] [TimeMachine] - [job_fab32c6f] 🖌️ [Tier 1] 局部修補防禦 | Denoise: 0.85
+2026-09-09 13:59:41 [INFO] [TimeMachine] - [5a642d88-a17c-479c-a872-f3c53d50e687] 🎨 開始執行 Tier 1 局部 Inpaint 修正...
+2026-09-09 13:59:41 [INFO] [TimeMachine] - 📝 [Node 4] 注入動態正向 Prompt
+2026-09-09 13:59:41 [INFO] [TimeMachine] - 📝 [Node 7] 注入動態負向 Prompt
+2026-09-09 13:59:41 [INFO] [TimeMachine] - 🔗 成功將底圖注入 Node 1
+2026-09-09 13:59:41 [INFO] [TimeMachine] - 🔗 成功將遮罩注入 Node 2
+2026-09-09 13:59:41 [INFO] [TimeMachine] - ⚙️ 成功將 Denoise (0.85) 注入 KSampler (Node 10)
+2026-09-09 13:59:41 [INFO] [TimeMachine] - [5a642d88-a17c-479c-a872-f3c53d50e687] 任務已提交 (ID: bf7ce383-2cab-403f-afe5-c21691b52683)，開始監控...
+2026-09-09 14:03:46 [INFO] [TimeMachine] - [5a642d88-a17c-479c-a872-f3c53d50e687] 成功獲取圖片: ComfyUI_00120_.png
+2026-09-09 14:03:46 [INFO] [TimeMachine] - [job_fab32c6f] 🧠 進入 VQA 評估階段 (Pass 3)...
+2026-09-09 14:03:46 [INFO] [TimeMachine] - 🧠 [Net:0|Logic:0] 呼叫 VLM (gemini-flash-lite-latest)...
+2026-09-09 14:03:46 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-09-09 14:03:52 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-09-09 14:03:52 [INFO] [TimeMachine] - 📝 [VLM Plan PLAN-HK1960-CB01] Schema: v4 | Protected Zones: 1 | Summary: Reconstruct 1960s Causeway Bay urban streetscape, maintaining period-appropriate mid-rise tenement buildings and historical double-decker transport while removing anachronistic vertical massing.
+2026-09-09 14:03:52 [INFO] [TimeMachine] - [job_fab32c6f] 📄 原子儲存 Metadata: logs/jobs/job_fab32c6f/pass3/qa_result.json
+2026-09-09 14:03:52 [INFO] [TimeMachine] - [job_fab32c6f] ⚠️ 達到最大修正次數，強制回傳最終相片。
+2026-09-09 14:03:52 [INFO] [TimeMachine] - [job_fab32c6f] 成功裁除黑邊並還原圖片尺寸: (1440, 1440)
+2026-09-09 14:03:52 [INFO] [TimeMachine] - 成功裁除黑邊並還原圖片尺寸: (1440, 1440)
+2026-09-09 14:03:52 [INFO] [TimeMachine] - [job_fab32c6f] 📤 任務完成，回傳最終圖片
+2026-09-09 14:10:29 [INFO] [TimeMachine] - 🛑 系統正在關閉...
+2026-09-09 17:44:59 [INFO] [TimeMachine] - 🚀 系統啟動中... 執行 VLM 全能力深度自檢...
+2026-09-09 17:45:00 [INFO] [httpx] - HTTP Request: GET https://generativelanguage.googleapis.com/v1beta/models "HTTP/1.1 200 OK"
+2026-09-09 17:45:01 [INFO] [httpx] - HTTP Request: GET https://generativelanguage.googleapis.com/v1beta/models?pageToken=CjRtb2RlbHMvZ2VtaW5pLTIuNS1mbGFzaC1uYXRpdmUtYXVkaW8tcHJldmlldy0wOS0yMDI1 "HTTP/1.1 200 OK"
+2026-09-09 17:45:01 [INFO] [TimeMachine] - 📋 準備測試候選模型佇列: ['gemini-omni-flash-preview', 'gemini-omni-1.1-flash', 'gemini-flash-lite-latest', 'gemini-flash-latest', 'gemini-3.8-flash', 'gemini-3.7-flash', 'gemini-3.6-flash', 'gemini-3.5-flash-lite', 'gemini-3.5-flash', 'gemini-3.1-flash-live-preview', 'gemini-3.1-flash-lite-preview', 'gemini-3.1-flash-lite', 'gemini-3-flash-preview', 'gemini-2.5-flash-native-audio-preview-12-2025', 'gemini-2.5-flash-native-audio-preview-09-2025', 'gemini-2.5-flash-native-audio-latest', 'gemini-2.5-flash-lite', 'gemini-2.5-flash', 'gemini-flash']
+2026-09-09 17:45:01 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-omni-flash-preview...
+2026-09-09 17:45:01 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-09-09 17:45:02 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-omni-flash-preview:generateContent "HTTP/1.1 400 Bad Request"
+2026-09-09 17:45:02 [WARNING] [TimeMachine] - ❌ 模型 gemini-omni-flash-preview 測試失敗或不支援該功能: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'This model only supports Interactions API.', 'status': 'INVALID_ARGUMENT'}}
+2026-09-09 17:45:02 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-omni-1.1-flash...
+2026-09-09 17:45:02 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-09-09 17:45:02 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-omni-1.1-flash:generateContent "HTTP/1.1 400 Bad Request"
+2026-09-09 17:45:02 [WARNING] [TimeMachine] - ❌ 模型 gemini-omni-1.1-flash 測試失敗或不支援該功能: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'This model only supports Interactions API.', 'status': 'INVALID_ARGUMENT'}}
+2026-09-09 17:45:02 [INFO] [TimeMachine] - 🔍 正在測試模型全能力 (Image+Schema): gemini-flash-lite-latest...
+2026-09-09 17:45:02 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-09-09 17:45:05 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-09-09 17:45:05 [INFO] [TimeMachine] - ✅ VLM 自檢通過！鎖定安全模型: gemini-flash-lite-latest
+2026-09-09 17:46:33 [INFO] [TimeMachine] - [job_ba774337] 📥 收到新請求: 香港銅鑼灣2.jpg (目標: Causeway Bay, Hong Kong, 1960s)
+2026-09-09 17:46:33 [INFO] [TimeMachine] - [job_ba774337] 🚀 開始執行時光機 Agentic Pipeline...
+2026-09-09 17:46:33 [INFO] [TimeMachine] - 原始圖片尺寸: 1440x1440
+2026-09-09 17:46:33 [INFO] [TimeMachine] - 已縮放至: 1024x1024
+2026-09-09 17:46:33 [INFO] [TimeMachine] - [job_ba774337] 🖼️ 原子儲存圖片: logs/jobs/job_ba774337/pass0/processed_input.jpg
+2026-09-09 17:46:33 [INFO] [TimeMachine] - [job_ba774337] 🎨 執行初始生圖 (Pass 0)...
+2026-09-09 17:46:33 [INFO] [TimeMachine] - [06bdc599-6aba-438f-b99d-f092c9584643] 1. 正在上傳圖片至 ComfyUI...
+2026-09-09 17:46:33 [INFO] [TimeMachine] - 📝 成功將 Node 5 的 Prompt 佔位符替換為: 1960s, Causeway Bay, Hong Kong
+2026-09-09 17:46:33 [INFO] [TimeMachine] - [06bdc599-6aba-438f-b99d-f092c9584643] 任務已提交 (ID: ee81abd1-2799-4106-87fa-792cee7854ff)，開始監控...
+2026-09-09 17:49:28 [INFO] [TimeMachine] - [06bdc599-6aba-438f-b99d-f092c9584643] 成功獲取圖片: ComfyUI_00121_.png
+2026-09-09 17:49:28 [INFO] [TimeMachine] - [job_ba774337] 🧠 進入 VQA 評估階段 (Pass 0)...
+2026-09-09 17:49:28 [INFO] [TimeMachine] - 🧠 [Net:0|Logic:0] 呼叫 VLM (gemini-flash-lite-latest)...
+2026-09-09 17:49:28 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-09-09 17:49:37 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-09-09 17:49:37 [INFO] [TimeMachine] - 📝 [VLM Plan TIME-PLAN-HK1960] Schema: v5 | Protected Zones: 1 | Summary: Analysis of urban streetscape in Hong Kong featuring historical double-decker bus, traditional Chinese signage, and high-density tenement buildings consistent with the 1960s architectural standard.
+2026-09-09 17:49:37 [INFO] [TimeMachine] - [job_ba774337] 📄 原子儲存 Metadata: logs/jobs/job_ba774337/pass0/qa_result.json
+2026-09-09 17:49:37 [INFO] [TimeMachine] - 🧭 [Router] 啟動全域時空路由 (Schema: v5) | 偵測到 1 個自然/古蹟禁區
+2026-09-09 17:49:37 [WARNING] [TimeMachine] - 🌍 [Router] 觸發歷史原型重構: ActionType.ARCHETYPE_COMMERCIAL_STREET。鎖定為 Tier 2 全域穿越。
+2026-09-09 17:49:37 [INFO] [TimeMachine] - [job_ba774337] 🖼️ 原子儲存圖片: logs/jobs/job_ba774337/pass1/temp_base_pass_0.jpg
+2026-09-09 17:49:37 [INFO] [TimeMachine] - [job_ba774337] 🖼️ 原子儲存圖片: logs/jobs/job_ba774337/pass1/error_mask.png
+2026-09-09 17:49:37 [INFO] [TimeMachine] - [job_ba774337] 🌍 [Tier 2] 歷史原型重構 | Denoise: 0.85 | 永恆禁區: 1
+2026-09-09 17:49:37 [INFO] [TimeMachine] - [96bbefbc-32b7-485f-80ab-65dadd69a67b] 🌍 開始執行 Tier 2 全域受控地貌重構...
+2026-09-09 17:49:37 [INFO] [TimeMachine] - 📝 [Node 2] 注入動態正向 Prompt
+2026-09-09 17:49:37 [INFO] [TimeMachine] - 📝 [Node 3] 注入動態負向 Prompt
+2026-09-09 17:49:37 [INFO] [TimeMachine] - [96bbefbc-32b7-485f-80ab-65dadd69a67b] 任務已提交 (ID: c5113a43-a57b-46f6-a2ca-f56d6413ac72)，開始監控...
+2026-09-09 17:54:30 [INFO] [TimeMachine] - [96bbefbc-32b7-485f-80ab-65dadd69a67b] 成功獲取圖片: ComfyUI_00122_.png
+2026-09-09 17:54:30 [INFO] [TimeMachine] - [job_ba774337] 🧠 進入 VQA 評估階段 (Pass 1)...
+2026-09-09 17:54:30 [INFO] [TimeMachine] - 🧠 [Net:0|Logic:0] 呼叫 VLM (gemini-flash-lite-latest)...
+2026-09-09 17:54:30 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-09-09 17:54:38 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-09-09 17:54:38 [INFO] [TimeMachine] - 📝 [VLM Plan TIME-PLAN-1960CWB] Schema: v5 | Protected Zones: 1 | Summary: Historical analysis of Causeway Bay streetscape showing high-density tenement buildings consistent with 1960s Hong Kong urban development, paired with a classic colonial-era double-decker trolley bus.
+2026-09-09 17:54:38 [INFO] [TimeMachine] - [job_ba774337] 📄 原子儲存 Metadata: logs/jobs/job_ba774337/pass1/qa_result.json
+2026-09-09 17:54:38 [INFO] [TimeMachine] - 🧭 [Router] 啟動全域時空路由 (Schema: v5) | 偵測到 1 個自然/古蹟禁區
+2026-09-09 17:54:38 [WARNING] [TimeMachine] - 🌍 [Router] 觸發歷史原型重構: ActionType.ARCHETYPE_COMMERCIAL_STREET。鎖定為 Tier 2 全域穿越。
+2026-09-09 17:54:38 [WARNING] [TimeMachine] - [job_ba774337] ⚠️ 偵測到連續 Tier 2 評估失敗！強制降級為 Tier 1 局部修補以穩定地貌。
+2026-09-09 17:54:38 [INFO] [TimeMachine] - [job_ba774337] 🖼️ 原子儲存圖片: logs/jobs/job_ba774337/pass2/temp_base_pass_1.jpg
+2026-09-09 17:54:38 [INFO] [TimeMachine] - [job_ba774337] 🖼️ 原子儲存圖片: logs/jobs/job_ba774337/pass2/error_mask.png
+2026-09-09 17:54:38 [INFO] [TimeMachine] - [job_ba774337] 🖌️ [Tier 1] 局部修補防禦 | Denoise: 0.80
+2026-09-09 17:54:38 [INFO] [TimeMachine] - [d3320efe-0928-402a-b520-5890da53f7ad] 🎨 開始執行 Tier 1 局部 Inpaint 修正...
+2026-09-09 17:54:38 [INFO] [TimeMachine] - 📝 [Node 4] 注入動態正向 Prompt
+2026-09-09 17:54:38 [INFO] [TimeMachine] - 📝 [Node 7] 注入動態負向 Prompt
+2026-09-09 17:54:38 [INFO] [TimeMachine] - 🔗 成功將底圖注入 Node 1
+2026-09-09 17:54:38 [INFO] [TimeMachine] - 🔗 成功將遮罩注入 Node 2
+2026-09-09 17:54:38 [INFO] [TimeMachine] - ⚙️ 成功將 Denoise (0.80) 注入 KSampler (Node 10)
+2026-09-09 17:54:38 [INFO] [TimeMachine] - [d3320efe-0928-402a-b520-5890da53f7ad] 任務已提交 (ID: 855eb98a-bddd-48c5-904b-fba3121c642d)，開始監控...
+2026-09-09 17:58:31 [INFO] [TimeMachine] - [d3320efe-0928-402a-b520-5890da53f7ad] 成功獲取圖片: ComfyUI_00123_.png
+2026-09-09 17:58:31 [INFO] [TimeMachine] - [job_ba774337] 🧠 進入 VQA 評估階段 (Pass 2)...
+2026-09-09 17:58:32 [INFO] [TimeMachine] - 🧠 [Net:0|Logic:0] 呼叫 VLM (gemini-flash-lite-latest)...
+2026-09-09 17:58:32 [INFO] [google_genai.models] - AFC is enabled with max remote calls: 10.
+2026-09-09 17:58:39 [INFO] [httpx] - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent "HTTP/1.1 200 OK"
+2026-09-09 17:58:39 [INFO] [TimeMachine] - 📝 [VLM Plan TIME-PLAN-HK1960] Schema: v5 | Protected Zones: 1 | Summary: Evaluated urban street scene in Causeway Bay. Detected historic tram infrastructure and appropriate 1960s tenement building typology consistent with Hong Kong architectural history.
+2026-09-09 17:58:39 [INFO] [TimeMachine] - [job_ba774337] 📄 原子儲存 Metadata: logs/jobs/job_ba774337/pass2/qa_result.json
+2026-09-09 17:58:39 [INFO] [TimeMachine] - [job_ba774337] ✅ 內容評估 [通過]: 圖片符合歷史事實！
+2026-09-09 17:58:39 [INFO] [TimeMachine] - [job_ba774337] 成功裁除黑邊並還原圖片尺寸: (1440, 1440)
+2026-09-09 17:58:39 [INFO] [TimeMachine] - 成功裁除黑邊並還原圖片尺寸: (1440, 1440)
+2026-09-09 17:58:39 [INFO] [TimeMachine] - [job_ba774337] 📤 任務完成，回傳最終圖片
+2026-09-09 18:30:35 [INFO] [TimeMachine] - 🛑 系統正在關閉...

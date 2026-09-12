@@ -4,13 +4,13 @@ import os
 import random
 import time
 from enum import Enum
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 from google.genai.errors import APIError
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field, model_validator, ValidationError
 
 from core.limiter import GlobalLimiter, QueueTimeoutError, MaxRetriesExceededError
 from core.logging import logger
@@ -18,55 +18,69 @@ from core.logging import logger
 load_dotenv()
 
 USE_MOCK_VLM = False
-ACTIVE_MODEL = "gemini-flash"
+ACTIVE_MODEL = "gemini-flash" 
 CANDIDATE_MODELS_QUEUE: List[str] = []
 
+# -----------------------------------------------------------------
+# 商業級核心約束：世界歷史學家分類學 (v5.0 Macro-Historian Taxonomy)
+# -----------------------------------------------------------------
+
 class ActionType(str, Enum):
-    PRESERVE = "preserve"
-    REPLACE_STYLE = "replace_style"
-    REMOVE_LOCAL_OBJECT = "remove_local_object"
-    REPLACE_BUILDING_LOWRISE = "replace_building_lowrise"
-    REMOVE_BUILDING_OR_MASS = "remove_building_or_mass"
-    REBUILD_LANDFORM_OR_FILL = "rebuild_landform_or_fill"
-    REBUILD_LARGE_BUILDING_GROUP = "rebuild_large_building_group"
+    ARCHETYPE_COMMERCIAL_STREET = "ARCHETYPE_COMMERCIAL_STREET"
+    ARCHETYPE_INDUSTRIAL_PORT = "ARCHETYPE_INDUSTRIAL_PORT"
+    ARCHETYPE_RURAL_VILLAGE = "ARCHETYPE_RURAL_VILLAGE"
+    ARCHETYPE_RESIDENTIAL_DISTRICT = "ARCHETYPE_RESIDENTIAL_DISTRICT"
+    PRESERVE_ALL = "PRESERVE_ALL"
 
 class EvidenceType(str, Enum):
-    STRUCTURAL_SCALE_VIOLATION = "STRUCTURAL_SCALE_VIOLATION"
-    MODERN_MATERIAL = "MODERN_MATERIAL"
-    LANDFORM_MISMATCH = "LANDFORM_MISMATCH"
-    MODERN_OBJECT_OR_VEHICLE = "MODERN_OBJECT_OR_VEHICLE"
-    HISTORICAL_CONTEXT_VALID = "HISTORICAL_CONTEXT_VALID"
+    ANACHRONISM_DETECTED = "ANACHRONISM_DETECTED"
+    HISTORICAL_ACCURACY_VERIFIED = "HISTORICAL_ACCURACY_VERIFIED"
+
+class ProtectedType(str, Enum):
+    SKY_BACKGROUND = "SKY_BACKGROUND"
+    WATER_BODY = "WATER_BODY"
+    NATURAL_TERRAIN = "NATURAL_TERRAIN"
+    PRESERVED_HERITAGE = "PRESERVED_HERITAGE"
 
 class Region(BaseModel):
-    action: ActionType = Field(description="Action to take. MUST be from ActionType enum.")
-    evidence_type: EvidenceType = Field(description="Evidence justifying action. MUST be from EvidenceType enum.")
+    action: ActionType = Field(description="Macro historical archetype decision for the entire image.")
+    evidence_type: EvidenceType = Field(description="Evidence justifying the macro decision.")
     confidence: float = Field(ge=0.0, le=1.0, description="Confidence score 0.0-1.0")
-    bbox: List[int] = Field(min_length=4, max_length=4, description="Format: [y_min, x_min, y_max, x_max]. Normalized coordinates.")
+    # 全域穿越架構下，目標 bbox 預設涵蓋全圖
+    bbox: List[int] = Field(default=[0, 0, 1000, 1000], min_length=4, max_length=4)
 
     @model_validator(mode='after')
     def validate_region_logic(self):
         for val in self.bbox:
             if not (0 <= val <= 1000):
-                raise ValueError(f"BBox coordinate {val} is out of bounds (0-1000).")
-        
-        if self.action in [ActionType.REMOVE_BUILDING_OR_MASS, ActionType.REBUILD_LARGE_BUILDING_GROUP]:
-            if self.evidence_type == EvidenceType.MODERN_OBJECT_OR_VEHICLE:
-                raise ValueError("Logical Error: Cannot remove a massive building based on a small modern object/vehicle.")
-        
-        if self.action == ActionType.PRESERVE and self.evidence_type != EvidenceType.HISTORICAL_CONTEXT_VALID:
-            raise ValueError("Logical Error: PRESERVE action must be paired with HISTORICAL_CONTEXT_VALID evidence.")
-            
+                raise ValueError(f"BBox coordinate {val} out of bounds (0-1000).")
+        if self.action == ActionType.PRESERVE_ALL and self.evidence_type != EvidenceType.HISTORICAL_ACCURACY_VERIFIED:
+            raise ValueError("Logical Error: PRESERVE_ALL must pair with HISTORICAL_ACCURACY_VERIFIED.")
+        return self
+
+class ProtectedZone(BaseModel):
+    category: ProtectedType = Field(description="The semantic category of the protected zone.")
+    confidence: float = Field(ge=0.0, le=1.0, description="Confidence score 0.0-1.0")
+    bbox: List[int] = Field(min_length=4, max_length=4, description="Format: [y_min, x_min, y_max, x_max]. Normalized 0-1000.")
+
+    @model_validator(mode='after')
+    def validate_protected_bounds(self):
+        for val in self.bbox:
+            if not (0 <= val <= 1000):
+                raise ValueError(f"Protected BBox coordinate {val} out of bounds (0-1000).")
         return self
 
 class VLMResponse(BaseModel):
-    plan_id: str = Field(description="Generate a unique plan ID (e.g., PLAN-1234) for auditing.")
-    edit_summary: str = Field(description="Concise summary of the reconstruction strategy.")
-    regions: List[Region] = Field(max_length=8, description="List of regions. Max 8 regions allowed.")
+    # 💡 這裡定義了版本的單一真理來源
+    schema_version: str = Field(default="v5", description="Schema version identifier.")
+    plan_id: str = Field(description="Generate a unique plan ID (e.g., TIME-PLAN-1234).")
+    edit_summary: str = Field(description="Geographic and historical assessment summary.")
+    regions: List[Region] = Field(max_length=1, description="One single macro decision for the image.")
+    protected_zones: Optional[List[ProtectedZone]] = Field(default_factory=list, max_length=6)
 
 async def get_candidate_models(client: genai.Client) -> List[str]:
     env_model = os.getenv("VLM_MODEL", "auto")
     candidates = []
-    
     if env_model.lower() != "auto":
         candidates.append(env_model)
     else:
@@ -92,7 +106,7 @@ async def evaluate_image(image_bytes: bytes, year: str, location: str) -> Dict[s
     global ACTIVE_MODEL, CANDIDATE_MODELS_QUEUE
     
     if USE_MOCK_VLM:
-        return {"pass": False, "reason": "[測試] 現代物品", "bboxes": [[0,0,500,500]], "error_level": "CONTENT_REJECT"}
+        return {"pass": False, "reason": "[測試] 現代物品", "bboxes": [[0,0,1000,1000]], "error_level": "CONTENT_REJECT"}
 
     api_key = os.getenv("GEMINI_API_KEY")
     if not api_key:
@@ -102,29 +116,35 @@ async def evaluate_image(image_bytes: bytes, year: str, location: str) -> Dict[s
     client = genai.Client(api_key=api_key)
 
     MAX_NETWORK_RETRIES = 3   
-    MAX_LOGIC_RETRIES = 1   
+    MAX_LOGIC_RETRIES = 2   
     network_attempts = 0
     logic_attempts = 0
     MAX_TOTAL_TIME = 60.0     
     REQUEST_TIMEOUT = 45.0    
     
+    # 💡 動態讀取當前 Pydantic 模型的預設版本號，徹底消除硬編碼風險
+    current_schema_version = VLMResponse.model_fields["schema_version"].default
+    
     system_instruction: str = f"""
-    你是一個頂級的歷史街景重構架構師 (Historical Streetscape Reconstruction Architect)。
-    你的任務是為這張圖片制定一份符合 {year} 年 {location} 真實地貌的「影像重構計畫 (Edit Plan)」。
+    你是一個擁有全知視角的「世界歷史學家與時空物理學家」。
+    任務：鑑定這張照片是否 100% 完美符合 {year} 年 {location} 的真實地理風貌與建築水平。
     
-    【絕對工程輸出守則】：
-    1. 必須嚴格輸出符合 Schema 的純 JSON 格式，嚴禁任何 Markdown 標記。
-    2. bbox 格式為 [y_min, x_min, y_max, x_max]，數值必須在 0 到 1000 之間 (圖片左上角為 0,0)。
-    3. 你最多只能定義 8 個關鍵修改區域 (Regions)。
+    【核心時空法則 (Macro-Temporal Rules)】：
+    1. 零容忍違和感：只要畫面中存在任何一處超越 {year} 年科技水平的特徵（現代摩天大樓、柏油路面、現代車輛、LED招牌），或者地貌完全改變，你必須立刻拒絕 PRESERVE_ALL，並選取最合適的 ARCHETYPE 指令。
+    2. 拒絕材質欺騙：殘舊的石屎外牆不代表歷史悠久。一棟超乎當年法規與技術的高層大廈，即使再殘舊，也是時代錯誤的違規量體。
     
-    【重構策略指南】：
-    - 不要只是「找錯」，你要決定「如何修復」。
-    - 如果發現現代巨型大廈 (違反年代高度限制)，action 應為 remove_building_or_mass，evidence 為 STRUCTURAL_SCALE_VIOLATION。
-    - 如果是現代填海區或空地上的現代設施，應使用 rebuild_landform_or_fill 或 rebuild_large_building_group。
-    - 準確評估 confidence (0.0-1.0)，若不確定請降低數值。
+    【防禦型禁區劃分 (Defensive Masking - 極度重要)】：
+    你的首要任務是找出時光機「絕對不能觸碰的永恆元素」並將其標記為 protected_zones：
+    - SKY_BACKGROUND (天空): 只能框選完全無遮擋的純淨天空。若被違規高樓截斷，請放棄框選該交錯部分。
+    - WATER_BODY (水體): 海洋、河流、湖泊。
+    - NATURAL_TERRAIN (自然地形): 未被破壞的山脈。
+    寧可少標記禁區，也絕不能將違規的現代建築標記為保護區。
+    
+    【絕對系統約束】：
+    - 輸出版本約束：你的 schema_version 必須且只能是 "{current_schema_version}"。絕對禁止使用舊版的動作指令。
     """
     
-    prompt = f"Formulate a historical reconstruction edit plan for this image based on the context of {year}, {location}."
+    prompt = f"Formulate a precise historical macro-reconstruction plan for {year}, {location}. Determine the Archetype and strictly identify protected natural zones."
     start_time = time.monotonic()
 
     while network_attempts < MAX_NETWORK_RETRIES and logic_attempts <= MAX_LOGIC_RETRIES:
@@ -150,26 +170,33 @@ async def evaluate_image(image_bytes: bytes, year: str, location: str) -> Dict[s
                     )
                 )
                 response = await asyncio.wait_for(api_coroutine, timeout=REQUEST_TIMEOUT)
-                
                 raw_text = response.text.strip()
-                parsed_json = json.loads(raw_text)
+                
+                # 💡 [藍圖 v5.0] 強制本地 Pydantic 驗證，攔截 VLM 幻覺
+                try:
+                    validated_response = VLMResponse.model_validate_json(raw_text)
+                    parsed_json = validated_response.model_dump()
+                except ValidationError as validation_error:
+                    logger.warning(f"⚠️ VLM 輸出格式違規 (觸發幻覺防禦): 拒絕非 {current_schema_version} 的結構。")
+                    raise ValueError(f"Schema Validation Failed: {validation_error}")
                 
                 bboxes = []
                 has_critical_error = False
                 
                 for region in parsed_json.get("regions", []):
                     action = region.get("action")
-                    if action != "preserve":
+                    if action != ActionType.PRESERVE_ALL.value:
                         has_critical_error = True
                         if "bbox" in region:
                             bboxes.append(region["bbox"])
                 
                 plan_id = parsed_json.get("plan_id", "UNKNOWN_PLAN")
-                logger.info(f"📝 [VLM Plan {plan_id}] Summary: {parsed_json.get('edit_summary')}")
+                protected_count = len(parsed_json.get("protected_zones", []))
+                logger.info(f"📝 [VLM Plan {plan_id}] Schema: {parsed_json['schema_version']} | Protected Zones: {protected_count} | Summary: {parsed_json.get('edit_summary')}")
                 
                 return {
                     "pass": not has_critical_error,
-                    "reason": parsed_json.get("edit_summary", "需要修改地貌"),
+                    "reason": parsed_json.get("edit_summary", "需要時空重構"),
                     "bboxes": bboxes, 
                     "error_level": "CONTENT_REJECT" if has_critical_error else "NONE",
                     "raw_semantic_data": parsed_json 
@@ -182,42 +209,22 @@ async def evaluate_image(image_bytes: bytes, year: str, location: str) -> Dict[s
         
         except APIError as e:
             status_code = getattr(e, 'code', None)
-            error_msg = str(e).lower()
-            if status_code == 403 or "403" in error_msg:
-                logger.error("🚨 致命模型錯誤 (403): 權限遭拒")
-                GlobalLimiter.record_degradation()
+            if status_code == 403:
                 return {"pass": False, "reason": "API 權限異常", "bboxes": [], "error_level": "SYSTEM_FATAL"}
-            if status_code in [404, 400] or "404" in error_msg:
-                logger.warning(f"⚠️ 模型 {current_model} 配置錯誤或失效 (Code: {status_code})。準備輪換...")
-                if current_model in CANDIDATE_MODELS_QUEUE:
-                    CANDIDATE_MODELS_QUEUE.remove(current_model)
-                if CANDIDATE_MODELS_QUEUE:
-                    ACTIVE_MODEL = CANDIDATE_MODELS_QUEUE[0]
-                    logger.info(f"🔄 成功切換至備用模型: {ACTIVE_MODEL}，即時重試")
-                    continue 
-                else:
-                    logger.error("🚨 候補模型耗盡，全數失效，觸發降級")
-                    GlobalLimiter.record_degradation()
-                    return {"pass": False, "reason": "模型全數失效", "bboxes": [], "error_level": "SYSTEM_WARNING_SKIP"}
-            logger.warning(f"⚠️ VLM 限流/伺服器繁忙 (Code: {status_code})")
             network_attempts += 1
             GlobalLimiter.record_retry()
             
         except asyncio.TimeoutError:
-            logger.warning(f"⚠️ VLM API 請求超時 (>{REQUEST_TIMEOUT}s)")
             network_attempts += 1
             GlobalLimiter.record_retry()
             
         except Exception as e:
+            # 💡 捕捉到 Pydantic ValidationError 拋出的 ValueError，增加邏輯重試次數
             logger.warning(f"⚠️ VLM 邏輯/解析異常: {str(e)}")
             logic_attempts += 1
             GlobalLimiter.record_retry()
 
         if network_attempts < MAX_NETWORK_RETRIES and logic_attempts <= MAX_LOGIC_RETRIES:
-            backoff_time = (2 ** max(network_attempts, logic_attempts)) + random.uniform(0, 1)
-            logger.info(f"⏳ 休眠 {backoff_time:.2f} 秒後重試...")
-            await asyncio.sleep(backoff_time)
+            await asyncio.sleep((2 ** max(network_attempts, logic_attempts)))
             
-    GlobalLimiter.record_degradation()
-    logger.warning(f"🛑 達到重試上限 (Net:{network_attempts}, Logic:{logic_attempts})，觸發最終降級")
     return {"pass": False, "reason": "超過最大重試限制", "bboxes": [], "error_level": "SYSTEM_WARNING_SKIP"}

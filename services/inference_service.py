@@ -44,6 +44,18 @@ def inject_prompts(prompt_data: dict, year: str, location: str):
                 node_info["inputs"]["text"] = new_text
                 logger.info(f"📝 成功將 Node {node_id} 的 Prompt 佔位符替換為: {year}, {location}")
 
+def inject_dynamic_prompts(prompt_data: dict, positive_prompt: str, negative_prompt: str):
+    """[藍圖 v4.1] 根據 _meta.title 精準注入動態路由派發的正負面 Prompt"""
+    for node_id, node_info in prompt_data.items():
+        if node_info.get("class_type") == "CLIPTextEncode":
+            title = node_info.get("_meta", {}).get("title", "")
+            if "Positive" in title:
+                node_info["inputs"]["text"] = positive_prompt
+                logger.info(f"📝 [Node {node_id}] 注入動態正向 Prompt")
+            elif "Negative" in title:
+                node_info["inputs"]["text"] = negative_prompt
+                logger.info(f"📝 [Node {node_id}] 注入動態負向 Prompt")
+
 def get_save_image_node_id(prompt_data: dict) -> str:
     for node_id, node_info in prompt_data.items():
         if node_info.get("class_type") == "SaveImage":
@@ -80,7 +92,8 @@ def run_comfyui_inference(year: str, location: str, input_image_path: str) -> by
 
     return _execute_comfyui_workflow(client_id, prompt_data, target_node_id=target_node_id)
 
-def run_comfyui_inpaint(year: str, location: str, base_image_path: str, mask_image_path: str, denoise: float = 0.6) -> bytes:
+def run_comfyui_inpaint(year: str, location: str, base_image_path: str, mask_image_path: str, denoise: float, pos_prompt: str, neg_prompt: str) -> bytes:
+    """[藍圖 v4.1] Tier 1 局部修補修正 (整合動態 Prompt)"""
     client_id = str(uuid.uuid4())
     logger.info(f"[{client_id}] 🎨 開始執行 Tier 1 局部 Inpaint 修正...")
     
@@ -96,7 +109,9 @@ def run_comfyui_inpaint(year: str, location: str, base_image_path: str, mask_ima
         raise HTTPException(status_code=500, detail="系統缺少 inpaint_workflow_api.json")
 
     target_node_id = get_save_image_node_id(prompt_data)
-    inject_prompts(prompt_data, year, location)
+    
+    # 💡 [藍圖 v4.1] 替換為動態 Prompt 注入
+    inject_dynamic_prompts(prompt_data, pos_prompt, neg_prompt)
 
     base_injected = False
     mask_injected = False
@@ -104,11 +119,11 @@ def run_comfyui_inpaint(year: str, location: str, base_image_path: str, mask_ima
     for node_id, node_info in prompt_data.items():
         if node_info.get("class_type") == "LoadImage":
             title = node_info.get("_meta", {}).get("title", "")
-            if title == "Base Image":
+            if "Base" in title:
                 node_info["inputs"]["image"] = base_img_name
                 base_injected = True
                 logger.info(f"🔗 成功將底圖注入 Node {node_id}")
-            elif title == "Mask Image":
+            elif "Mask" in title:
                 node_info["inputs"]["image"] = mask_img_name
                 mask_injected = True
                 logger.info(f"🔗 成功將遮罩注入 Node {node_id}")
@@ -124,39 +139,43 @@ def run_comfyui_inpaint(year: str, location: str, base_image_path: str, mask_ima
     return _execute_comfyui_workflow(client_id, prompt_data, target_node_id=target_node_id)
 
 
-def run_comfyui_global_rebuild(year: str, location: str, base_image_path: str, denoise: float = 0.85) -> bytes:
+def run_comfyui_global_rebuild(year: str, location: str, base_image_path: str, mask_image_path: str, denoise: float, pos_prompt: str, neg_prompt: str) -> bytes:
+    """[藍圖 v4.1] Tier 2 全域受控重構：結合 Depth 引導與 VAE Inpaint Mask"""
     client_id = str(uuid.uuid4())
-    logger.info(f"[{client_id}] 🌍 開始執行 Tier 2 全域地貌重構 (Global Rebuild)...")
+    logger.info(f"[{client_id}] 🌍 開始執行 Tier 2 全域受控地貌重構...")
     
     base_img_name = upload_image_to_comfyui(base_image_path)
+    mask_img_name = upload_image_to_comfyui(mask_image_path)
+
     json_path = os.path.join(CONFIG_DIR, "global_rebuild_workflow_api.json")
-    
     try:
         with open(json_path, "r", encoding="utf-8") as f:
             prompt_data = json.load(f)
     except FileNotFoundError:
-        logger.error(f"❌ 找不到工作流檔案: {json_path}")
         raise HTTPException(status_code=500, detail="系統缺少 global_rebuild_workflow_api.json")
 
     target_node_id = get_save_image_node_id(prompt_data)
-    inject_prompts(prompt_data, year, location)
+    inject_dynamic_prompts(prompt_data, pos_prompt, neg_prompt)
 
-    base_injected = False
+    base_injected, mask_injected = False, False
     
     for node_id, node_info in prompt_data.items():
-        if node_info.get("class_type") == "LoadImage":
-            node_info["inputs"]["image"] = base_img_name
-            base_injected = True
-            logger.info(f"🔗 成功將地形底圖注入 Node {node_id}")
-            
-        elif node_info.get("class_type") == "KSampler":
+        class_type = node_info.get("class_type")
+        title = node_info.get("_meta", {}).get("title", "")
+        
+        if class_type == "LoadImage":
+            if "Base" in title:
+                node_info["inputs"]["image"] = base_img_name
+                base_injected = True
+            elif "Mask" in title:
+                node_info["inputs"]["image"] = mask_img_name
+                mask_injected = True
+        elif class_type == "KSampler":
             node_info["inputs"]["seed"] = random.randint(1, 1000000000)
             node_info["inputs"]["denoise"] = denoise
-            logger.info(f"⚙️ 成功將高強度 Denoise ({denoise:.2f}) 注入 KSampler (Node {node_id})")
 
-    if not base_injected:
-        logger.error("🚨 致命錯誤：無法在 global_rebuild JSON 中找到 LoadImage 節點！")
-        raise RuntimeError("JSON 缺少底圖載入節點")
+    if not base_injected or not mask_injected:
+        raise RuntimeError("Tier 2 JSON 缺少標題為 'Base Image' 或 'Mask Image' 的節點！")
 
     return _execute_comfyui_workflow(client_id, prompt_data, target_node_id=target_node_id)
 

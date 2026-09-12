@@ -1,0 +1,90 @@
+{
+  "1": {
+    "inputs": {
+      "ckpt_name": "DreamShaper_8_pruned.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": { "title": "Load Checkpoint" }
+  },
+  "2": {
+    "inputs": { "text": "", "clip": ["1", 1] },
+    "class_type": "CLIPTextEncode",
+    "_meta": { "title": "Positive Prompt" }
+  },
+  "3": {
+    "inputs": { "text": "", "clip": ["1", 1] },
+    "class_type": "CLIPTextEncode",
+    "_meta": { "title": "Negative Prompt" }
+  },
+  "4": {
+    "inputs": { "image": "" },
+    "class_type": "LoadImage",
+    "_meta": { "title": "Base Image" }
+  },
+  "5": {
+    "inputs": { "a": 6.28, "bg_threshold": 0.1, "resolution": 512, "image": ["4", 0] },
+    "class_type": "MiDaS-DepthMapPreprocessor",
+    "_meta": { "title": "MiDaS Depth Map" }
+  },
+  "6": {
+    "inputs": { "control_net_name": "control_v11f1p_sd15_depth.pth" },
+    "class_type": "ControlNetLoader",
+    "_meta": { "title": "Load ControlNet Model" }
+  },
+  "7": {
+    "inputs": { 
+      "strength": 0.35, 
+      "start_percent": 0, 
+      "end_percent": 0.35, 
+      "positive": ["2", 0], 
+      "negative": ["3", 0], 
+      "control_net": ["6", 0], 
+      "image": ["5", 0], 
+      "vae": ["1", 2] 
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": { "title": "Apply ControlNet" }
+  },
+  "12": {
+    "inputs": { "image": "" },
+    "class_type": "LoadImage",
+    "_meta": { "title": "Mask Image" }
+  },
+  "8": {
+    "inputs": { 
+      "grow_mask_by": 0, 
+      "pixels": ["4", 0], 
+      "vae": ["1", 2], 
+      "mask": ["12", 1] 
+    },
+    "class_type": "VAEEncodeForInpaint",
+    "_meta": { "title": "VAE Encode Inpaint (Hard Boundary)" }
+  },
+  "9": {
+    "inputs": { "seed": 0, "steps": 20, "cfg": 8, "sampler_name": "euler", "scheduler": "simple", "denoise": 0.85, "model": ["1", 0], "positive": ["7", 0], "negative": ["7", 1], "latent_image": ["8", 0] },
+    "class_type": "KSampler",
+    "_meta": { "title": "KSampler" }
+  },
+  "10": {
+    "inputs": { "samples": ["9", 0], "vae": ["1", 2] },
+    "class_type": "VAEDecode",
+    "_meta": { "title": "VAE Decode" }
+  },
+  "13": {
+    "inputs": { 
+      "x": 0, 
+      "y": 0, 
+      "resize_source": false, 
+      "destination": ["4", 0], 
+      "source": ["10", 0], 
+      "mask": ["12", 1] 
+    },
+    "class_type": "ImageCompositeMasked",
+    "_meta": { "title": "Alpha Blend Override (Strict Clamp)" }
+  },
+  "11": {
+    "inputs": { "filename_prefix": "ComfyUI", "images": ["13", 0] },
+    "class_type": "SaveImage",
+    "_meta": { "title": "Save Image" }
+  }
+}
