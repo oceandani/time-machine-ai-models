@@ -1,0 +1,188 @@
+{
+  "version": "v10.4_phase1_ipadapter_all_terrain",
+  "evidence_cards": [
+    {
+      "evidence_ref_id": "EVID_HK_CWB_1960S_01",
+      "location_keywords": [
+        "causeway bay",
+        "銅鑼灣",
+        "軒尼詩",
+        "怡和",
+        "yee wo",
+        "hennessy",
+        "sogo"
+      ],
+      "era_keywords": [
+        "1950",
+        "1960",
+        "60s",
+        "五十年代",
+        "六十年代"
+      ],
+      "archive_source_title": "HK Public Records Office & Gwulo 1960s Causeway Bay Hennessy Road / Yee Wo Street Color Archival Collection",
+      "grounding_mode": "DIRECT_ARCHIVAL_EVIDENCE",
+      "max_historical_stories": 6,
+      "height_to_street_width_ratio": 0.44,
+      "ipadapter_weight": 0.58,
+      "ipadapter_end_at": 0.82,
+      "required_policy_matrix": {
+        "perspective_policy": "LOCK_STREET_CORRIDOR",
+        "vertical_mass_policy": "TRUNCATE_TO_LOW_RISE",
+        "surface_topo_policy": "VERNACULAR_FACADE_SIGNAGE",
+        "backdrop_sky_policy": "RELEASE_UPPER_SKY"
+      },
+      "conjugate_landmarks": [
+        "Hennessy Road / Yee Wo Street double-track tramway corridor axis",
+        "Left and right 5-to-6 story Tong Lau perspective roofline envelope",
+        "Central street corridor perspective vanishing point"
+      ],
+      "operator_mapping_rules": {
+        "SKY_CANVAS": "DEMOLISH",
+        "CENTRAL_BACKDROP": "REPLACE",
+        "LEFT_FACADE": "REPLACE",
+        "RIGHT_FACADE": "REPLACE",
+        "STREET_CORRIDOR": "REPLACE"
+      },
+      "verified_color_palette_prompt": "full-color 1960s Kodachrome daylight street photograph, warm sunlit ochre and beige concrete facades, vibrant vermilion-red, gold, and cobalt-blue vertical calligraphy shop signs, olive-green and cream double-decker tram, red and cream buses",
+      "verified_architectural_features": "low-rise 5-story 1960s British Colonial Hong Kong reinforced concrete cantilevered Tong Lau buildings with open balconies, horizontal window rows, ground-floor shopfront awnings, and projecting vertical Chinese signs",
+      "verified_street_features": "wide sunlit asphalt avenue with embedded steel tram tracks, 1960s olive-green wooden-body double-decker Hongkong Tramways tram, vintage red-and-cream CMB double-decker bus, classic black British Morris Oxford sedans, and Hong Kong pedestrians in authentic 1960s short-sleeve collared shirts, trousers, cheongsam, and summer dresses"
+    },
+    {
+      "evidence_ref_id": "EVID_NYC_TSQ_1970S_01",
+      "location_keywords": [
+        "times square",
+        "time square",
+        "broadway",
+        "時代廣場"
+      ],
+      "era_keywords": [
+        "1960",
+        "1970",
+        "1972",
+        "70s",
+        "七十年代"
+      ],
+      "archive_source_title": "NYC Municipal Archives 1972 Broadway & 7th Avenue Times Square Color Archival Survey",
+      "grounding_mode": "DIRECT_ARCHIVAL_EVIDENCE",
+      "max_historical_stories": 45,
+      "height_to_street_width_ratio": 0.85,
+      "ipadapter_weight": 0.58,
+      "ipadapter_end_at": 0.82,
+      "required_policy_matrix": {
+        "perspective_policy": "LOCK_STREET_CORRIDOR",
+        "vertical_mass_policy": "KEEP_CANYON_MASS",
+        "surface_topo_policy": "RESTYLE_BILLBOARDS_FACADE",
+        "backdrop_sky_policy": "KEEP_EXISTING_SKY"
+      },
+      "conjugate_landmarks": [
+        "One Times Square central wedge building with SONY / Canadian Club / Coca-Cola stacked vintage signs",
+        "Y-shaped Broadway and 7th Avenue road intersection",
+        "Right-side brownstone masonry tower with GORDON'S / BOND / WOOLWORTH marquees"
+      ],
+      "operator_mapping_rules": {
+        "SKY_CANVAS": "KEEP",
+        "CENTRAL_BACKDROP": "REPLACE",
+        "LEFT_FACADE": "REPLACE",
+        "RIGHT_FACADE": "REPLACE",
+        "STREET_CORRIDOR": "REPLACE"
+      },
+      "verified_color_palette_prompt": "full-color 1972 Kodachrome archival street photograph, natural daylight illumination, warm ruby-red, amber-gold, and classic painted theatre marquees, brownstone and buff brick masonry facades, bright chrome-bumper yellow taxicabs",
+      "verified_architectural_features": "1970s New York Times Square masonry commercial buildings covered with large vintage hand-painted movie billboards, exposed steel-frame SONY and Coca-Cola signs on central wedge tower, and classic broadway theatre marquees",
+      "verified_street_features": "wide asphalt Broadway intersection in natural daylight, boxy 1970s American chrome-bumper yellow Checker Marathon taxicabs, vintage 1970s steel-body American sedans, and New York pedestrians in authentic 1970s flared trousers, trench coats, vintage jackets, and retro attire"
+    },
+    {
+      "evidence_ref_id": "EVID_NYC_CENTRAL_PARK_1970S_01",
+      "location_keywords": [
+        "central park",
+        "manhattan",
+        "fifth avenue",
+        "central park south",
+        "中央公園",
+        "曼克頓",
+        "曼哈頓"
+      ],
+      "era_keywords": [
+        "1960",
+        "1970",
+        "70s",
+        "七十年代"
+      ],
+      "archive_source_title": "NYC Parks & Municipal Archives 1970s Central Park & Midtown Manhattan Skyline Collection",
+      "grounding_mode": "DIRECT_ARCHIVAL_EVIDENCE",
+      "max_historical_stories": 55,
+      "height_to_street_width_ratio": 0.85,
+      "ipadapter_weight": 0.56,
+      "ipadapter_end_at": 0.8,
+      "required_policy_matrix": {
+        "perspective_policy": "ALIGN_LANDMARK_VIEWPOINT",
+        "vertical_mass_policy": "KEEP_CANYON_MASS",
+        "surface_topo_policy": "VERNACULAR_FACADE_SIGNAGE",
+        "backdrop_sky_policy": "KEEP_EXISTING_SKY"
+      },
+      "conjugate_landmarks": [
+        "Midtown / Central Park South 1970s masonry and steel skyscraper skyline",
+        "Central Park natural lawns, rock outcrops, and tree-lined walkways"
+      ],
+      "operator_mapping_rules": {
+        "SKY_CANVAS": "KEEP",
+        "CENTRAL_BACKDROP": "REPLACE",
+        "LEFT_FACADE": "REPLACE",
+        "RIGHT_FACADE": "REPLACE",
+        "STREET_CORRIDOR": "REPLACE"
+      },
+      "verified_color_palette_prompt": "full-color 1970s Kodachrome daylight photograph, lush olive and emerald park foliage, warm limestone, buff brick, and bronze-tinted 1970s Manhattan skyscrapers under natural daylight",
+      "verified_architectural_features": "1970s Manhattan skyline bordering Central Park featuring classic limestone Art Deco and mid-century International Style skyscrapers (Plaza Hotel, General Motors Building, Essex House style) without modern 2020s glass supertall needle towers",
+      "verified_street_features": "1970s Central Park pathways and park drives with vintage cast-iron lampposts, wood-slat park benches, and New Yorkers strolling in authentic 1970s casual clothing, bell-bottom jeans, and vintage knitwear"
+    },
+    {
+      "evidence_ref_id": "EVID_HK_WATERFRONT_RECLAMATION_01",
+      "location_keywords": [
+        "taikoo",
+        "quarry bay",
+        "wan chai",
+        "convention",
+        "太古",
+        "船塢",
+        "鰂魚涌",
+        "灣仔",
+        "會展"
+      ],
+      "era_keywords": [
+        "1950",
+        "1960",
+        "1970",
+        "1980",
+        "六十年代",
+        "七十年代"
+      ],
+      "archive_source_title": "HK Lands Department Historical Coastline & Taikoo Dockyard / Victoria Harbour Archives",
+      "grounding_mode": "DIRECT_ARCHIVAL_EVIDENCE",
+      "max_historical_stories": 6,
+      "height_to_street_width_ratio": 0.42,
+      "ipadapter_weight": 0.58,
+      "ipadapter_end_at": 0.82,
+      "required_policy_matrix": {
+        "perspective_policy": "ALIGN_LANDMARK_VIEWPOINT",
+        "vertical_mass_policy": "DEMOLISH_TO_WATER_LEVEL",
+        "surface_topo_policy": "RECONSTRUCT_DOCKYARD_INFRA",
+        "backdrop_sky_policy": "LOCK_MOUNTAIN_RIDGELINE"
+      },
+      "conjugate_landmarks": [
+        "Distant natural mountain ridgeline (Mount Parker / Kowloon Ridgeline)",
+        "Historical pre-reclamation stone seawall coastline boundary"
+      ],
+      "operator_mapping_rules": {
+        "LOCKED_RIDGELINE": "KEEP",
+        "SKY_CANVAS": "KEEP",
+        "WATER_AND_DOCKYARD": "GEOMORPHIC_CHANGE",
+        "CENTRAL_BACKDROP": "GEOMORPHIC_CHANGE",
+        "LEFT_FACADE": "REPLACE",
+        "RIGHT_FACADE": "REPLACE",
+        "STREET_CORRIDOR": "GEOMORPHIC_CHANGE"
+      },
+      "verified_color_palette_prompt": "full-color 1960s Kodachrome archival daylight photograph, weathered terracotta red-brick industrial workshops, oxide-red and slate-grey steel portal cranes, warm granite stone seawalls, deep greenish-blue Victoria Harbour water",
+      "verified_architectural_features": "1960s Taikoo Dockyard coastal industrial complex, red-brick machine shops, sloping concrete slipways, steel hammerhead cranes, and stone quay walls against green mountain foothills",
+      "verified_street_features": "open greenish-blue harbour water, dry dock basins, moored steel cargo steamships with red-and-black hulls, tugboats, and dockyard workers in 1960s industrial workwear along the masonry seawall"
+    }
+  ]
+}

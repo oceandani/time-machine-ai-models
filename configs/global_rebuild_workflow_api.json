@@ -1,90 +1,256 @@
 {
   "1": {
     "inputs": {
-      "ckpt_name": "DreamShaper_8_pruned.safetensors"
+      "image": "base_placeholder.png"
     },
-    "class_type": "CheckpointLoaderSimple",
-    "_meta": { "title": "Load Checkpoint" }
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Base Image"
+    }
   },
   "2": {
-    "inputs": { "text": "", "clip": ["1", 1] },
-    "class_type": "CLIPTextEncode",
-    "_meta": { "title": "Positive Prompt" }
+    "inputs": {
+      "image": "mask_placeholder.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Mask Image"
+    }
   },
   "3": {
-    "inputs": { "text": "", "clip": ["1", 1] },
-    "class_type": "CLIPTextEncode",
-    "_meta": { "title": "Negative Prompt" }
+    "inputs": {
+      "channel": "red",
+      "image": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "ImageToMask",
+    "_meta": {
+      "title": "Convert Image to Mask"
+    }
   },
   "4": {
-    "inputs": { "image": "" },
-    "class_type": "LoadImage",
-    "_meta": { "title": "Base Image" }
+    "inputs": {
+      "ckpt_name": "dreamshaper_8Inpainting.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
   },
   "5": {
-    "inputs": { "a": 6.28, "bg_threshold": 0.1, "resolution": 512, "image": ["4", 0] },
-    "class_type": "MiDaS-DepthMapPreprocessor",
-    "_meta": { "title": "MiDaS Depth Map" }
+    "inputs": {
+      "text": "",
+      "clip": [
+        "4",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Positive Prompt"
+    }
   },
   "6": {
-    "inputs": { "control_net_name": "control_v11f1p_sd15_depth.pth" },
-    "class_type": "ControlNetLoader",
-    "_meta": { "title": "Load ControlNet Model" }
+    "inputs": {
+      "text": "",
+      "clip": [
+        "4",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Negative Prompt"
+    }
   },
   "7": {
-    "inputs": { 
-      "strength": 0.35, 
-      "start_percent": 0, 
-      "end_percent": 0.35, 
-      "positive": ["2", 0], 
-      "negative": ["3", 0], 
-      "control_net": ["6", 0], 
-      "image": ["5", 0], 
-      "vae": ["1", 2] 
+    "inputs": {
+      "control_net_name": "control_v11p_sd15_mlsd.pth"
     },
-    "class_type": "ControlNetApplyAdvanced",
-    "_meta": { "title": "Apply ControlNet" }
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "Load ControlNet Model"
+    }
   },
-  "12": {
-    "inputs": { "image": "" },
+  "15": {
+    "inputs": {
+      "image": "control_placeholder.png"
+    },
     "class_type": "LoadImage",
-    "_meta": { "title": "Mask Image" }
+    "_meta": {
+      "title": "ControlNet Image"
+    }
   },
   "8": {
-    "inputs": { 
-      "grow_mask_by": 0, 
-      "pixels": ["4", 0], 
-      "vae": ["1", 2], 
-      "mask": ["12", 1] 
+    "inputs": {
+      "score_threshold": 0.12,
+      "dist_threshold": 0.12,
+      "resolution": 768,
+      "image": [
+        "15",
+        0
+      ]
     },
-    "class_type": "VAEEncodeForInpaint",
-    "_meta": { "title": "VAE Encode Inpaint (Hard Boundary)" }
+    "class_type": "M-LSDPreprocessor",
+    "_meta": {
+      "title": "M-LSD Lines"
+    }
   },
   "9": {
-    "inputs": { "seed": 0, "steps": 20, "cfg": 8, "sampler_name": "euler", "scheduler": "simple", "denoise": 0.85, "model": ["1", 0], "positive": ["7", 0], "negative": ["7", 1], "latent_image": ["8", 0] },
-    "class_type": "KSampler",
-    "_meta": { "title": "KSampler" }
+    "inputs": {
+      "strength": 0.46,
+      "start_percent": 0.0,
+      "end_percent": 0.54,
+      "positive": [
+        "5",
+        0
+      ],
+      "negative": [
+        "6",
+        0
+      ],
+      "control_net": [
+        "7",
+        0
+      ],
+      "image": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "Apply ControlNet"
+    }
   },
   "10": {
-    "inputs": { "samples": ["9", 0], "vae": ["1", 2] },
-    "class_type": "VAEDecode",
-    "_meta": { "title": "VAE Decode" }
+    "inputs": {
+      "grow_mask_by": 4,
+      "pixels": [
+        "1",
+        0
+      ],
+      "vae": [
+        "4",
+        2
+      ],
+      "mask": [
+        "3",
+        0
+      ]
+    },
+    "class_type": "VAEEncodeForInpaint",
+    "_meta": {
+      "title": "VAE Encode (Inpaint 9-Channel Context Isolation)"
+    }
+  },
+  "16": {
+    "inputs": {
+      "image": "historical_ref_placeholder.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Historical Reference Image"
+    }
+  },
+  "17": {
+    "inputs": {
+      "preset": "PLUS (high strength)",
+      "model": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "IPAdapterUnifiedLoader",
+    "_meta": {
+      "title": "Load IPAdapter Model"
+    }
+  },
+  "18": {
+    "inputs": {
+      "weight": 0.58,
+      "weight_type": "style transfer",
+      "combine_embeds": "concat",
+      "start_at": 0.0,
+      "end_at": 0.82,
+      "embeds_scaling": "V only",
+      "model": [
+        "17",
+        0
+      ],
+      "ipadapter": [
+        "17",
+        1
+      ],
+      "image": [
+        "16",
+        0
+      ]
+    },
+    "class_type": "IPAdapterAdvanced",
+    "_meta": {
+      "title": "Apply Historical IPAdapter Conditioning"
+    }
+  },
+  "12": {
+    "inputs": {
+      "seed": 42,
+      "steps": 28,
+      "cfg": 7.5,
+      "sampler_name": "euler",
+      "scheduler": "normal",
+      "denoise": 0.94,
+      "model": [
+        "18",
+        0
+      ],
+      "positive": [
+        "9",
+        0
+      ],
+      "negative": [
+        "9",
+        1
+      ],
+      "latent_image": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
   },
   "13": {
-    "inputs": { 
-      "x": 0, 
-      "y": 0, 
-      "resize_source": false, 
-      "destination": ["4", 0], 
-      "source": ["10", 0], 
-      "mask": ["12", 1] 
+    "inputs": {
+      "samples": [
+        "12",
+        0
+      ],
+      "vae": [
+        "4",
+        2
+      ]
     },
-    "class_type": "ImageCompositeMasked",
-    "_meta": { "title": "Alpha Blend Override (Strict Clamp)" }
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
   },
-  "11": {
-    "inputs": { "filename_prefix": "ComfyUI", "images": ["13", 0] },
+  "14": {
+    "inputs": {
+      "filename_prefix": "TimeMachine",
+      "images": [
+        "13",
+        0
+      ]
+    },
     "class_type": "SaveImage",
-    "_meta": { "title": "Save Image" }
+    "_meta": {
+      "title": "Save Image"
+    }
   }
 }
